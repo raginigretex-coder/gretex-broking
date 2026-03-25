@@ -1,0 +1,23 @@
+{
+  "name": "gretex-financial",
+  "version": "1.0.0",
+  "description": "Gretex Financial - Indian Equity Market Leader",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "vercel --prod",
+    "dev": "vercel dev"
+  },
+  "keywords": [
+    "finance",
+    "trading",
+    "equity",
+    "stock-market",
+    "calculators"
+  ],
+  "author": "Gretex",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gretex/gretex-financial.git"
+  }
+}

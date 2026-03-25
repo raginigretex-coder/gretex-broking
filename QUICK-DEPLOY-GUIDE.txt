@@ -1,0 +1,181 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║     GRETEX FINANCIAL - VERCEL DEPLOYMENT GUIDE              ║
+║     Deploy Your Website in 5 Minutes (No npm needed!)       ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  METHOD 1: DRAG & DROP (EASIEST - NO INSTALLATION NEEDED)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Create Vercel Account
+   → Open browser and go to: https://vercel.com/signup
+   → Sign up with Email or GitHub
+   → Verify your email
+
+Step 2: Go to New Project Page
+   → Visit: https://vercel.com/new
+   → You'll see "Import Git Repository" and "Browse" button
+
+Step 3: Upload Your Project
+   → Click the "Browse" button
+   → Navigate to: C:\Users\Gretex\OneDrive\Desktop\GretexShare
+   → Select the entire folder
+   → Click "Open" or "Select Folder"
+
+Step 4: Deploy
+   → Vercel will show your project files
+   → Click "Deploy" button
+   → Wait 2-3 minutes
+
+Step 5: Done! 🎉
+   → You'll get a live URL like: https://gretex-financial.vercel.app
+   → Click the URL to view your website
+   → Share it with anyone!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  METHOD 2: INSTALL NODE.JS FIRST (For CLI Access)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Download Node.js
+   → Go to: https://nodejs.org
+   → Click "Download" (LTS version)
+   → Run the installer
+   → Click "Next" through all steps
+   → Restart PowerShell after installation
+
+Step 2: Verify Installation
+   → Open new PowerShell window
+   → Run: node --version
+   → Run: npm --version
+   → You should see version numbers
+
+Step 3: Install Vercel CLI
+   → Run: npm install -g vercel
+   → Wait for installation to complete
+
+Step 4: Login to Vercel
+   → Run: vercel login
+   → Browser will open for login
+   → Login with your account
+
+Step 5: Deploy
+   → Navigate to project: cd C:\Users\Gretex\OneDrive\Desktop\GretexShare
+   → Run: vercel --prod
+   → Follow the prompts
+   → Done! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  WHAT YOU GET AFTER DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Live Website URL (e.g., https://gretex-financial.vercel.app)
+✓ Automatic HTTPS/SSL Certificate
+✓ Global CDN (Fast loading worldwide)
+✓ Free hosting (No credit card required)
+✓ Automatic deployments (if using GitHub)
+✓ Analytics dashboard
+✓ Custom domain support
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ADDING CUSTOM DOMAIN (Optional)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Go to Vercel Dashboard
+   → Visit: https://vercel.com/dashboard
+   → Click on your project
+
+Step 2: Add Domain
+   → Click "Settings" tab
+   → Click "Domains" in sidebar
+   → Enter your domain (e.g., www.gretex.com)
+   → Click "Add"
+
+Step 3: Configure DNS
+   → Vercel will show DNS records to add
+   → Go to your domain registrar (GoDaddy, Namecheap, etc.)
+   → Add the DNS records shown by Vercel
+   → Wait 24-48 hours for DNS propagation
+
+Step 4: SSL Certificate
+   → Vercel automatically provisions SSL
+   → Your site will be HTTPS enabled
+   → Done! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: "npm is not recognized"
+Solution: Install Node.js from https://nodejs.org OR use drag & drop method
+
+Problem: "Pages show 404 error"
+Solution: Make sure vercel.json is in the root folder
+
+Problem: "Images not loading"
+Solution: Check that all file paths are relative (../images/ not /images/)
+
+Problem: "Deployment failed"
+Solution: Check Vercel dashboard logs for specific error
+
+Problem: "Can't upload folder"
+Solution: Try zipping the folder first, then upload the zip file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  IMPORTANT FILES IN YOUR PROJECT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ vercel.json          - Vercel configuration (routing, caching)
+✓ .vercelignore        - Files to exclude from deployment
+✓ package.json         - Project metadata
+✓ index.html           - Entry point (redirects to home page)
+✓ pages/               - All your HTML pages
+✓ css/                 - Stylesheets
+✓ js/                  - JavaScript files
+✓ images/              - Images and icons
+✓ assets/              - Documents and PDFs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING YOUR DEPLOYED WEBSITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After deployment, test these:
+
+□ Homepage loads correctly
+□ All navigation links work
+□ Search bar functions properly
+□ Mobile menu opens and closes
+□ Dropdown menus work (Investor, Client Corner, Login)
+□ All calculator pages load
+□ Forms submit correctly
+□ PDFs download properly
+□ Images display correctly
+□ Responsive on mobile devices
+□ No console errors (F12 → Console)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SUPPORT & RESOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Vercel Documentation:  https://vercel.com/docs
+Vercel Support:        https://vercel.com/support
+Video Tutorials:       https://www.youtube.com/c/Vercel
+Community Forum:       https://github.com/vercel/vercel/discussions
+
+Node.js Download:      https://nodejs.org
+Git Download:          https://git-scm.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  RECOMMENDED: START WITH DRAG & DROP!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👉 Go to: https://vercel.com/new
+👉 Click "Browse"
+👉 Select your folder
+👉 Click "Deploy"
+👉 Done in 2 minutes! 🚀
+
+╔══════════════════════════════════════════════════════════════╗
+║  Questions? Check DEPLOY-WITHOUT-NPM.md for detailed help   ║
+╚══════════════════════════════════════════════════════════════╝

@@ -1,0 +1,10 @@
+# Vercel ignore file
+node_modules
+.git
+.vscode
+*.md
+*.ps1
+test-*.html
+CHATBOT-SETUP.md
+NAVBAR-UPDATE-GUIDE.md
+update-all-navbars.ps1

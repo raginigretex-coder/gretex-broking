@@ -1,0 +1,65 @@
+═══════════════════════════════════════════════════════════════
+  🚀 DEPLOY YOUR WEBSITE NOW - CLICK THESE LINKS
+═══════════════════════════════════════════════════════════════
+
+EASIEST METHOD (No Installation Required):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CREATE ACCOUNT:
+   👉 https://vercel.com/signup
+
+2. DEPLOY YOUR WEBSITE:
+   👉 https://vercel.com/new
+   
+   Then:
+   - Click "Browse" button
+   - Select folder: C:\Users\Gretex\OneDrive\Desktop\GretexShare
+   - Click "Deploy"
+   - Wait 2 minutes
+   - DONE! 🎉
+
+═══════════════════════════════════════════════════════════════
+
+ALTERNATIVE: Install Node.js First
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DOWNLOAD NODE.JS:
+   👉 https://nodejs.org/en/download/
+
+2. After installation, run in PowerShell:
+   npm install -g vercel
+   vercel login
+   vercel --prod
+
+═══════════════════════════════════════════════════════════════
+
+HELPFUL RESOURCES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 Vercel Documentation:
+   👉 https://vercel.com/docs
+
+🎥 Video Tutorial:
+   👉 https://www.youtube.com/watch?v=2HBIzEx6IZA
+
+💬 Get Help:
+   👉 https://vercel.com/support
+
+═══════════════════════════════════════════════════════════════
+
+YOUR NEXT STEPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Step 1: Click https://vercel.com/signup
+✅ Step 2: Click https://vercel.com/new
+✅ Step 3: Upload your folder
+✅ Step 4: Click Deploy
+✅ Step 5: Get your live URL!
+
+═══════════════════════════════════════════════════════════════
+
+🎊 Your website will be live at:
+   https://gretex-financial.vercel.app
+   (or similar URL)
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,384 @@
+/* ============================================
+   PREMIUM SCROLL ANIMATIONS
+   Gretex Financial - Scroll-Driven Effects
+   ============================================ */
+
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #1873E0 0%, #aa16c4 50%, #00a855 100%);
+    z-index: 10000;
+    transition: width 0.05s linear;
+    box-shadow: 0 0 10px rgba(24, 115, 224, 0.5), 0 0 20px rgba(170, 22, 196, 0.3);
+}
+
+/* ---- Base Scroll Reveal ---- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.92);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ---- Zoom In ---- */
+.scroll-zoom-in {
+    opacity: 0;
+    transform: scale(0.75);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-zoom-in.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ---- Rotate In ---- */
+.scroll-rotate-in {
+    opacity: 0;
+    transform: rotate(-8deg) scale(0.85) translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-rotate-in.active {
+    opacity: 1;
+    transform: rotate(0deg) scale(1) translateY(0);
+}
+
+/* ---- Slide from Left ---- */
+.scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.9);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-slide-left.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* ---- Slide from Right ---- */
+.scroll-slide-right {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-slide-right.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* ---- Slide Up Bounce ---- */
+.scroll-bounce-up {
+    opacity: 0;
+    transform: translateY(80px) scale(0.88);
+    transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-bounce-up.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ---- Flip In ---- */
+.scroll-flip-in {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-25deg) scale(0.9);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-flip-in.active {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg) scale(1);
+}
+
+/* ---- Stagger Delays ---- */
+.stagger-1 {
+    transition-delay: 0.05s;
+}
+
+.stagger-2 {
+    transition-delay: 0.12s;
+}
+
+.stagger-3 {
+    transition-delay: 0.19s;
+}
+
+.stagger-4 {
+    transition-delay: 0.26s;
+}
+
+.stagger-5 {
+    transition-delay: 0.33s;
+}
+
+.stagger-6 {
+    transition-delay: 0.4s;
+}
+
+.stagger-7 {
+    transition-delay: 0.47s;
+}
+
+.stagger-8 {
+    transition-delay: 0.54s;
+}
+
+/* ---- Hero Parallax & Shrink ---- */
+.hero-parallax-wrapper {
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.hero-content {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* ---- Floating Gradient Orbs ---- */
+.floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    filter: blur(60px);
+    z-index: 0;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.floating-orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(24, 115, 224, 0.15) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    animation: orbFloat1 20s ease-in-out infinite;
+}
+
+.floating-orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(170, 22, 196, 0.12) 0%, transparent 70%);
+    top: 50%;
+    right: -80px;
+    animation: orbFloat2 25s ease-in-out infinite;
+}
+
+.floating-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 168, 85, 0.1) 0%, transparent 70%);
+    bottom: -50px;
+    left: 30%;
+    animation: orbFloat3 18s ease-in-out infinite;
+}
+
+.floating-orb-4 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(24, 115, 224, 0.1) 0%, transparent 70%);
+    top: 20%;
+    right: 20%;
+    animation: orbFloat1 22s ease-in-out infinite reverse;
+}
+
+@keyframes orbFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(30px, -40px) scale(1.05);
+    }
+
+    50% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+
+    75% {
+        transform: translate(15px, 30px) scale(1.02);
+    }
+}
+
+@keyframes orbFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(-40px, 30px) scale(1.08);
+    }
+
+    66% {
+        transform: translate(25px, -25px) scale(0.92);
+    }
+}
+
+@keyframes orbFloat3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(20px, -30px) scale(1.03);
+    }
+
+    50% {
+        transform: translate(-30px, -10px) scale(0.97);
+    }
+
+    75% {
+        transform: translate(10px, 25px) scale(1.05);
+    }
+}
+
+/* ---- Section Perspective Containers ---- */
+.perspective-section {
+    perspective: 1200px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ---- 3D Card Tilt on Hover ---- */
+.tilt-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+    transform: perspective(800px) rotateX(3deg) rotateY(-3deg) translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(24, 115, 224, 0.08);
+}
+
+/* ---- Animated Section Dividers ---- */
+.section-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(24, 115, 224, 0.3), rgba(170, 22, 196, 0.3), transparent);
+    margin: 0 auto;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-divider.active {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* ---- Premium Glow Effects ---- */
+.glow-text {
+    text-shadow: 0 0 40px rgba(24, 115, 224, 0.15),
+        0 0 80px rgba(170, 22, 196, 0.08);
+}
+
+/* ---- Gradient Text Shimmer ---- */
+.shimmer-text {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* ---- Enhanced Service Card Animations ---- */
+.service-card.scroll-reveal,
+.calculator-card.scroll-reveal {
+    transform-origin: center bottom;
+}
+
+/* ---- Stat Counter Glow ---- */
+.stat-counting {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.stat-counting.counting-active {
+    text-shadow: 0 0 20px rgba(170, 22, 196, 0.4);
+}
+
+/* ---- Smooth Section Transitions ---- */
+section {
+    position: relative;
+}
+
+/* ---- Responsive Animation Adjustments ---- */
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-reveal,
+    .scroll-zoom-in,
+    .scroll-rotate-in,
+    .scroll-slide-left,
+    .scroll-slide-right,
+    .scroll-bounce-up,
+    .scroll-flip-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .floating-orb {
+        animation: none;
+    }
+
+    .shimmer-text {
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .scroll-slide-left,
+    .scroll-slide-right {
+        transform: translateY(40px) scale(0.95);
+    }
+
+    .scroll-slide-left.active,
+    .scroll-slide-right.active {
+        transform: translateY(0) scale(1);
+    }
+
+    .floating-orb {
+        display: none;
+    }
+}
