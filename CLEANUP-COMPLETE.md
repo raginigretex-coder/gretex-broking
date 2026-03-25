@@ -59,7 +59,7 @@ All service HTML files in `pages/services/` folder:
 - `service-commodities.html`
 - `service-currency.html`
 - `service-derivatives.html`
-- `service-equity.html`
+- `Institutional-broking.html`
 - `service-futures-options.html`
 - `service-mutual-funds.html`
 - `services.html`

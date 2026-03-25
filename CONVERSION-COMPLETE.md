@@ -49,7 +49,7 @@ All calculator sub-pages in `calculator/` folder:
 
 ### ✅ Service Pages Converted (7 pages)
 All service sub-pages in `services/` folder:
-- `service-equity.php`
+- `Institutional-broking.php`
 - `trading.php`
 - `service-futures-options.php`
 - `service-aif.php`

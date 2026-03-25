@@ -562,10 +562,10 @@ require_once '../includes/navbar.php';
 
             <div class="services-carousel-shell">
                 <div class="services-grid" id="servicesGrid">
-                    <a href="services/service-equity.php" class="service-card-link">
+                    <a href="services/Institutional-broking.php" class="service-card-link">
                     <div class="service-card service-card--equity">
                         <div class="service-card-inner">
-                            <h3>Equity</h3>
+                            <h3>Institutional Broking</h3>
                             <p>Cash-market trading on a single screen—built for fast execution and straightforward order flow in Indian equities.</p>
                             <span class="service-card-read">
                                 <span class="service-card-read-btn" aria-hidden="true">

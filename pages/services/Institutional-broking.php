@@ -20,7 +20,7 @@ require_once '../../includes/navbar.php';
     <section class="service-hero equity-hero equity-hero-modern" style="--hero-bg-image: url('<?php echo gt_asset_url('images/equity.jpg'); ?>');">
         <div class="hero-overlay"></div>
         <div class="hero-content equity-hero-content">
-            <div class="hero-badge">Equity Trading</div>
+            <div class="hero-badge">Institutional broking</div>
             <h1>Institutional Broking with Structured Execution and Market Access</h1>
             <p>Facilitating efficient execution of large-value transactions through dedicated dealing support, operational precision, and access to regulated financial markets for institutional participants.</p>
             <!-- <div class="hero-cta">
@@ -35,7 +35,7 @@ require_once '../../includes/navbar.php';
         <div class="container">
             <div class="overview-grid equity-overview-grid">
                 <div class="overview-content">
-                    <span class="equity-offers-kicker">Equity Trading Overview</span>
+                    <span class="equity-offers-kicker">Institutional Broking Overview</span>
                     <h2>Facilitating institutional participation through structured market access frameworks</h2>
                     <p>Institutional broking involves enabling large and regulated entities to access financial markets through structured execution mechanisms. </p>
                     <p>The service is designed to support high-volume transactions with operational precision, adherence to regulatory requirements, and coordinated dealing processes.</p>
@@ -58,7 +58,7 @@ require_once '../../includes/navbar.php';
             <div class="equity-offers-layout">
                 <div class="equity-offers-intro">
                     <span class="equity-offers-kicker">What we offer</span>
-                    <h2 class="equity-offers-title">A complete equity trading experience</h2>
+                    <h2 class="equity-offers-title">A complete Institutional broking experience</h2>
                     
                 </div>
 
@@ -138,7 +138,7 @@ require_once '../../includes/navbar.php';
                 <div class="equity-whychoose-content">
                     <div class="equity-benefits-header equity-benefits-header--left-align">
                         <span class="equity-benefits-kicker">Why choose us </span>
-                        <h2 class="section-title">Why Choose for Equity Trading?</h2>
+                        <h2 class="section-title">Why Choose for Institutional broking?</h2>
                         <!-- <p class="equity-whychoose-subtitle">Everything you need to trade with confidence, speed, and professional support.</p> -->
                     </div>
 
