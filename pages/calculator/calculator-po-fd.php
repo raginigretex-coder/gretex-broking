@@ -31,6 +31,8 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
@@ -60,18 +62,15 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('pofdResults').style.display='none';document.getElementById('pofdResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('pofdInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('pofdResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
+                            <div id="pofdInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div id="pofdResultsContent"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section results-only" id="pofdResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">Post Office FD Results</h2>
-                        <div id="pofdResultsContent"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -95,7 +94,7 @@ require_once '../../includes/navbar.php';
                     <div class="result-item highlight"><span class="result-label">Maturity Amount:</span><span class="result-value">${formatCurrency(r.maturityAmount)}</span></div>
                 </div>
             </div>`;
-            document.getElementById('pofdResults').style.display='block';document.getElementById('pofdResults').setAttribute('aria-hidden','false');document.getElementById('pofdResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('pofdInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -113,4 +112,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

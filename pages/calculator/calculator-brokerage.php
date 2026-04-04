@@ -35,13 +35,15 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About Brokerage Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>Brokerage Calculator</strong> shows the full cost of buying and selling shares�brokerage, STT, exchange charges, GST, SEBI charges, stamp duty�and how they affect your net P&amp;L. Many traders overlook these charges, which can take a large share of gains.</p>
+                                <p>The <strong>Brokerage Calculator</strong> shows the full cost of buying and selling sharesï¿½brokerage, STT, exchange charges, GST, SEBI charges, stamp dutyï¿½and how they affect your net P&amp;L. Many traders overlook these charges, which can take a large share of gains.</p>
                                 <p>Get a breakdown for NSE and BSE, breakeven price, and net profit/loss after all costs. Essential for day traders, swing traders, and long-term investors.</p>
                                 <h3>How Brokerage Works</h3>
                                 <ul>
@@ -51,7 +53,7 @@ require_once '../../includes/navbar.php';
                                     <li><strong>GST:</strong> 18% on (Brokerage + Transaction Charges). SEBI: &#8377;10/crore. Stamp duty: 0.015% buy, 0.003% sell.</li>
                                 </ul>
                                 <h3>Benefits</h3>
-                                <p>Full transparency, accurate breakeven, compare discount vs full-service. <strong>Cost-saving:</strong> Intraday has lower STT; large volumes reduce % impact of flat brokerage; delivery more cost-efficient for long-term; frequent trading multiplies costs�trade selectively.</p>
+                                <p>Full transparency, accurate breakeven, compare discount vs full-service. <strong>Cost-saving:</strong> Intraday has lower STT; large volumes reduce % impact of flat brokerage; delivery more cost-efficient for long-term; frequent trading multiplies costsï¿½trade selectively.</p>
                                 <h3>Who Should Use</h3>
                                 <p>Day traders, swing traders, delivery investors, broker comparison, F&amp;O traders, beginners. Critical for small capital, high-frequency traders, options buyers. <strong>Key insight:</strong> 1% price gain may become 0.5% profit after costs for delivery.</p>
                                 <h3>Example</h3>
@@ -59,8 +61,8 @@ require_once '../../includes/navbar.php';
                                 <h3>FAQs</h3>
                                 <div class="faq-item"><p class="faq-q">Why is profit less than price difference?</p><p>Trading charges (brokerage, STT, taxes) reduce gross profit. Always calculate net after all costs.</p></div>
                                 <div class="faq-item"><p class="faq-q">Intraday or delivery cheaper?</p><p>Intraday has lower STT (0.025% vs 0.1%) but must close same day. For holdings &gt;1 day, delivery is more cost-effective.</p></div>
-                                <div class="faq-item"><p class="faq-q">Charges on losing trades?</p><p>Yes�all charges apply regardless of profit or loss. Even a losing trade incurs full brokerage, STT, and other costs.</p></div>
-                                <div class="faq-item"><p class="faq-q">Minimum profit to breakeven?</p><p>Typically 0.3�0.5% for delivery, 0.5�0.8% for intraday (varies by broker and trade size). Use calculator for exact breakeven.</p></div>
+                                <div class="faq-item"><p class="faq-q">Charges on losing trades?</p><p>Yesï¿½all charges apply regardless of profit or loss. Even a losing trade incurs full brokerage, STT, and other costs.</p></div>
+                                <div class="faq-item"><p class="faq-q">Minimum profit to breakeven?</p><p>Typically 0.3ï¿½0.5% for delivery, 0.5ï¿½0.8% for intraday (varies by broker and trade size). Use calculator for exact breakeven.</p></div>
                                 <div class="faq-item"><p class="faq-q">Charges same for all stocks?</p><p>Percentage charges are same, but impact varies with stock price and liquidity. Low-priced stocks (&lt;&#8377;50) have higher % impact of fixed costs.</p></div>
                                 <h3>Related Calculators</h3>
                                 <ul class="related-calc-list">
@@ -97,28 +99,25 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('brResults').style.display='none';document.getElementById('brResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="resetBrokerageForm()"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <section class="calculator-results-section" id="brResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">Results</h2>
-                        <div class="calculator-results-grid">
-                            <div id="brResultsContent"></div>
-                            <div class="calculator-results-chart">
-                                <h3 class="chart-section-title">Charge Breakdown</h3>
-                                <div id="brChart" style="height:220px"></div>
-                                <div class="breakeven-visual" id="brBreakeven">
-                                    <strong>Breakeven Price: ?<span id="brBreakevenVal">0</span></strong>
-                                    <p style="margin:0.5rem 0 0 0;font-size:0.875rem;color:#5a6c7d">Your Sell: ?<span id="brSellVal">0</span> � <span id="brDiffText"></span></p>
+                            <div id="brInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div class="calculator-results-grid">
+                                    <div id="brResultsContent"></div>
+                                    <div class="calculator-results-chart">
+                                        <h3 class="chart-section-title">Charge Breakdown</h3>
+                                        <div id="brChart" style="height:220px"></div>
+                                        <div class="breakeven-visual" id="brBreakeven">
+                                            <strong>Breakeven Price: ?<span id="brBreakevenVal">0</span></strong>
+                                            <p style="margin:0.5rem 0 0 0;font-size:0.875rem;color:#5a6c7d">Your Sell: ?<span id="brSellVal">0</span> ï¿½ <span id="brDiffText"></span></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </main>
@@ -127,6 +126,14 @@ require_once '../../includes/navbar.php';
     <script>
         lucide.createIcons();
         let brChart=null;
+        function resetBrokerageForm() {
+            document.getElementById('calculatorForm').reset();
+            const w = document.getElementById('brInlineWrap');
+            if (w) w.classList.add('is-hidden');
+            const c = document.getElementById('brResultsContent');
+            if (c) c.innerHTML = '';
+            if (brChart) { brChart.destroy(); brChart = null; }
+        }
         function calcBrokerageResult(e){e.preventDefault();
             // Reset previous reading first - clear results and destroy chart before calculating
             const brResultsContent = document.getElementById('brResultsContent');
@@ -165,7 +172,7 @@ require_once '../../includes/navbar.php';
             setTimeout(()=>{
                 brChart=new ApexCharts(document.querySelector('#brChart'),{series:chargeVals,chart:{type:'donut',height:220},labels:chargeLabels.length?chargeLabels:['Charges'],colors:chargeColors.length?chargeColors:['#1e5a7d'],plotOptions:{pie:{donut:{labels:{show:true,value:{formatter:v=>formatCurrency(v)}}}}}});brChart.render();
             },50);
-            document.getElementById('brResults').style.display='block';document.getElementById('brResults').setAttribute('aria-hidden','false');document.getElementById('brResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('brInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -183,4 +190,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

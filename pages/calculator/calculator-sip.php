@@ -5,14 +5,13 @@
  */
 
 // Page configuration
-$pageTitle = 'SIP Calculator - Gretex Financial';
+$pageTitle = 'Investment Calculator - Gretex Financial';
 $additionalCSS = [
     '../../css/calculator-page.css',
     '../../css/chatbot.css',
 ];
 
 $additionalScripts = [
-    'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
     'https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js',
 ];
 
@@ -26,7 +25,7 @@ require_once '../../includes/navbar.php';
     <!-- Navigation -->
 
     <!-- Calculator Page Content -->
-    <main class="calculator-page">
+    <main class="calculator-page investment-modern-calc-page">
         <div class="calculator-hero">
             <div class="container">
                 <div class="calculator-hero-content">
@@ -34,14 +33,117 @@ require_once '../../includes/navbar.php';
                         <i data-lucide="arrow-left"></i>
                         <span>Back to Calculators</span>
                     </a>
-                    <h1 class="calculator-page-title">SIP Calculator</h1>
-                    <p class="calculator-page-description">Calculate how much you need to save or how much you will accumulate with your Systematic Investment Plan</p>
+                    <h1 class="calculator-page-title">Investment Calculator</h1>
+                    <p class="calculator-page-description">A modern SIP / Lumpsum calculator with real-time estimates and an animated investment breakdown.</p>
                 </div>
             </div>
         </div>
 
         <div class="calculator-main-section">
             <div class="container">
+                <section class="investment-modern-calc" aria-label="Investment calculator">
+                    <div class="investment-tabs" role="tablist" aria-label="Investment type">
+                        <button type="button" class="investment-tab is-active" data-mode="sip" aria-selected="true">SIP</button>
+                        <button type="button" class="investment-tab" data-mode="lumpsum" aria-selected="false">Lumpsum</button>
+                    </div>
+
+                    <div class="investment-modern-calc-grid">
+                        <div class="investment-controls" aria-label="Inputs">
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" id="amountLabel" for="investmentAmountRange">Monthly investment (₹)</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="amountErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <span class="pill-unit">₹</span>
+                                            <input type="text" class="pill-input" id="investmentAmountInput" value="5000" inputmode="numeric" aria-label="Monthly investment amount" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="investmentAmountRange" min="100" max="10000000" step="100" value="5000" aria-labelledby="amountLabel" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="investmentRateRange">Expected return rate (p.a)</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="rateErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="investmentRateInput" min="1" max="30" step="0.1" value="12" inputmode="decimal" aria-label="Expected return rate" />
+                                            <span class="pill-unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="investmentRateRange" min="1" max="30" step="0.1" value="12" aria-label="Expected return rate slider" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="investmentYearsRange">Time period</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="yearsErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="investmentYearsInput" min="1" max="40" step="1" value="10" inputmode="numeric" aria-label="Time period years" />
+                                            <span class="pill-unit">Yr</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="investmentYearsRange" min="1" max="40" step="1" value="10" aria-label="Time period slider" />
+                            </div>
+                        </div>
+
+                        <div class="investment-visual" aria-label="Visualization">
+                            <div class="investment-donut-card">
+                                <div class="investment-graph-quickbar" aria-hidden="false">
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-invested"></span>
+                                            <span class="quickbar-label">Invested amount</span>
+                                        </div>
+                                        <div class="quickbar-value" id="summaryInvested">₹0</div>
+                                    </div>
+
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-returns"></span>
+                                            <span class="quickbar-label">Estimated returns</span>
+                                        </div>
+                                        <div class="quickbar-value quickbar-returns-value" id="summaryReturns">₹0</div>
+                                    </div>
+
+                                    <div class="quickbar-total">
+                                        <div class="quickbar-total-label">Total value</div>
+                                        <div class="quickbar-total-value" id="summaryTotal">₹0</div>
+                                    </div>
+                                </div>
+
+                                <div class="investment-donut-wrap">
+                                    <div id="investmentDonutChart"></div>
+                                    <div class="investment-donut-center">
+                                        <div class="investment-donut-center-label">Maturity Value</div>
+                                        <div class="investment-donut-center-value" id="donutCenterValue">₹0</div>
+                                    </div>
+                                </div>
+
+                                <div class="investment-donut-legend" aria-hidden="true">
+                                    <div class="legend-item">
+                                        <span class="legend-dot legend-returns"></span>
+                                        <span>Returns</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot legend-invested"></span>
+                                        <span>Total Investment</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="investment-summary-cta">
+                        <button type="button" class="investment-cta" id="investNowBtn">INVEST NOW</button>
+                    </div>
+                </section>
+
                 <div class="calculator-wrapper">
                     <!-- Sidebar: Calculator Navigation -->
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
@@ -70,7 +172,7 @@ require_once '../../includes/navbar.php';
                                 </ul>
                                 
                                 <h3>Algorithm & Formula</h3>
-                                <div class="formula-box">FV = P � ({[1 + r]^n - 1} / r) � (1 + r)<br>Where: P = Monthly amount, r = Monthly return rate, n = Months</div>
+                                <div class="formula-box">FV = P &times; [((1 + r)<sup>n</sup> - 1) / r] &times; (1 + r)<br>Where: P = Monthly amount, r = Effective monthly return rate, n = Total months</div>
                                 
                                 <h3>Who Should Use?</h3>
                                 <p>Long-term investors, salaried individuals, and first-time mutual fund investors seeking disciplined wealth creation through regular investments.</p>
@@ -83,82 +185,7 @@ require_once '../../includes/navbar.php';
                         </div>
                     </div>
 
-                    <!-- Right Section: Calculator Form -->
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate Your SIP</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calculateSIPResult(event)">
-                                <div class="calculator-field">
-                                    <label for="sip-amount">Monthly SIP Amount (&#8377;)</label>
-                                    <input type="number" id="sip-amount" placeholder="5000" required min="500" max="10000000" step="500" value="5000">
-                                    <small class="field-hint">Min: &#8377;500 | Max: &#8377;1,00,00,000</small>
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="sip-rate">Expected Annual Return Rate (%)</label>
-                                    <input type="number" id="sip-rate" placeholder="12" required min="1" max="30" step="0.5" value="12">
-                                    <small class="field-hint">Range: 1% to 30% | Typical: 10-15% for equity funds</small>
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="sip-years">Investment Period (Years)</label>
-                                    <input type="number" id="sip-years" placeholder="10" required min="1" max="40" step="1" value="10">
-                                    <small class="field-hint">Range: 1 to 40 years</small>
-                                </div>
-                                
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate">
-                                        <i data-lucide="calculator"></i>
-                                        Calculate
-                                    </button>
-                                    <button type="button" class="calculator-btn-reset" onclick="resetCalculator()">
-                                        <i data-lucide="refresh-cw"></i>
-                                        Reset
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
-                <section class="calculator-results-section" id="resultsCard" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">SIP Calculation Results</h2>
-                        
-                        <!-- Primary Results Card -->
-                        <div class="results-primary-card" id="primaryResults"></div>
-                        
-                        <!-- Visualizations -->
-                        <div class="visualizations-section">
-                            <h3 class="visualizations-title">Visualizations</h3>
-                            
-                            <!-- Growth Chart -->
-                            <div class="chart-container-full">
-                                <h4 class="chart-title">Growth Projection Chart</h4>
-                                <div id="sipGrowthChart"></div>
-                            </div>
-                            
-                            <div class="charts-grid">
-                                <!-- Donut Chart -->
-                                <div class="chart-container">
-                                    <h4 class="chart-title">Investment Breakdown</h4>
-                                    <div id="sipDonutChart"></div>
-                                </div>
-                                
-                                <!-- Bar Chart -->
-                                <div class="chart-container">
-                                    <h4 class="chart-title">Monthly Accumulation</h4>
-                                    <div id="sipBarChart"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Year-wise Breakdown Table -->
-                        <div id="yearlyBreakdownSection"></div>
-                        
-                        <!-- Additional Metrics -->
-                        <div class="results-breakdown-card" id="additionalMetrics"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -172,424 +199,399 @@ require_once '../../includes/navbar.php';
             lucide.createIcons();
         }
 
-        let sipCharts = null;
+        /* =========================
+           Modern Investment UI
+           (real-time SIP/Lumpsum + donut)
+        ========================= */
+        (function initModernInvestmentUI() {
+            const root = document.querySelector('.investment-modern-calc');
+            if (!root) return;
 
-        // Local formatCurrency function (fallback if global not available)
-        function formatCurrencyLocal(num) {
-            if (num === null || num === undefined || isNaN(num)) return '₹0';
-            if (typeof formatCurrency === 'function') {
-                return formatCurrency(num);
+            const tabs = root.querySelectorAll('.investment-tab[data-mode]');
+
+            const amountLabel = document.getElementById('amountLabel');
+            const amountRange = document.getElementById('investmentAmountRange');
+            const amountInput = document.getElementById('investmentAmountInput');
+            const amountField = amountRange ? amountRange.closest('.investment-slider-field') : null;
+
+            const rateRange = document.getElementById('investmentRateRange');
+            const rateInput = document.getElementById('investmentRateInput');
+            const rateField = rateRange ? rateRange.closest('.investment-slider-field') : null;
+
+            const yearsRange = document.getElementById('investmentYearsRange');
+            const yearsInput = document.getElementById('investmentYearsInput');
+            const yearsField = yearsRange ? yearsRange.closest('.investment-slider-field') : null;
+
+            const summaryInvested = document.getElementById('summaryInvested');
+            const summaryReturns = document.getElementById('summaryReturns');
+            const summaryTotal = document.getElementById('summaryTotal');
+            const donutCenterValue = document.getElementById('donutCenterValue');
+            const investNowBtn = document.getElementById('investNowBtn');
+
+            const MIN_AMOUNT = 100;
+            const MAX_AMOUNT = 10000000;
+            const MIN_RATE = 1;
+            const MAX_RATE = 30;
+            const MIN_YEARS = 1;
+            const MAX_YEARS = 40;
+
+            let activeMode = 'sip';
+            let donutChart = null;
+
+            function clamp(n, min, max) {
+                if (!isFinite(n)) return min;
+                return Math.min(max, Math.max(min, n));
             }
-            return '₹' + num.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-        }
 
-        // Calculate SIP results with detailed breakdown
-        function calculateSIPDetailed(monthlyInvestment, annualRate, years) {
-            const monthlyRate = annualRate / 12 / 100;
-            const totalMonths = years * 12;
-            
-            // Future Value of SIP
-            const futureValue = monthlyInvestment * 
-                (((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * 
-                (1 + monthlyRate));
-            
-            // Total investment
-            const totalInvestment = monthlyInvestment * totalMonths;
-            
-            // Total returns
-            const totalReturns = futureValue - totalInvestment;
-            
-            // Return percentage
-            const returnPercentage = (totalReturns / totalInvestment) * 100;
-            
-            // Additional metrics
-            const effectiveAnnualReturn = annualRate;
-            const wealthMultiplier = futureValue / totalInvestment;
-            const investmentToReturnsRatio = totalReturns / totalInvestment;
-            const avgMonthlyReturn = totalReturns / totalMonths;
-            
-            // Year-wise breakdown
-            const yearlyData = [];
-            for (let year = 1; year <= years; year++) {
-                const months = year * 12;
-                const invested = monthlyInvestment * months;
-                const value = monthlyInvestment * 
-                    (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * 
-                    (1 + monthlyRate));
-                const returns = value - invested;
-                
-                // Calculate year-on-year growth
-                let yoyGrowth = '-';
-                if (year > 1) {
-                    const prevValue = yearlyData[year - 2].value;
-                    yoyGrowth = ((value - prevValue) / prevValue * 100).toFixed(2) + '%';
+            function formatINR0(num) {
+                const n = Number(num);
+                if (!isFinite(n)) return '₹0';
+                return '₹' + Math.round(n).toLocaleString('en-IN');
+            }
+
+            function formatINRDigits(n) {
+                const x = Number(n);
+                if (!isFinite(x)) return '0';
+                return Math.round(x).toLocaleString('en-IN');
+            }
+
+            function parseDigitsOnly(input) {
+                if (typeof input !== 'string') return Number(input) || 0;
+                // Keep only digits for numeric parsing (commas may exist).
+                const digits = input.replace(/[^\d]/g, '');
+                const n = Number(digits);
+                return isFinite(n) ? n : 0;
+            }
+
+            function setAmountError(hasError) {
+                if (!amountField) return;
+                amountField.classList.toggle('is-error', !!hasError);
+            }
+
+            function setRateError(hasError) {
+                if (!rateField) return;
+                rateField.classList.toggle('is-error', !!hasError);
+            }
+
+            function setYearsError(hasError) {
+                if (!yearsField) return;
+                yearsField.classList.toggle('is-error', !!hasError);
+            }
+
+            function setRangeFill(rangeEl, value) {
+                const min = Number(rangeEl.min);
+                const max = Number(rangeEl.max);
+                const percent = ((value - min) / (max - min)) * 100;
+                rangeEl.style.setProperty('--fill', clamp(percent, 0, 100).toFixed(3));
+            }
+
+            function computeLumpsum(amount, rate, years) {
+                const r = rate / 100;
+                const totalValue = amount * Math.pow(1 + r, years);
+                const invested = amount;
+                const returns = totalValue - invested;
+                return { invested, returns, totalValue };
+            }
+
+            function computeSIP(monthlyAmount, rate, years) {
+                // Keep preview math aligned with the main SIP calculator
+                const monthlyRate = Math.pow(1 + (rate / 100), 1 / 12) - 1;
+                const totalMonths = years * 12;
+                // Future value of SIP (end-of-month payments):
+                // FV (annuity due) = P * [((1+m)^n - 1) / m] * (1+m)
+                const totalValue = monthlyRate === 0
+                    ? monthlyAmount * totalMonths
+                    : monthlyAmount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+                const invested = monthlyAmount * totalMonths;
+                const returns = totalValue - invested;
+                return { invested, returns, totalValue };
+            }
+
+            function computeActive() {
+                const amount = Number(amountRange.value);
+                const rate = Number(rateRange.value);
+                const years = Number(yearsRange.value);
+
+                if (activeMode === 'sip') {
+                    return computeSIP(amount, rate, years);
                 }
-                
-                yearlyData.push({
-                    year: year,
-                    invested: invested,
-                    value: value,
-                    returns: returns,
-                    yoyGrowth: yoyGrowth
+                return computeLumpsum(amount, rate, years);
+            }
+
+            function ensureDonutChart() {
+                if (donutChart) return;
+                if (typeof ApexCharts === 'undefined') return;
+
+                const donutEl = document.getElementById('investmentDonutChart');
+                if (!donutEl) return;
+
+                const data = computeActive();
+
+                donutChart = new ApexCharts(donutEl, {
+                    series: [
+                        Math.max(0, data.invested),
+                        Math.max(0, data.returns)
+                    ],
+                    chart: {
+                        type: 'donut',
+                        height: 285,
+                        animations: {
+                            enabled: true,
+                            easing: 'easeinout',
+                            speed: 450
+                        }
+                    },
+                    labels: ['Invested amount', 'Est. returns'],
+                    // Order matches series: [invested, returns]
+                    colors: ['#F97316', '#3B6DFF'],
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    stroke: { show: false },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return formatINR0(val);
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '84%',
+                                labels: { show: false }
+                            }
+                        }
+                    }
                 });
-            }
-            
-            return {
-                monthlyInvestment,
-                annualRate,
-                years,
-                totalMonths,
-                totalInvestment,
-                futureValue,
-                totalReturns,
-                returnPercentage,
-                effectiveAnnualReturn,
-                wealthMultiplier,
-                investmentToReturnsRatio,
-                avgMonthlyReturn,
-                yearlyData
-            };
-        }
 
-        // Generate year-wise breakdown table HTML
-        function generateYearlyBreakdownTable(yearlyData) {
-            let html = `
-                <div class="yearly-breakdown-table-container">
-                    <h4 class="breakdown-table-title">Year-wise Breakdown</h4>
-                    <div class="table-wrapper">
-                        <table class="yearly-breakdown-table">
-                            <thead>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>Invested Amount</th>
-                                    <th>Interest Earned</th>
-                                    <th>Total Value</th>
-                                    <th>Year-on-Year Growth</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
-            
-            yearlyData.forEach(data => {
-                html += `
-                    <tr>
-                        <td>${data.year}</td>
-                        <td>${formatCurrencyLocal(data.invested)}</td>
-                        <td>${formatCurrencyLocal(data.returns)}</td>
-                        <td><strong>${formatCurrencyLocal(data.value)}</strong></td>
-                        <td>${data.yoyGrowth}</td>
-                    </tr>
-                `;
+                donutChart.render();
+            }
+
+            function updateDonutChart(invested, returns, animate) {
+                if (typeof ApexCharts === 'undefined') return;
+                if (!donutChart) ensureDonutChart();
+                if (!donutChart) return;
+                donutChart.updateSeries([Math.max(0, invested), Math.max(0, returns)], !!animate);
+            }
+
+            function updateSummaryUI(animate = true) {
+                const data = computeActive();
+                const invested = data.invested;
+                const returns = data.returns;
+                const totalValue = data.totalValue;
+
+                if (summaryInvested) summaryInvested.textContent = formatINR0(invested);
+                if (summaryReturns) summaryReturns.textContent = formatINR0(returns);
+                if (summaryTotal) summaryTotal.textContent = formatINR0(totalValue);
+                if (donutCenterValue) donutCenterValue.textContent = formatINR0(totalValue);
+
+                updateDonutChart(invested, returns, animate);
+            }
+
+            function setMode(mode) {
+                activeMode = mode === 'sip' ? 'sip' : 'lumpsum';
+                const isSip = activeMode === 'sip';
+
+                if (amountLabel) {
+                    amountLabel.textContent = isSip ? 'Monthly investment (₹)' : 'Investment Amount (₹)';
+                }
+
+                tabs.forEach(btn => {
+                    const isActive = btn.dataset.mode === activeMode;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
+                updateSummaryUI(true);
+            }
+
+            // Slider -> input
+            amountRange.addEventListener('input', function() {
+                const v = Math.round(Number(amountRange.value));
+                const clamped = clamp(v, MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = clamped;
+                amountInput.value = formatINRDigits(clamped);
+                setAmountError(false);
+                setRangeFill(amountRange, clamped);
+                updateSummaryUI(false);
             });
-            
-            html += `
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-            
-            return html;
-        }
+            amountRange.addEventListener('change', function() {
+                setAmountError(false);
+                updateSummaryUI(true);
+            });
 
-        // Initialize ApexCharts for SIP calculator
-        function initializeSIPCharts(data) {
-            const charts = {};
-            
-            // Wait for DOM elements to be ready
-            setTimeout(() => {
-                // Chart 1: Growth Chart (Line + Area Chart)
-                const growthChartEl = document.getElementById('sipGrowthChart');
-                if (growthChartEl && typeof ApexCharts !== 'undefined') {
-                    charts.growthChart = new ApexCharts(growthChartEl, {
-                        series: [{
-                            name: 'Investment Value',
-                            data: data.yearlyData.map(d => parseFloat(d.value.toFixed(2)))
-                        }],
-                        chart: {
-                            type: 'area',
-                            height: 300,
-                            toolbar: { show: false }
-                        },
-                        colors: ['#1873E0'],
-                        fill: {
-                            type: 'gradient',
-                            gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.7,
-                                opacityTo: 0.3
-                            }
-                        },
-                        xaxis: {
-                            categories: data.yearlyData.map(d => `Year ${d.year}`)
-                        },
-                        yaxis: {
-                            labels: {
-                                formatter: function(val) {
-                                    return '₹' + (val / 100000).toFixed(1) + 'L';
-                                }
-                            }
-                        }
-                    });
-                    charts.growthChart.render();
-                }
+            rateRange.addEventListener('input', function() {
+                const v = Number(rateRange.value);
+                const clamped = clamp(v, MIN_RATE, MAX_RATE);
+                const rounded = Math.round(clamped * 10) / 10;
+                rateRange.value = rounded;
+                rateInput.value = rounded;
+                setRateError(false);
+                setRangeFill(rateRange, rounded);
+                updateSummaryUI(false);
+            });
+            rateRange.addEventListener('change', function() {
+                setRateError(false);
+                updateSummaryUI(true);
+            });
 
-                // Chart 2: Donut Chart (Investment vs Returns)
-                const donutChartEl = document.getElementById('sipDonutChart');
-                if (donutChartEl && typeof ApexCharts !== 'undefined') {
-                    charts.donutChart = new ApexCharts(donutChartEl, {
-                        series: [data.totalInvestment, data.totalReturns],
-                        chart: {
-                            type: 'donut',
-                            height: 300
-                        },
-                        labels: ['Total Investment', 'Returns'],
-                        colors: ['#1873E0', '#00A855'],
-                        legend: {
-                            position: 'bottom'
-                        }
-                    });
-                    charts.donutChart.render();
-                }
+            yearsRange.addEventListener('input', function() {
+                const v = Math.round(Number(yearsRange.value));
+                const clamped = clamp(v, MIN_YEARS, MAX_YEARS);
+                yearsRange.value = clamped;
+                yearsInput.value = clamped;
+                setYearsError(false);
+                setRangeFill(yearsRange, clamped);
+                updateSummaryUI(false);
+            });
+            yearsRange.addEventListener('change', function() {
+                setYearsError(false);
+                updateSummaryUI(true);
+            });
 
-                // Chart 3: Bar Chart (Yearly Returns)
-                const barChartEl = document.getElementById('sipBarChart');
-                if (barChartEl && typeof ApexCharts !== 'undefined') {
-                    charts.barChart = new ApexCharts(barChartEl, {
-                        series: [{
-                            name: 'Returns',
-                            data: data.yearlyData.map(d => parseFloat(d.returns.toFixed(2)))
-                        }],
-                        chart: {
-                            type: 'bar',
-                            height: 300,
-                            toolbar: { show: false }
-                        },
-                        colors: ['#00A855'],
-                        xaxis: {
-                            categories: data.yearlyData.map(d => `Year ${d.year}`)
-                        },
-                        yaxis: {
-                            labels: {
-                                formatter: function(val) {
-                                    return '\u20B9' + (val / 1000).toFixed(0) + 'K';
-                                }
-                            }
-                        }
-                    });
-                    charts.barChart.render();
-                }
-            }, 100);
-            
-            return charts;
-        }
-
-        // Enhanced SIP Calculator
-        function calculateSIPResult(event) {
-            event.preventDefault();
-            
-            // Reset previous reading first - clear results and destroy charts before calculating
-            const primaryResults = document.getElementById('primaryResults');
-            const yearlyBreakdownSection = document.getElementById('yearlyBreakdownSection');
-            const additionalMetrics = document.getElementById('additionalMetrics');
-            if (primaryResults) primaryResults.innerHTML = '';
-            if (yearlyBreakdownSection) yearlyBreakdownSection.innerHTML = '';
-            if (additionalMetrics) additionalMetrics.innerHTML = '';
-            if (sipCharts) {
-                if (sipCharts.growthChart) { sipCharts.growthChart.destroy(); sipCharts.growthChart = null; }
-                if (sipCharts.donutChart) { sipCharts.donutChart.destroy(); sipCharts.donutChart = null; }
-                if (sipCharts.barChart) { sipCharts.barChart.destroy(); sipCharts.barChart = null; }
-                sipCharts = null;
-            }
-            // Clear chart container divs to prevent overlapping - ApexCharts can leave DOM behind
-            const sipGrowthChartEl = document.getElementById('sipGrowthChart');
-            const sipDonutChartEl = document.getElementById('sipDonutChart');
-            const sipBarChartEl = document.getElementById('sipBarChart');
-            if (sipGrowthChartEl) sipGrowthChartEl.innerHTML = '';
-            if (sipDonutChartEl) sipDonutChartEl.innerHTML = '';
-            if (sipBarChartEl) sipBarChartEl.innerHTML = '';
-            
-            const amount = parseFloat(document.getElementById('sip-amount').value);
-            const rate = parseFloat(document.getElementById('sip-rate').value);
-            const years = parseFloat(document.getElementById('sip-years').value);
-            
-            if (!amount || !rate || !years) {
-                alert('Please fill all fields');
-                return;
-            }
-            
-            // Calculate detailed results
-            try {
-                const data = calculateSIPDetailed(amount, rate, years);
-                
-                if (!data) {
-                    console.error('Calculation returned no data');
-                    alert('Error calculating results. Please try again.');
+            // Input -> slider
+            amountInput.addEventListener('input', function() {
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                if (!digits) {
+                    // Allow clear; but if user typed non-numeric characters only, still show error.
+                    if (raw.trim() === '') {
+                        setAmountError(false);
+                    } else {
+                        amountInput.value = '';
+                        setAmountError(true);
+                    }
                     return;
                 }
-                
-                // Display primary results
-                displayPrimaryResults(data);
-                
-                // Display year-wise breakdown
-                displayYearlyBreakdown(data);
-                
-                // Display additional metrics
-                displayAdditionalMetrics(data);
-                
-                // Initialize charts (previous charts already destroyed at start)
-                sipCharts = initializeSIPCharts(data);
-                
-                // Show results card
-                const resultsCard = document.getElementById('resultsCard');
-                if (resultsCard) {
-                    lucide.createIcons();
-                    resultsCard.style.display = 'block';
-                    resultsCard.style.visibility = 'visible';
-                    resultsCard.setAttribute('aria-hidden', 'false');
-                    // Force display with !important via style
-                    resultsCard.setAttribute('style', 'display: block !important; visibility: visible !important;');
-                    setTimeout(() => {
-                        resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                } else {
-                    console.error('Results card element not found');
+
+                const v = Number(digits);
+                const invalid = v < MIN_AMOUNT || v > MAX_AMOUNT;
+                setAmountError(invalid);
+
+                const clamped = clamp(Math.round(v), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = clamped;
+                setRangeFill(amountRange, clamped);
+
+                // Keep comma formatting in the input.
+                amountInput.value = formatINRDigits(v);
+
+                // Don't update summary while invalid.
+                if (!invalid) updateSummaryUI(false);
+            });
+            amountInput.addEventListener('change', function() {
+                // Normalize formatting on blur/change
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                const v = digits ? Number(digits) : MIN_AMOUNT;
+                const clamped = clamp(Math.round(v), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = clamped;
+                amountInput.value = formatINRDigits(clamped);
+                setAmountError(false);
+                setRangeFill(amountRange, clamped);
+                updateSummaryUI(true);
+            });
+
+            rateInput.addEventListener('input', function() {
+                const raw = String(rateInput.value || '');
+                if (raw.trim() === '') {
+                    setRateError(true);
+                    return;
                 }
-            } catch (error) {
-                console.error('Error in calculateSIPResult:', error);
-                alert('An error occurred while calculating. Please check the console for details.');
+                const v = Number(rateInput.value);
+                if (!isFinite(v)) {
+                    setRateError(true);
+                    return;
+                }
+                const invalid = v < MIN_RATE || v > MAX_RATE;
+                setRateError(invalid);
+                const clamped = clamp(v, MIN_RATE, MAX_RATE);
+                const rounded = Math.round(clamped * 10) / 10;
+                rateRange.value = rounded;
+                setRangeFill(rateRange, rounded);
+                if (!invalid) {
+                    updateSummaryUI(false);
+                }
+            });
+            rateInput.addEventListener('change', function() {
+                const raw = String(rateInput.value || '');
+                const v = raw.trim() === '' ? MIN_RATE : Number(raw);
+                const safe = isFinite(v) ? v : MIN_RATE;
+                const clamped = clamp(safe, MIN_RATE, MAX_RATE);
+                const rounded = Math.round(clamped * 10) / 10;
+                rateRange.value = rounded;
+                rateInput.value = rounded;
+                setRateError(false);
+                setRangeFill(rateRange, rounded);
+                updateSummaryUI(true);
+            });
+
+            yearsInput.addEventListener('input', function() {
+                const raw = String(yearsInput.value || '');
+                if (raw.trim() === '') {
+                    setYearsError(true);
+                    return;
+                }
+                const v = Math.round(Number(yearsInput.value));
+                if (!isFinite(v)) {
+                    setYearsError(true);
+                    return;
+                }
+                const invalid = v < MIN_YEARS || v > MAX_YEARS;
+                setYearsError(invalid);
+                const clamped = clamp(v, MIN_YEARS, MAX_YEARS);
+                yearsRange.value = clamped;
+                setRangeFill(yearsRange, clamped);
+                if (!invalid) {
+                    updateSummaryUI(false);
+                }
+            });
+            yearsInput.addEventListener('change', function() {
+                const raw = String(yearsInput.value || '');
+                const v = raw.trim() === '' ? MIN_YEARS : Math.round(Number(raw));
+                const safe = isFinite(v) ? v : MIN_YEARS;
+                const clamped = clamp(safe, MIN_YEARS, MAX_YEARS);
+                yearsRange.value = clamped;
+                yearsInput.value = clamped;
+                setYearsError(false);
+                setRangeFill(yearsRange, clamped);
+                updateSummaryUI(true);
+            });
+
+            // Tabs
+            tabs.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setMode(btn.dataset.mode);
+                });
+            });
+
+            // Initial fill + render
+            setRangeFill(amountRange, Number(amountRange.value));
+            amountInput.value = formatINRDigits(Number(amountRange.value));
+            setRangeFill(rateRange, Number(rateRange.value));
+            setRangeFill(yearsRange, Number(yearsRange.value));
+
+            // Wait for ApexCharts if needed (donut chart init)
+            (function waitForApex() {
+                updateSummaryUI(false);
+                if (typeof ApexCharts === 'undefined') {
+                    setTimeout(waitForApex, 60);
+                    return;
+                }
+                ensureDonutChart();
+            })();
+
+            if (investNowBtn) {
+                investNowBtn.addEventListener('click', function() {
+                    updateSummaryUI(true);
+                    const target = document.querySelector('.calculator-wrapper');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
             }
-        }
-        
-        function displayPrimaryResults(data) {
-            const primaryResults = document.getElementById('primaryResults');
-            if (!primaryResults) {
-                console.error('primaryResults element not found');
-                return;
-            }
-            if (!data) {
-                console.error('No data provided to displayPrimaryResults');
-                return;
-            }
-            primaryResults.innerHTML = `
-                <h3 class="results-card-title">SIP Calculation Results</h3>
-                <div class="results-summary">
-                    <div class="summary-row">
-                        <span class="summary-label">Monthly Investment:</span>
-                        <span class="summary-value">${formatCurrencyLocal(data.monthlyInvestment)}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Investment Period:</span>
-                        <span class="summary-value">${data.years} Years</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Expected Return Rate:</span>
-                        <span class="summary-value">${data.annualRate}% p.a.</span>
-                    </div>
-                </div>
-                <div class="results-divider"></div>
-                <div class="results-main">
-                    <div class="result-item">
-                        <span class="result-icon"><i data-lucide="wallet"></i></span>
-                        <div class="result-content">
-                            <span class="result-label">Total Investment</span>
-                            <span class="result-value">${formatCurrencyLocal(data.totalInvestment)}</span>
-                        </div>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-icon"><i data-lucide="trending-up"></i></span>
-                        <div class="result-content">
-                            <span class="result-label">Estimated Returns</span>
-                            <span class="result-value">${formatCurrencyLocal(data.totalReturns)}</span>
-                        </div>
-                    </div>
-                    <div class="result-item highlight">
-                        <span class="result-icon"><i data-lucide="target"></i></span>
-                        <div class="result-content">
-                            <span class="result-label">Maturity Value</span>
-                            <span class="result-value">${formatCurrencyLocal(data.futureValue)}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="results-divider"></div>
-                <div class="results-metrics">
-                    <div class="metric-item">
-                        <span class="metric-label">Return on Investment:</span>
-                        <span class="metric-value">${data.returnPercentage.toFixed(2)}%</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-label">Effective Annual Return:</span>
-                        <span class="metric-value">${data.effectiveAnnualReturn.toFixed(2)}%</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-label">Wealth Multiplier:</span>
-                        <span class="metric-value">${data.wealthMultiplier.toFixed(2)}x</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-label">Investment to Returns Ratio:</span>
-                        <span class="metric-value">1:${data.investmentToReturnsRatio.toFixed(2)}</span>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function displayYearlyBreakdown(data) {
-            const breakdownSection = document.getElementById('yearlyBreakdownSection');
-            if (!breakdownSection) {
-                console.error('yearlyBreakdownSection element not found');
-                return;
-            }
-            if (!data || !data.yearlyData) {
-                console.error('No yearlyData provided');
-                return;
-            }
-            breakdownSection.innerHTML = generateYearlyBreakdownTable(data.yearlyData);
-        }
-        
-        function displayAdditionalMetrics(data) {
-            const additionalMetrics = document.getElementById('additionalMetrics');
-            if (!additionalMetrics) {
-                console.error('additionalMetrics element not found');
-                return;
-            }
-            if (!data) {
-                console.error('No data provided to displayAdditionalMetrics');
-                return;
-            }
-            additionalMetrics.innerHTML = `
-                <h4 class="breakdown-title">Additional Metrics</h4>
-                <div class="breakdown-grid">
-                    <div class="breakdown-item">
-                        <span class="breakdown-label">Monthly Contribution:</span>
-                        <span class="breakdown-value">${formatCurrencyLocal(data.monthlyInvestment)}</span>
-                    </div>
-                    <div class="breakdown-item">
-                        <span class="breakdown-label">Total Months:</span>
-                        <span class="breakdown-value">${data.totalMonths}</span>
-                    </div>
-                    <div class="breakdown-item">
-                        <span class="breakdown-label">Average Monthly Return:</span>
-                        <span class="breakdown-value">${formatCurrencyLocal(data.avgMonthlyReturn)}</span>
-                    </div>
-                    <div class="breakdown-item">
-                        <span class="breakdown-label">Compounding Benefit:</span>
-                        <span class="breakdown-value">${formatCurrencyLocal(data.totalReturns)}</span>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function resetCalculator() {
-            document.getElementById('calculatorForm').reset();
-            document.getElementById('resultsCard').style.display = 'none';
-            document.getElementById('resultsCard').setAttribute('aria-hidden', 'true');
-            if (sipCharts) {
-                if (sipCharts.growthChart) sipCharts.growthChart.destroy();
-                if (sipCharts.donutChart) sipCharts.donutChart.destroy();
-                if (sipCharts.barChart) sipCharts.barChart.destroy();
-                sipCharts = null;
-            }
-        }
+
+            setMode('sip');
+        })();
     </script>
 
 

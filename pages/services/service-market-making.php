@@ -137,7 +137,7 @@ require_once '../../includes/navbar.php';
                 <div class="equity-whychoose-content">
                     <div class="equity-benefits-header equity-benefits-header--left-align">
                         <span class="equity-benefits-kicker">Why choose us </span>
-                        <h2 class="section-title">Why Choose for AIF Participation?</h2>
+                        <h2 class="section-title">Why Choose for Market Making?</h2>
                         <!-- <p class="equity-whychoose-subtitle">Everything you need to trade with confidence, speed, and professional support.</p> -->
                     </div>
 

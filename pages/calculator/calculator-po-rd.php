@@ -31,6 +31,8 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
@@ -52,18 +54,15 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('pordResults').style.display='none';document.getElementById('pordResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('pordInlineWrap');if(w){w.classList.add('is-hidden');}var c=document.getElementById('pordResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
+                            <div id="pordInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div id="pordResultsContent"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section results-only" id="pordResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">Post Office RD Results</h2>
-                        <div id="pordResultsContent"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -85,7 +84,7 @@ require_once '../../includes/navbar.php';
                     <div class="result-item highlight"><span class="result-label">Maturity Value:</span><span class="result-value">${formatCurrency(r.maturityValue)}</span></div>
                 </div>
             </div>`;
-            document.getElementById('pordResults').style.display='block';document.getElementById('pordResults').setAttribute('aria-hidden','false');document.getElementById('pordResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('pordInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -103,4 +102,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

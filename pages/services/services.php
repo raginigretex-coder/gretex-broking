@@ -24,7 +24,7 @@ $pageStyles = "        :root {
         }
 
         .services-page-hero {
-            padding: clamp(5.5rem, 12vw, 8.5rem) 0 clamp(4rem, 8vw, 6rem);
+            // padding: clamp(5.5rem, 12vw, 8.5rem) 0 clamp(4rem, 8vw, 6rem);
             position: relative;
             overflow: hidden;
             margin-top: 80px;
@@ -505,6 +505,27 @@ $pageStyles = "        :root {
         .service-card--market-making { --accent: #F39C12; --accent-rgb: 243,156,18; }
         .service-card--futures { --accent: #1873E0; --accent-rgb: 24,115,224; }
         .service-card--mutual { --accent: #059669; --accent-rgb: 5,150,105; }
+        .service-card--pms { --accent: #0d9488; --accent-rgb: 13,148,136; }
+        .service-card--dp { --accent: #2563eb; --accent-rgb: 37,99,235; }
+        .service-card--distribution { --accent: #059669; --accent-rgb: 5,150,105; }
+        .service-card--clearing { --accent: #c026d3; --accent-rgb: 192,38,211; }
+
+        .service-card-badge {
+            position: absolute;
+            top: clamp(0.85rem, 2vw, 1.1rem);
+            right: clamp(0.85rem, 2vw, 1.1rem);
+            z-index: 5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(var(--accent-rgb), 0.28);
+        }
 
         @media (max-width: 1024px) {
             .services-grid {
@@ -569,7 +590,7 @@ require_once '../../includes/navbar.php';
             <div class="section-header scroll-reveal">
                 <h2>Our <span class="highlight">services</span></h2>
                 <div class="section-header-divider" aria-hidden="true"></div>
-                <p>Equity, derivatives, AIF, and distribution—clear offerings for investors and institutions in Indian markets.</p>
+                <p>Broking, clearing, DP, PMS, distribution, and market-making—clear offerings for investors and institutions in Indian markets.</p>
             </div>
             
             <div class="services-grid">
@@ -630,11 +651,11 @@ require_once '../../includes/navbar.php';
                     </div>
                 </a>
 
-                <a href="service-aif.php" class="service-card-link scroll-reveal stagger-3">
-                    <div class="service-card service-card--aif">
+                <a href="service-trading-clearing-membership.php" class="service-card-link scroll-reveal stagger-3">
+                    <div class="service-card service-card--clearing">
                         <div class="service-card-inner">
-                            <h3>AIF</h3>
-                            <p>Alternative investment funds for structured portfolios—aligned to mandates, reporting, and long-term outcomes.</p>
+                            <h3>Trading-cum-clearing membership</h3>
+                            <p>Integrated trading and clearing participation on permitted segments—with discipline on margins, settlement, and regulatory obligations.</p>
                             <span class="service-card-read">
                                 <span class="service-card-read-btn" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -649,13 +670,10 @@ require_once '../../includes/navbar.php';
                             <div class="service-card-deco-circle"></div>
                             <div class="service-card-deco-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.75" />
-                                    <path d="M12 2V6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M12 18V22" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M4.93 4.93L7.76 7.76" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M2 12H6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M18 12H22" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M4 7h7v14H4V7Z" stroke="currentColor" stroke-width="1.75" />
+                                    <path d="M15 9h6v10h-6V9Z" stroke="currentColor" stroke-width="1.75" />
+                                    <path d="M8 11h2M8 15h3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M17 13h2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
                                 </svg>
                             </div>
                         </div>
@@ -691,11 +709,11 @@ require_once '../../includes/navbar.php';
                     </div>
                 </a>
 
-                <!-- <a href="service-futures-options.php" class="service-card-link scroll-reveal stagger-5">
-                    <div class="service-card service-card--futures">
+                <a href="service-pms.php" class="service-card-link scroll-reveal stagger-5">
+                    <div class="service-card service-card--pms">
                         <div class="service-card-inner">
-                            <h3>Futures &amp; options</h3>
-                            <p>Index and currency futures with transparent pricing—hedge or express a view with disciplined execution.</p>
+                            <h3>PMS</h3>
+                            <p>Portfolio Management Services—discretionary mandates, reporting, and processes aligned to qualified investors under SEBI norms.</p>
                             <span class="service-card-read">
                                 <span class="service-card-read-btn" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -704,6 +722,91 @@ require_once '../../includes/navbar.php';
                                     </svg>
                                 </span>
                                 Read more
+                            </span>
+                        </div>
+                        <div class="service-card-deco" aria-hidden="true">
+                            <div class="service-card-deco-circle"></div>
+                            <div class="service-card-deco-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 19h5v-8H4v8Z" fill="currentColor" opacity="0.9" />
+                                    <path d="M11 19h5V9h-5v10Z" fill="currentColor" opacity="0.65" />
+                                    <path d="M18 19h3v-5h-3v5Z" fill="currentColor" opacity="0.45" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="service-depository-participant.php" class="service-card-link scroll-reveal stagger-6">
+                    <div class="service-card service-card--dp">
+                        <div class="service-card-inner">
+                            <h3>Depository Participant (DP)</h3>
+                            <p>Demat account services, dematerialisation, pledges, and corporate-action credits—linked to central depositories.</p>
+                            <span class="service-card-read">
+                                <span class="service-card-read-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                        <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                Read more
+                            </span>
+                        </div>
+                        <div class="service-card-deco" aria-hidden="true">
+                            <div class="service-card-deco-circle"></div>
+                            <div class="service-card-deco-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.75" />
+                                    <path d="M12 8v8M9 12h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="service-distribution.php" class="service-card-link scroll-reveal stagger-7">
+                    <div class="service-card service-card--distribution">
+                        <div class="service-card-inner">
+                            <h3>Distribution</h3>
+                            <p>Mutual funds, AIFs, and PMS—onboarding and distribution support for eligible investors across product rails.</p>
+                            <span class="service-card-read">
+                                <span class="service-card-read-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                        <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                Read more
+                            </span>
+                        </div>
+                        <div class="service-card-deco" aria-hidden="true">
+                            <div class="service-card-deco-circle"></div>
+                            <div class="service-card-deco-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.75" />
+                                    <circle cx="18" cy="8" r="3" stroke="currentColor" stroke-width="1.75" />
+                                    <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.75" />
+                                    <path d="M8.5 10.5 14.5 8M8.5 13.5 14.5 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="service-aif.php" class="service-card-link scroll-reveal stagger-8">
+                    <div class="service-card service-card--aif">
+                        <span class="service-card-badge">Coming soon</span>
+                        <div class="service-card-inner">
+                            <h3>AIF</h3>
+                            <p>Alternative Investment Funds—full product detail and onboarding flow will be published here shortly.</p>
+                            <span class="service-card-read">
+                                <span class="service-card-read-btn" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                        <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                View update
                             </span>
                         </div>
                         <div class="service-card-deco" aria-hidden="true">
@@ -711,42 +814,17 @@ require_once '../../includes/navbar.php';
                             <div class="service-card-deco-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.75" />
-                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M8 8L10 10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M12 2V6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M12 18V22" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M4.93 4.93L7.76 7.76" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M2 12H6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                    <path d="M18 12H22" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
                                 </svg>
                             </div>
                         </div>
                     </div>
-                </a> -->
-
-                <!-- <a href="service-mutual-funds.php" class="service-card-link scroll-reveal stagger-6">
-                    <div class="service-card service-card--mutual">
-                        <div class="service-card-inner">
-                            <h3>Mutual fund</h3>
-                            <p>SIP, SWP, and STP—stay invested across cycles with distribution support and clear fund choices.</p>
-                            <span class="service-card-read">
-                                <span class="service-card-read-btn" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                        <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Read more
-                            </span>
-                        </div>
-                        <div class="service-card-deco" aria-hidden="true">
-                            <div class="service-card-deco-circle"></div>
-                            <div class="service-card-deco-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.75" />
-                                    <path d="M6 10H10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <path d="M6 14H8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-                                    <circle cx="16" cy="12" r="2" stroke="currentColor" stroke-width="1.75" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a> -->
+                </a>
             </div>
         </div>
     </section>

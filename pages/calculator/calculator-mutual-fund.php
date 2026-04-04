@@ -20,622 +20,630 @@ require_once '../../includes/header.php';
 require_once '../../includes/navbar.php';
 ?>
 
-
-
-    <main class="calculator-page">
-        <div class="calculator-hero">
-            <div class="container">
-                <div class="calculator-hero-content">
-                    <a href="calculators.php" class="back-link">
-                        <i data-lucide="arrow-left"></i>
-                        <span>Back to Calculators</span>
-                    </a>
-                    <h1 class="calculator-page-title">Mutual Fund Calculator</h1>
-                    <p class="calculator-page-description">Calculate the returns on your mutual fund investments with expense ratio and tax considerations</p>
-                </div>
+<main class="calculator-page investment-modern-calc-page">
+    <div class="calculator-hero">
+        <div class="container">
+            <div class="calculator-hero-content">
+                <a href="calculators.php" class="back-link">
+                    <i data-lucide="arrow-left"></i>
+                    <span>Back to Calculators</span>
+                </a>
+                <h1 class="calculator-page-title">Mutual Fund Returns Calculator</h1>
+                <p class="calculator-page-description">Estimate SIP and lumpsum mutual fund returns with a Groww-style calculator experience.</p>
             </div>
         </div>
+    </div>
 
-        <div class="calculator-main-section">
-            <div class="container">
-                <div class="calculator-wrapper">
-                    <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
-                    <div class="calculator-info-section">
-                        <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About Mutual Fund Calculator</h2>
-                            <div class="calculator-info-content">
-                                <p>This calculator helps you estimate the returns on your mutual fund investments, taking into account expense ratios, exit loads, and tax implications.</p>
-                                
-                                <h3>Key Components</h3>
-                                <ul>
-                                    <li><strong>Expense Ratio:</strong> Annual fund management charges (typically 0.5-2.5%)</li>
-                                    <li><strong>Exit Load:</strong> Charges for early redemption (usually 0-1%)</li>
-                                    <li><strong>Tax on Gains:</strong> LTCG (10% after &#8377;1L exemption) or STCG (15%)</li>
-                                    <li><strong>Net Returns:</strong> Returns after deducting all costs and taxes</li>
-                                </ul>
-                                
-                                <h3>Fund Categories</h3>
-                                <ul>
-                                    <li><strong>Equity Funds:</strong> 12-15% expected returns, higher risk</li>
-                                    <li><strong>Debt Funds:</strong> 6-8% expected returns, lower risk</li>
-                                    <li><strong>Hybrid Funds:</strong> 9-11% expected returns, moderate risk</li>
-                                </ul>
+    <div class="calculator-main-section">
+        <div class="container">
+            <section class="investment-modern-calc" aria-label="Mutual fund returns calculator">
+                <div class="investment-tabs" aria-label="Calculator type">
+                    <button type="button" class="investment-tab is-active" aria-current="page">Mutual Fund</button>
+                </div>
+
+
+                <div class="investment-modern-calc-grid">
+                    <div class="investment-controls" aria-label="Inputs">
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <label class="investment-slider-label" id="amountLabel" for="investmentAmountRange">Total investment (&#8377;)</label>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="amountErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <span class="pill-unit">&#8377;</span>
+                                        <input type="text" class="pill-input" id="investmentAmountInput" value="25000" inputmode="numeric" aria-label="Total investment amount" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="investmentAmountRange" min="500" max="10000000" step="500" value="25000" aria-labelledby="amountLabel" />
+                        </div>
+
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <label class="investment-slider-label" for="investmentRateRange">Expected return rate (p.a)</label>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="rateErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <input type="number" class="pill-input" id="investmentRateInput" min="1" max="30" step="0.1" value="12" inputmode="decimal" aria-label="Expected return rate" />
+                                        <span class="pill-unit">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="investmentRateRange" min="1" max="30" step="0.1" value="12" aria-label="Expected return rate slider" />
+                        </div>
+
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <label class="investment-slider-label" for="investmentYearsRange">Time period</label>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="yearsErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <input type="number" class="pill-input" id="investmentYearsInput" min="1" max="40" step="1" value="10" inputmode="numeric" aria-label="Time period years" />
+                                        <span class="pill-unit">Yr</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="investmentYearsRange" min="1" max="40" step="1" value="10" aria-label="Time period slider" />
+                        </div>
+                    </div>
+
+                    <div class="investment-visual" aria-label="Visualization">
+                        <div class="investment-donut-card">
+                            <div class="investment-graph-quickbar" aria-hidden="false">
+                                <div class="quickbar-item">
+                                    <div class="quickbar-line">
+                                        <span class="legend-dot legend-invested"></span>
+                                        <span class="quickbar-label">Invested amount</span>
+                                    </div>
+                                    <div class="quickbar-value" id="summaryInvested">&#8377;0</div>
+                                </div>
+
+                                <div class="quickbar-item">
+                                    <div class="quickbar-line">
+                                        <span class="legend-dot legend-returns"></span>
+                                        <span class="quickbar-label">Est. returns</span>
+                                    </div>
+                                    <div class="quickbar-value quickbar-returns-value" id="summaryReturns">&#8377;0</div>
+                                </div>
+
+                                <div class="quickbar-total">
+                                    <div class="quickbar-total-label">Total value</div>
+                                    <div class="quickbar-total-value" id="summaryTotal">&#8377;0</div>
+                                </div>
+                            </div>
+
+                            <div class="investment-donut-wrap">
+                                <div id="investmentDonutChart"></div>
+                                <div class="investment-donut-center">
+                                    <div class="investment-donut-center-label">Maturity Value</div>
+                                    <div class="investment-donut-center-value" id="donutCenterValue">&#8377;0</div>
+                                </div>
+                            </div>
+
+                            <div class="investment-donut-legend" aria-hidden="true">
+                                <div class="legend-item">
+                                    <span class="legend-dot legend-returns"></span>
+                                    <span>Returns</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot legend-invested"></span>
+                                    <span>Total Investment</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate Your MF Returns</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calculateMFResult(event)">
-                                <div class="calculator-field">
-                                    <label for="mf-type">Investment Type</label>
-                                    <select id="mf-type" required onchange="updateMFDefaults()">
-                                        <option value="sip">SIP</option>
-                                        <option value="lumpsum">Lumpsum</option>
-                                    </select>
+                <div class="investment-summary-cta">
+                    <button type="button" class="investment-cta" id="investNowBtn">INVEST NOW</button>
+                </div>
+            </section>
+
+            <div class="calculator-wrapper">
+                <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
+                <div class="calculator-info-section">
+                    <div class="calculator-info-card">
+                        <h2 class="calculator-info-title">About Mutual Fund Returns Calculator</h2>
+                        <div class="calculator-info-content">
+                            <p>The <strong>Mutual Fund Returns Calculator</strong> helps you estimate how your investments may grow over time through SIP or lumpsum investing. It is useful for goal planning, comparing investment styles, and understanding the power of compounding in mutual funds.</p>
+
+                            <h3>How It Works</h3>
+                            <ul>
+                                <li><strong>SIP:</strong> Invest a fixed amount every month and build wealth gradually</li>
+                                <li><strong>Lumpsum:</strong> Invest one amount at the start and let it compound over time</li>
+                                <li><strong>Expected return:</strong> The annual growth rate you assume for your mutual fund investment</li>
+                                <li><strong>Time period:</strong> The duration for which your money stays invested</li>
+                            </ul>
+
+                            <h3>Formula</h3>
+                            <div class="formula-box">
+                                <strong>SIP:</strong> FV = P × [((1 + r)<sup>n</sup> - 1) / r] × (1 + r)<br>
+                                <strong>Lumpsum:</strong> A = P × (1 + r)<sup>t</sup><br><br>
+                                <strong>Where:</strong><br>
+                                <strong>P</strong> = Investment amount<br>
+                                <strong>r</strong> = Periodic rate of return<br>
+                                <strong>n</strong> = Total number of monthly investments<br>
+                                <strong>t</strong> = Time period in years
+                            </div>
+
+                            <h3>Example</h3>
+                            <p><strong>SIP example:</strong> If you invest &#8377;5,000 every month for 10 years at an expected return of 12% per year, your total investment becomes &#8377;6,00,000 and the estimated maturity value is much higher because your returns keep compounding over time.</p>
+
+                            <h3>Why Investors Use It</h3>
+                            <p>Mutual fund calculators are helpful for retirement planning, child education goals, wealth creation, and comparing SIP vs lumpsum strategies before starting an investment.</p>
+
+                            <h3>FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="Mutual Fund Calculator Frequently Asked Questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="0">
+                                    <span class="stepup-faq-question">What is the difference between SIP and lumpsum?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="mf-faq-panel-0" hidden>
+                                    SIP means investing a fixed amount regularly, usually every month. Lumpsum means investing one amount at a single time and letting it grow.
                                 </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-amount" id="mf-amount-label">Monthly Investment Amount (&#8377;)</label>
-                                    <input type="number" id="mf-amount" placeholder="5000" required min="500" max="10000000" step="500" value="5000">
-                                    <small class="field-hint" id="mf-amount-hint">Min: &#8377;500 | Max: &#8377;1,00,00,000</small>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="1">
+                                    <span class="stepup-faq-question">What return rate should I use?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="mf-faq-panel-1" hidden>
+                                    Many investors use 10% to 15% as a long-term estimate for equity mutual funds, but actual returns can vary depending on market conditions and fund type.
                                 </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-rate">Expected Annual Return Rate (%)</label>
-                                    <input type="number" id="mf-rate" placeholder="12" required min="1" max="30" step="0.5" value="12">
-                                    <small class="field-hint">Range: 1% to 30% | Typical: 10-15% for equity funds</small>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="2">
+                                    <span class="stepup-faq-question">Is SIP better than lumpsum?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="mf-faq-panel-2" hidden>
+                                    SIP is often preferred for disciplined investing and reducing market timing risk, while lumpsum can work well if you have a large amount available and a long investment horizon.
                                 </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-years">Investment Period (Years)</label>
-                                    <input type="number" id="mf-years" placeholder="10" required min="1" max="40" step="1" value="10">
-                                    <small class="field-hint">Range: 1 to 40 years</small>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="3">
+                                    <span class="stepup-faq-question">Does this calculator guarantee returns?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="mf-faq-panel-3" hidden>
+                                    No. This calculator only gives estimates based on the return rate you enter. Mutual fund returns are market-linked and are not guaranteed.
                                 </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-category">Fund Category (Optional)</label>
-                                    <select id="mf-category" onchange="updateRateFromCategory()">
-                                        <option value="">Select Category</option>
-                                        <option value="large-cap">Large Cap Equity</option>
-                                        <option value="mid-cap">Mid Cap Equity</option>
-                                        <option value="small-cap">Small Cap Equity</option>
-                                        <option value="multi-cap">Multi Cap Equity</option>
-                                        <option value="debt">Debt Fund</option>
-                                        <option value="hybrid">Hybrid Fund</option>
-                                        <option value="elss">ELSS (Tax Saver)</option>
-                                        <option value="index">Index Fund</option>
-                                        <option value="liquid">Liquid Fund</option>
-                                    </select>
-                                    <small class="field-hint">Auto-fills expected return rate</small>
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-expense">Expense Ratio (%)</label>
-                                    <input type="number" id="mf-expense" placeholder="1.5" required min="0.1" max="3" step="0.1" value="1.5">
-                                    <small class="field-hint">Range: 0.1% to 3% | Annual fund management charges</small>
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="mf-exit-load">Exit Load (%)</label>
-                                    <input type="number" id="mf-exit-load" placeholder="1" required min="0" max="5" step="0.25" value="1">
-                                    <small class="field-hint">Range: 0% to 5% | If redeeming within 1 year</small>
-                                </div>
-                                
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate">
-                                        <i data-lucide="calculator"></i>
-                                        Calculate
-                                    </button>
-                                    <button type="button" class="calculator-btn-reset" onclick="resetCalculator()">
-                                        <i data-lucide="refresh-cw"></i>
-                                        Reset
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
+
+                            <h3>Related Calculators</h3>
+                            <ul class="related-calc-list">
+                                <li><a href="calculator-sip.php">SIP Calculator</a> - estimate monthly investment growth</li>
+                                <li><a href="calculator-lumpsum.php">Lumpsum Calculator</a> - project one-time investment returns</li>
+                                <li><a href="calculator-compound-interest.php">Compound Interest</a> - understand long-term growth</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section" id="resultsCard" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">Mutual Fund Calculation Results</h2>
-                        <div id="mfResults"></div>
-                    </div>
-                </section>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <script src="../../js/gretex-financial.js"></script>
-    <script>
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
+<script src="../../js/gretex-financial.js"></script>
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
+    (function initModernMutualFundUI() {
+        var root = document.querySelector('.investment-modern-calc');
+        if (!root) return;
+
+        var tabs = root.querySelectorAll('.investment-tab[data-mode]');
+
+        var amountLabel = document.getElementById('amountLabel');
+        var amountRange = document.getElementById('investmentAmountRange');
+        var amountInput = document.getElementById('investmentAmountInput');
+        var amountField = amountRange ? amountRange.closest('.investment-slider-field') : null;
+
+        var rateRange = document.getElementById('investmentRateRange');
+        var rateInput = document.getElementById('investmentRateInput');
+        var rateField = rateRange ? rateRange.closest('.investment-slider-field') : null;
+
+        var yearsRange = document.getElementById('investmentYearsRange');
+        var yearsInput = document.getElementById('investmentYearsInput');
+        var yearsField = yearsRange ? yearsRange.closest('.investment-slider-field') : null;
+
+        var summaryInvested = document.getElementById('summaryInvested');
+        var summaryReturns = document.getElementById('summaryReturns');
+        var summaryTotal = document.getElementById('summaryTotal');
+        var donutCenterValue = document.getElementById('donutCenterValue');
+        var investNowBtn = document.getElementById('investNowBtn');
+
+        var MIN_AMOUNT = 100;
+        var MAX_AMOUNT = 10000000;
+        var MIN_RATE = 1;
+        var MAX_RATE = 30;
+        var MIN_YEARS = 1;
+        var MAX_YEARS = 40;
+
+        var activeMode = 'sip';
+        var donutChart = null;
+
+        function clamp(n, min, max) {
+            if (!isFinite(n)) return min;
+            return Math.min(max, Math.max(min, n));
         }
 
-        let mfCharts = null;
-        const categoryRates = {
-            'large-cap': 12,
-            'mid-cap': 15,
-            'small-cap': 18,
-            'multi-cap': 13,
-            'debt': 7,
-            'hybrid': 10,
-            'elss': 12,
-            'index': 11,
-            'liquid': 5
-        };
-
-        function formatNumber(num) {
-            if (num === null || num === undefined || isNaN(num)) return '0';
-            return num.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+        function formatINR0(num) {
+            var n = Number(num);
+            if (!isFinite(n)) return '\u20B90';
+            return '\u20B9' + Math.round(n).toLocaleString('en-IN');
         }
 
-        function formatCurrency(num) {
-            return '\u20B9' + formatNumber(num);
+        function formatINRDigits(n) {
+            var x = Number(n);
+            if (!isFinite(x)) return '0';
+            return Math.round(x).toLocaleString('en-IN');
         }
 
-        function updateMFDefaults() {
-            const type = document.getElementById('mf-type').value;
-            const amountLabel = document.getElementById('mf-amount-label');
-            const amountHint = document.getElementById('mf-amount-hint');
-            
-            if (type === 'lumpsum') {
-                amountLabel.textContent = 'Investment Amount (\u20B9)';
-                amountHint.textContent = 'Min: \u20B95,000 | Max: \u20B91,00,00,000';
-                document.getElementById('mf-amount').value = '100000';
-                document.getElementById('mf-amount').min = '5000';
+        function parseDigitsOnly(input) {
+            if (typeof input !== 'string') return Number(input) || 0;
+            var digits = input.replace(/[^\d]/g, '');
+            var n = Number(digits);
+            return isFinite(n) ? n : 0;
+        }
+
+        function setAmountError(hasError) {
+            if (!amountField) return;
+            amountField.classList.toggle('is-error', !!hasError);
+        }
+
+        function setRateError(hasError) {
+            if (!rateField) return;
+            rateField.classList.toggle('is-error', !!hasError);
+        }
+
+        function setYearsError(hasError) {
+            if (!yearsField) return;
+            yearsField.classList.toggle('is-error', !!hasError);
+        }
+
+        function setRangeFill(rangeEl, value) {
+            var min = Number(rangeEl.min);
+            var max = Number(rangeEl.max);
+            var percent = ((value - min) / (max - min)) * 100;
+            rangeEl.style.setProperty('--fill', clamp(percent, 0, 100).toFixed(3));
+        }
+
+        function computeLumpsum(amount, rate, years) {
+            var r = rate / 100;
+            var totalValue = amount * Math.pow(1 + r, years);
+            var invested = amount;
+            var returns = totalValue - invested;
+            return { invested: invested, returns: returns, totalValue: totalValue };
+        }
+
+        function computeSIP(monthlyAmount, rate, years) {
+            var monthlyRate = Math.pow(1 + (rate / 100), 1 / 12) - 1;
+            var totalMonths = years * 12;
+            var totalValue = monthlyRate === 0
+                ? monthlyAmount * totalMonths
+                : monthlyAmount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+            var invested = monthlyAmount * totalMonths;
+            var returns = totalValue - invested;
+            return { invested: invested, returns: returns, totalValue: totalValue };
+        }
+
+        function computeActive() {
+            var amount = Number(amountRange.value);
+            var rate = Number(rateRange.value);
+            var years = Number(yearsRange.value);
+            return activeMode === 'sip' ? computeSIP(amount, rate, years) : computeLumpsum(amount, rate, years);
+        }
+
+        function ensureDonutChart() {
+            if (donutChart || typeof ApexCharts === 'undefined') return;
+
+            var donutEl = document.getElementById('investmentDonutChart');
+            if (!donutEl) return;
+
+            var data = computeActive();
+            donutChart = new ApexCharts(donutEl, {
+                series: [Math.max(0, data.invested), Math.max(0, data.returns)],
+                chart: {
+                    type: 'donut',
+                    height: 285,
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 450
+                    }
+                },
+                labels: ['Invested amount', 'Est. returns'],
+                colors: ['#F97316', '#3B6DFF'],
+                dataLabels: { enabled: false },
+                legend: { show: false },
+                stroke: { show: false },
+                tooltip: {
+                    y: {
+                        formatter: function(val) {
+                            return formatINR0(val);
+                        }
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '84%',
+                            labels: { show: false }
+                        }
+                    }
+                }
+            });
+
+            donutChart.render();
+        }
+
+        function updateDonutChart(invested, returns, animate) {
+            if (typeof ApexCharts === 'undefined') return;
+            if (!donutChart) ensureDonutChart();
+            if (!donutChart) return;
+            donutChart.updateSeries([Math.max(0, invested), Math.max(0, returns)], !!animate);
+        }
+
+        function updateSummaryUI(animate) {
+            var data = computeActive();
+            if (summaryInvested) summaryInvested.textContent = formatINR0(data.invested);
+            if (summaryReturns) summaryReturns.textContent = formatINR0(data.returns);
+            if (summaryTotal) summaryTotal.textContent = formatINR0(data.totalValue);
+            if (donutCenterValue) donutCenterValue.textContent = formatINR0(data.totalValue);
+            updateDonutChart(data.invested, data.returns, animate);
+        }
+
+        function setMode(mode) {
+            activeMode = mode === 'sip' ? 'sip' : 'lumpsum';
+
+            if (amountLabel) {
+                amountLabel.textContent = activeMode === 'sip' ? 'Monthly investment (\u20B9)' : 'Total investment (\u20B9)';
+            }
+
+            tabs.forEach(function(btn) {
+                var isActive = btn.getAttribute('data-mode') === activeMode;
+                btn.classList.toggle('is-active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            if (activeMode === 'sip') {
+                amountRange.min = '100';
+                amountRange.step = '100';
+                if (Number(amountRange.value) < 100) amountRange.value = 5000;
+                if (parseDigitsOnly(amountInput.value) < 100) amountInput.value = formatINRDigits(5000);
             } else {
-                amountLabel.textContent = 'Monthly Investment Amount (\u20B9)';
-                amountHint.textContent = 'Min: \u20B9500 | Max: \u20B91,00,00,000';
-                document.getElementById('mf-amount').value = '5000';
-                document.getElementById('mf-amount').min = '500';
+                amountRange.min = '500';
+                amountRange.step = '500';
+                if (Number(amountRange.value) < 500) amountRange.value = 25000;
+                if (parseDigitsOnly(amountInput.value) < 500) amountInput.value = formatINRDigits(25000);
             }
+
+            setRangeFill(amountRange, Number(amountRange.value));
+            updateSummaryUI(true);
         }
 
-        function updateRateFromCategory() {
-            const category = document.getElementById('mf-category').value;
-            if (category && categoryRates[category]) {
-                document.getElementById('mf-rate').value = categoryRates[category];
-            }
-        }
+        amountRange.addEventListener('input', function() {
+            var minAmount = activeMode === 'sip' ? 100 : 500;
+            var v = Math.round(Number(amountRange.value));
+            var clamped = clamp(v, minAmount, MAX_AMOUNT);
+            amountRange.value = clamped;
+            amountInput.value = formatINRDigits(clamped);
+            setAmountError(false);
+            setRangeFill(amountRange, clamped);
+            updateSummaryUI(false);
+        });
 
-        function calculateMFResult(event) {
-            event.preventDefault();
-            
-            // Reset previous reading first - clear results and destroy charts before calculating
-            const mfResults = document.getElementById('mfResults');
-            if (mfResults) mfResults.innerHTML = '';
-            if (mfCharts) {
-                if (mfCharts.growthChart) mfCharts.growthChart.destroy();
-                if (mfCharts.costChart) mfCharts.costChart.destroy();
-                if (mfCharts.taxChart) mfCharts.taxChart.destroy();
-                mfCharts = null;
-            }
-            
-            const investmentType = document.getElementById('mf-type').value;
-            const amount = parseFloat(document.getElementById('mf-amount').value);
-            const annualReturn = parseFloat(document.getElementById('mf-rate').value);
-            const years = parseFloat(document.getElementById('mf-years').value);
-            const expenseRatio = parseFloat(document.getElementById('mf-expense').value);
-            const exitLoad = parseFloat(document.getElementById('mf-exit-load').value);
-            
-            if (!amount || !annualReturn || !years || !expenseRatio || exitLoad === null) {
-                alert('Please fill all fields');
+        amountRange.addEventListener('change', function() {
+            setAmountError(false);
+            updateSummaryUI(true);
+        });
+
+        rateRange.addEventListener('input', function() {
+            var v = Number(rateRange.value);
+            var clamped = clamp(v, MIN_RATE, MAX_RATE);
+            var rounded = Math.round(clamped * 10) / 10;
+            rateRange.value = rounded;
+            rateInput.value = rounded;
+            setRateError(false);
+            setRangeFill(rateRange, rounded);
+            updateSummaryUI(false);
+        });
+
+        rateRange.addEventListener('change', function() {
+            setRateError(false);
+            updateSummaryUI(true);
+        });
+
+        yearsRange.addEventListener('input', function() {
+            var v = Math.round(Number(yearsRange.value));
+            var clamped = clamp(v, MIN_YEARS, MAX_YEARS);
+            yearsRange.value = clamped;
+            yearsInput.value = clamped;
+            setYearsError(false);
+            setRangeFill(yearsRange, clamped);
+            updateSummaryUI(false);
+        });
+
+        yearsRange.addEventListener('change', function() {
+            setYearsError(false);
+            updateSummaryUI(true);
+        });
+
+        amountInput.addEventListener('input', function() {
+            var raw = String(amountInput.value || '');
+            var digits = raw.replace(/[^\d]/g, '');
+            var minAmount = activeMode === 'sip' ? 100 : 500;
+
+            if (!digits) {
+                if (raw.trim() === '') {
+                    setAmountError(false);
+                } else {
+                    amountInput.value = '';
+                    setAmountError(true);
+                }
                 return;
             }
-            
-            // Calculate gross returns
-            let grossMaturityValue, totalInvestment;
-            const netAnnualReturn = annualReturn - expenseRatio;
-            const netMonthlyRate = netAnnualReturn / 12 / 100;
-            const months = years * 12;
-            
-            if (investmentType === 'sip') {
-                totalInvestment = amount * months;
-                grossMaturityValue = amount * 
-                    (((Math.pow(1 + netMonthlyRate, months) - 1) / netMonthlyRate) * 
-                    (1 + netMonthlyRate));
-            } else {
-                totalInvestment = amount;
-                grossMaturityValue = amount * Math.pow(1 + (netAnnualReturn/100), years);
+
+            var v = Number(digits);
+            var invalid = v < minAmount || v > MAX_AMOUNT;
+            setAmountError(invalid);
+
+            var clamped = clamp(Math.round(v), minAmount, MAX_AMOUNT);
+            amountRange.value = clamped;
+            setRangeFill(amountRange, clamped);
+            amountInput.value = formatINRDigits(v);
+
+            if (!invalid) updateSummaryUI(false);
+        });
+
+        amountInput.addEventListener('change', function() {
+            var raw = String(amountInput.value || '');
+            var digits = raw.replace(/[^\d]/g, '');
+            var minAmount = activeMode === 'sip' ? 100 : 500;
+            var v = digits ? Number(digits) : minAmount;
+            var clamped = clamp(Math.round(v), minAmount, MAX_AMOUNT);
+            amountRange.value = clamped;
+            amountInput.value = formatINRDigits(clamped);
+            setAmountError(false);
+            setRangeFill(amountRange, clamped);
+            updateSummaryUI(true);
+        });
+
+        rateInput.addEventListener('input', function() {
+            var raw = String(rateInput.value || '');
+            if (raw.trim() === '') {
+                setRateError(true);
+                return;
             }
-            
-            const grossReturns = grossMaturityValue - totalInvestment;
-            
-            // Calculate expense cost (difference between gross and net)
-            const grossWithExpense = investmentType === 'sip' ?
-                amount * (((Math.pow(1 + (annualReturn/12/100), months) - 1) / (annualReturn/12/100)) * (1 + (annualReturn/12/100))) :
-                amount * Math.pow(1 + (annualReturn/100), years);
-            
-            const expenseCost = grossWithExpense - grossMaturityValue;
-            
-            // Exit load (if applicable - assuming redemption within 1 year)
-            let exitLoadAmount = 0;
-            if (years < 1) {
-                exitLoadAmount = grossMaturityValue * (exitLoad / 100);
+
+            var v = Number(rateInput.value);
+            if (!isFinite(v)) {
+                setRateError(true);
+                return;
             }
-            
-            const netMaturityValue = grossMaturityValue - exitLoadAmount;
-            
-            // Tax calculation
-            const capitalGain = netMaturityValue - totalInvestment;
-            let taxAmount = 0;
-            const exemptionLimit = 100000; // Rs 1 lakh exempt
-            
-            if (years >= 1) {
-                // Long Term Capital Gains
-                const taxableGain = Math.max(0, capitalGain - exemptionLimit);
-                taxAmount = taxableGain * 0.10; // 10% tax
-            } else {
-                // Short Term Capital Gains
-                taxAmount = capitalGain * 0.15; // 15% tax
+
+            var invalid = v < MIN_RATE || v > MAX_RATE;
+            setRateError(invalid);
+            var clamped = clamp(v, MIN_RATE, MAX_RATE);
+            var rounded = Math.round(clamped * 10) / 10;
+            rateRange.value = rounded;
+            setRangeFill(rateRange, rounded);
+
+            if (!invalid) updateSummaryUI(false);
+        });
+
+        rateInput.addEventListener('change', function() {
+            var raw = String(rateInput.value || '');
+            var v = raw.trim() === '' ? MIN_RATE : Number(raw);
+            var safe = isFinite(v) ? v : MIN_RATE;
+            var clamped = clamp(safe, MIN_RATE, MAX_RATE);
+            var rounded = Math.round(clamped * 10) / 10;
+            rateRange.value = rounded;
+            rateInput.value = rounded;
+            setRateError(false);
+            setRangeFill(rateRange, rounded);
+            updateSummaryUI(true);
+        });
+
+        yearsInput.addEventListener('input', function() {
+            var raw = String(yearsInput.value || '');
+            if (raw.trim() === '') {
+                setYearsError(true);
+                return;
             }
-            
-            const postTaxAmount = netMaturityValue - taxAmount;
-            const netReturns = postTaxAmount - totalInvestment;
-            const netCAGR = (Math.pow(postTaxAmount / totalInvestment, 1/years) - 1) * 100;
-            
-            // Year-wise breakdown
-            const yearlyData = [];
-            for (let year = 1; year <= years; year++) {
-                let yearValue, yearInvested;
-                
-                if (investmentType === 'sip') {
-                    const monthsCompleted = year * 12;
-                    yearInvested = amount * monthsCompleted;
-                    yearValue = amount * 
-                        (((Math.pow(1 + netMonthlyRate, monthsCompleted) - 1) / netMonthlyRate) * 
-                        (1 + netMonthlyRate));
-                } else {
-                    yearInvested = amount;
-                    yearValue = amount * Math.pow(1 + (netAnnualReturn/100), year);
-                }
-                
-                yearlyData.push({
-                    year: year,
-                    invested: yearInvested,
-                    value: yearValue,
-                    returns: yearValue - yearInvested,
-                    expensePaid: yearValue * (expenseRatio/100)
-                });
+
+            var v = Math.round(Number(yearsInput.value));
+            if (!isFinite(v)) {
+                setYearsError(true);
+                return;
             }
-            
-            displayMFResults({
-                investmentType,
-                amount,
-                annualReturn,
-                years,
-                totalInvestment,
-                grossMaturityValue,
-                grossReturns,
-                expenseCost,
-                exitLoadAmount,
-                netMaturityValue,
-                taxAmount,
-                postTaxAmount,
-                netReturns,
-                netCAGR,
-                expenseRatio,
-                yearlyData
+
+            var invalid = v < MIN_YEARS || v > MAX_YEARS;
+            setYearsError(invalid);
+            var clamped = clamp(v, MIN_YEARS, MAX_YEARS);
+            yearsRange.value = clamped;
+            setRangeFill(yearsRange, clamped);
+
+            if (!invalid) updateSummaryUI(false);
+        });
+
+        yearsInput.addEventListener('change', function() {
+            var raw = String(yearsInput.value || '');
+            var v = raw.trim() === '' ? MIN_YEARS : Math.round(Number(raw));
+            var safe = isFinite(v) ? v : MIN_YEARS;
+            var clamped = clamp(safe, MIN_YEARS, MAX_YEARS);
+            yearsRange.value = clamped;
+            yearsInput.value = clamped;
+            setYearsError(false);
+            setRangeFill(yearsRange, clamped);
+            updateSummaryUI(true);
+        });
+
+        tabs.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                setMode(btn.getAttribute('data-mode'));
             });
-            
-            createMFCharts(yearlyData, totalInvestment, grossMaturityValue, expenseCost, taxAmount, postTaxAmount);
-            
-            lucide.createIcons();
-            document.getElementById('resultsCard').style.display = 'block';
-            document.getElementById('resultsCard').setAttribute('aria-hidden', 'false');
-            document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        
-        function displayMFResults(data) {
-            const resultsDiv = document.getElementById('mfResults');
-            
-            resultsDiv.innerHTML = `
-                <div class="results-primary-card">
-                    <h3 class="results-card-title">Mutual Fund Investment Calculator</h3>
-                    <div class="results-summary">
-                        <div class="summary-row">
-                            <span class="summary-label">Investment Type:</span>
-                            <span class="summary-value">${data.investmentType.toUpperCase()}</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">${data.investmentType === 'sip' ? 'Monthly' : 'One-time'} Investment:</span>
-                            <span class="summary-value">${formatCurrency(data.amount)}</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Investment Period:</span>
-                            <span class="summary-value">${data.years} Years</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Expected Annual Return:</span>
-                            <span class="summary-value">${data.annualReturn}% p.a.</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Expense Ratio:</span>
-                            <span class="summary-value">${data.expenseRatio}% p.a.</span>
-                        </div>
-                    </div>
-                    <div class="results-divider"></div>
-                    <div class="results-main">
-                        <div class="result-item">
-                            <span class="result-icon"><i data-lucide="wallet"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Total Investment</span>
-                                <span class="result-value">${formatCurrency(data.totalInvestment)}</span>
-                            </div>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon"><i data-lucide="bar-chart-2"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Gross Returns</span>
-                                <span class="result-value">${formatCurrency(data.grossReturns)}</span>
-                            </div>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon"><i data-lucide="trending-down"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Expense Cost</span>
-                                <span class="result-value">-${formatCurrency(data.expenseCost)}</span>
-                            </div>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon"><i data-lucide="trending-up"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Net Returns</span>
-                                <span class="result-value">${formatCurrency(data.netReturns)}</span>
-                            </div>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon"><i data-lucide="receipt"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Tax on Gains (${data.years >= 1 ? 'LTCG 10%' : 'STCG 15%'})</span>
-                                <span class="result-value">-${formatCurrency(data.taxAmount)}</span>
-                            </div>
-                        </div>
-                        <div class="result-item highlight">
-                            <span class="result-icon"><i data-lucide="target"></i></span>
-                            <div class="result-content">
-                                <span class="result-label">Post-Tax Value</span>
-                                <span class="result-value">${formatCurrency(data.postTaxAmount)}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="results-divider"></div>
-                    <div class="results-metrics">
-                        <div class="metric-item">
-                            <span class="metric-label">Absolute Returns:</span>
-                            <span class="metric-value">${((data.netReturns / data.totalInvestment) * 100).toFixed(2)}%</span>
-                        </div>
-                        <div class="metric-item">
-                            <span class="metric-label">Net CAGR:</span>
-                            <span class="metric-value">${data.netCAGR.toFixed(2)}%</span>
-                        </div>
-                        <div class="metric-item">
-                            <span class="metric-label">Gross CAGR:</span>
-                            <span class="metric-value">${data.annualReturn.toFixed(2)}%</span>
-                        </div>
-                        <div class="metric-item">
-                            <span class="metric-label">Total Costs:</span>
-                            <span class="metric-value">${formatCurrency(data.expenseCost + data.taxAmount)}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="visualizations-section">
-                    <h3 class="visualizations-title">Visualizations</h3>
-                    <div class="chart-container-full">
-                        <h4 class="chart-title">Growth Projection Chart</h4>
-                        <div id="mfGrowthChart"></div>
-                    </div>
-                    <div class="charts-grid">
-                        <div class="chart-container">
-                            <h4 class="chart-title">Cost Breakdown</h4>
-                            <div id="mfCostChart"></div>
-                        </div>
-                        <div class="chart-container">
-                            <h4 class="chart-title">Tax Comparison</h4>
-                            <div id="mfTaxChart"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="yearly-breakdown-table-container">
-                    <h4 class="breakdown-table-title">Year-wise Performance</h4>
-                    <div class="table-wrapper">
-                        <table class="yearly-breakdown-table">
-                            <thead>
-                                <tr>
-                                    <th>Year</th>
-                                    <th>Invested</th>
-                                    <th>Gross Value</th>
-                                    <th>Expense Paid</th>
-                                    <th>Net Value</th>
-                                    <th>Returns</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${data.yearlyData.map(d => `
-                                    <tr>
-                                        <td>${d.year}</td>
-                                        <td>${formatCurrency(d.invested)}</td>
-                                        <td>${formatCurrency(d.value + d.expensePaid)}</td>
-                                        <td>${formatCurrency(d.expensePaid)}</td>
-                                        <td>${formatCurrency(d.value)}</td>
-                                        <td><strong>${formatCurrency(d.returns)}</strong></td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function createMFCharts(yearlyData, totalInvestment, grossValue, expenseCost, taxAmount, postTaxAmount) {
-            setTimeout(() => {
-                // Growth Chart
-                const growthChart = new ApexCharts(document.querySelector('#mfGrowthChart'), {
-                    series: [
-                        {
-                            name: 'Invested Amount',
-                            type: 'area',
-                            data: yearlyData.map(d => d.invested)
-                        },
-                        {
-                            name: 'Gross Returns',
-                            type: 'area',
-                            data: yearlyData.map(d => d.returns)
-                        },
-                        {
-                            name: 'Net Value',
-                            type: 'line',
-                            data: yearlyData.map(d => d.value)
-                        }
-                    ],
-                    chart: {
-                        height: 400,
-                        type: 'line',
-                        toolbar: { show: true }
-                    },
-                    colors: ['#3B82F6', '#10B981', '#6366F1'],
-                    stroke: {
-                        curve: 'smooth',
-                        width: [0, 0, 3]
-                    },
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            opacityFrom: 0.3,
-                            opacityTo: 0.1
-                        }
-                    },
-                    xaxis: {
-                        categories: yearlyData.map(d => `Year ${d.year}`)
-                    },
-                    yaxis: {
-                        title: { text: 'Amount (\u20B9)' },
-                        labels: {
-                            formatter: function(val) {
-                                return formatCurrency(val);
-                            }
-                        }
-                    },
-                    tooltip: {
-                        y: {
-                            formatter: function(val) {
-                                return formatCurrency(val);
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                });
-                growthChart.render();
-                
-                // Cost Breakdown Donut
-                const costChart = new ApexCharts(document.querySelector('#mfCostChart'), {
-                    series: [totalInvestment, expenseCost, taxAmount],
-                    chart: {
-                        type: 'donut',
-                        height: 350
-                    },
-                    labels: ['Net Investment', 'Expense Cost', 'Tax'],
-                    colors: ['#3B82F6', '#EF4444', '#F59E0B'],
-                    plotOptions: {
-                        pie: {
-                            donut: {
-                                size: '65%',
-                                labels: {
-                                    show: true,
-                                    total: {
-                                        show: true,
-                                        label: 'Post-Tax Value',
-                                        formatter: function() {
-                                            return formatCurrency(postTaxAmount);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                });
-                costChart.render();
-                
-                // Tax Comparison
-                const taxChart = new ApexCharts(document.querySelector('#mfTaxChart'), {
-                    series: [
-                        {
-                            name: 'LTCG (>1 year)',
-                            data: [totalInvestment, grossValue - totalInvestment - 100000, 100000, (grossValue - totalInvestment - 100000) * 0.10]
-                        },
-                        {
-                            name: 'STCG (<1 year)',
-                            data: [totalInvestment, grossValue - totalInvestment, 0, (grossValue - totalInvestment) * 0.15]
-                        }
-                    ],
-                    chart: {
-                        type: 'bar',
-                        height: 350,
-                        stacked: true
-                    },
-                    colors: ['#3B82F6', '#10B981', '#FFD700', '#EF4444'],
-                    xaxis: {
-                        categories: ['Principal', 'Taxable Gain', 'Exemption', 'Tax']
-                    },
-                    yaxis: {
-                        labels: {
-                            formatter: function(val) {
-                                return formatCurrency(val);
-                            }
-                        }
-                    },
-                    tooltip: {
-                        y: {
-                            formatter: function(val) {
-                                return formatCurrency(val);
-                            }
-                        }
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                });
-                taxChart.render();
-                
-                mfCharts = { growthChart, costChart, taxChart };
-            }, 100);
-        }
-        
-        function resetCalculator() {
-            document.getElementById('calculatorForm').reset();
-            document.getElementById('resultsCard').style.display = 'none';
-            document.getElementById('resultsCard').setAttribute('aria-hidden', 'true');
-            if (mfCharts) {
-                if (mfCharts.growthChart) mfCharts.growthChart.destroy();
-                if (mfCharts.costChart) mfCharts.costChart.destroy();
-                if (mfCharts.taxChart) mfCharts.taxChart.destroy();
-                mfCharts = null;
+        });
+
+        setRangeFill(amountRange, Number(amountRange.value));
+        amountInput.value = formatINRDigits(Number(amountRange.value));
+        setRangeFill(rateRange, Number(rateRange.value));
+        setRangeFill(yearsRange, Number(yearsRange.value));
+
+        (function waitForApex() {
+            updateSummaryUI(false);
+            if (typeof ApexCharts === 'undefined') {
+                setTimeout(waitForApex, 60);
+                return;
             }
+            ensureDonutChart();
+        })();
+
+        if (investNowBtn) {
+            investNowBtn.addEventListener('click', function() {
+                updateSummaryUI(true);
+                var target = document.querySelector('.calculator-wrapper');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         }
-    </script>
+
+        var faqRows = document.querySelectorAll('.stepup-faq-row[data-mf-faq]');
+        faqRows.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var idx = btn.getAttribute('data-mf-faq');
+                var panel = document.getElementById('mf-faq-panel-' + idx);
+                var expanded = btn.getAttribute('aria-expanded') === 'true';
+
+                faqRows.forEach(function(otherBtn) {
+                    var otherIdx = otherBtn.getAttribute('data-mf-faq');
+                    var otherPanel = document.getElementById('mf-faq-panel-' + otherIdx);
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    if (otherPanel) otherPanel.hidden = true;
+                });
+
+                if (!expanded) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    if (panel) panel.hidden = false;
+                }
+            });
+        });
+
+        setMode('lumpsum');
+    })();
+</script>
 
 <script src="../../js/search.js"></script>
-    <script src="../../js/mobile-menu.js"></script>
+<script src="../../js/mobile-menu.js"></script>
 
 <script>
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    </script>
-
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
 
 <?php
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-

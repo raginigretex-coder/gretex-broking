@@ -31,25 +31,27 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About Margin Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>Margin Calculator</strong> determines exact margin requirements for leveraged positions in equity, futures, and options. You don't need full capital � margin allows leverage � but understanding SPAN, exposure margin, and requirements is crucial.</p>
-                                <p>This tool will integrate real-time exchange data for accurate SPAN margin, exposure margin, and total requirements based on volatility and exchange guidelines � helping optimize capital, avoid margin calls, and plan position sizing.</p>
+                                <p>The <strong>Margin Calculator</strong> determines exact margin requirements for leveraged positions in equity, futures, and options. You don't need full capital ï¿½ margin allows leverage ï¿½ but understanding SPAN, exposure margin, and requirements is crucial.</p>
+                                <p>This tool will integrate real-time exchange data for accurate SPAN margin, exposure margin, and total requirements based on volatility and exchange guidelines ï¿½ helping optimize capital, avoid margin calls, and plan position sizing.</p>
                                 <h3>How Margin Works</h3>
                                 <ul>
                                     <li><strong>SPAN:</strong> Risk-based margin from exchange; worst-case scenario; varies with volatility and time to expiry.</li>
-                                    <li><strong>Exposure:</strong> 3�5% buffer beyond SPAN for extreme price moves.</li>
-                                    <li><strong>By segment:</strong> Delivery 20�100%; Intraday (MIS) 10�20% (5�10x leverage); Futures 10�30%; Options sell SPAN+Exposure; Options buy = full premium.</li>
+                                    <li><strong>Exposure:</strong> 3ï¿½5% buffer beyond SPAN for extreme price moves.</li>
+                                    <li><strong>By segment:</strong> Delivery 20ï¿½100%; Intraday (MIS) 10ï¿½20% (5ï¿½10x leverage); Futures 10ï¿½30%; Options sell SPAN+Exposure; Options buy = full premium.</li>
                                     <li><strong>Leverage example:</strong> &#8377;1L margin: Delivery &#8377;1L shares; Intraday 5x &#8377;5L positions; Futures 5x &#8377;5L notional.</li>
                                 </ul>
                                 <h3>Who Should Use</h3>
                                 <p>F&amp;O traders, intraday traders, swing traders, portfolio margin users, risk managers. Critical for understanding capital requirements and avoiding forced liquidations.</p>
                                 <h3>Margin Risks &amp; Safety</h3>
-                                <p>Leverage amplifies profits AND losses. Margin calls can force liquidation at unfavorable prices. Volatility spikes increase requirements. Never use 100% margin; keep 30�40% buffer. Understand peak margin rules.</p>
+                                <p>Leverage amplifies profits AND losses. Margin calls can force liquidation at unfavorable prices. Volatility spikes increase requirements. Never use 100% margin; keep 30ï¿½40% buffer. Understand peak margin rules.</p>
                                 <div class="callout-box">
                                     <strong>Coming Soon:</strong> This calculator requires real-time integration with NSE SPAN Margin API, BSE Margin Calculator, and live volatility data. We're working on secure API integration for accurate calculations. Meanwhile, check your broker's margin calculator.
                                 </div>
@@ -88,4 +90,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

@@ -147,7 +147,11 @@ require_once __DIR__ . '/../config/app.php';
     <script src="<?php echo gt_asset_url('js/search.js'); ?>"></script>
     <script src="<?php echo gt_asset_url('js/mobile-menu.js'); ?>"></script>
     <script src="<?php echo gt_asset_url('js/gretex-financial.js'); ?>"></script>
-    <script src="<?php echo gt_asset_url('js/calculator-functions.js'); ?>"></script>
+    <?php
+    $gtCalcFunctionsPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'calculator-functions.js';
+    $gtCalcFunctionsVer = is_readable($gtCalcFunctionsPath) ? (string) filemtime($gtCalcFunctionsPath) : '1';
+    ?>
+    <script src="<?php echo htmlspecialchars(gt_asset_url('js/calculator-functions.js') . '?v=' . $gtCalcFunctionsVer, ENT_QUOTES, 'UTF-8'); ?>"></script>
     <?php
     // Load calculator navigation sidebar script only on calculator pages
     $currentFile = $_SERVER['PHP_SELF'];

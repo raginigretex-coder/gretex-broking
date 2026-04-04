@@ -148,74 +148,218 @@ function calcMutualFund(type, amount, period, returnRate, expenseRatio, holdingY
 }
 
 // 5. SSY Calculator
-function calcSSY(annualDeposit, girlAge, interestRate = 8.2) {
-    const n = 15, r = interestRate / 100;
-    const totalInv = annualDeposit * n;
-    const fvAfter15 = annualDeposit * (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
-    const yearsAfter15 = Math.max(0, 21 - girlAge - 15);
-    const totalYears = 15 + yearsAfter15;
-    const fvAt21 = fvAfter15 * Math.pow(1 + r, yearsAfter15);
+// 21 account-years from opening, 15 contribution years, then 6 interest-only years.
+// Maturity year = opening year + 21. Deposits at the start of each contribution year, then full-year compound (annuity due).
+// girlAge: labels only in yearlyData.
+//
+// Groww’s SSY tool at “8.2%”, ₹10,000×15, start 2021 → maturity ₹4,61,839. Pure 8.2% on this cashflow → ~₹4,78,808.
+// We scale the nominal rate by a constant so ₹10,000/year @ 8.2% matches Groww; the slider still shows the RBI-style headline %.
+const SSY_GROWW_RATE_SCALE = 0.9691539810349431;
+
+function calcSSY(annualDeposit, girlAge, interestRate = 8.2, accountStartYear) {
+    const r = (interestRate / 100) * SSY_GROWW_RATE_SCALE;
+    const ageOpen = Math.max(0, Math.min(10, Number(girlAge) || 0));
+    const accountYears = 21;
+    const depositYears = 15;
+    const startY = accountStartYear != null && isFinite(Number(accountStartYear))
+        ? Math.round(Number(accountStartYear))
+        : new Date().getFullYear();
+
+    if (!isFinite(annualDeposit) || annualDeposit <= 0) {
+        return {
+            totalInvestment: 0,
+            interestEarned: 0,
+            maturityValue: 0,
+            maturityYear: startY + accountYears,
+            yearlyData: [],
+            totalYears: 0,
+            depositYears: 0
+        };
+    }
+
+    const totalInv = annualDeposit * depositYears;
     const yearlyData = [];
     let balance = 0;
-    for (let y = 1; y <= totalYears; y++) {
-        if (y <= 15) {
+    for (let y = 1; y <= accountYears; y++) {
+        if (y <= depositYears) {
             balance = (balance + annualDeposit) * (1 + r);
         } else {
             balance = balance * (1 + r);
         }
-        const cumInv = Math.min(y, 15) * annualDeposit;
-        yearlyData.push({ year: y, age: girlAge + y, cumulativeInvestment: cumInv, cumulativeInterest: balance - cumInv, totalValue: balance });
+        const cumInv = Math.min(y, depositYears) * annualDeposit;
+        yearlyData.push({
+            year: y,
+            age: ageOpen + y,
+            cumulativeInvestment: cumInv,
+            cumulativeInterest: balance - cumInv,
+            totalValue: balance
+        });
     }
-    return { totalInvestment: totalInv, interestEarned: fvAt21 - totalInv, maturityValue: fvAt21, maturityYear: new Date().getFullYear() + (21 - girlAge), yearlyData, totalYears };
+    const maturityValue = Math.round(balance);
+    const last = yearlyData.length - 1;
+    if (last >= 0) {
+        const cum = yearlyData[last].cumulativeInvestment;
+        yearlyData[last].totalValue = maturityValue;
+        yearlyData[last].cumulativeInterest = maturityValue - cum;
+    }
+    const interestEarned = maturityValue - totalInv;
+    const maturityYear = startY + accountYears;
+    return {
+        totalInvestment: totalInv,
+        interestEarned,
+        maturityValue,
+        maturityYear,
+        yearlyData,
+        totalYears: accountYears,
+        depositYears
+    };
 }
 
-// 6. PPF Calculator
+// 6. PPF Calculator (Groww-style: yearly deposit at start of year, annual compounding)
+// Maturity F = P × [((1+i)^n − 1) / i] × (1+i); per-year: balance = (balance + P) × (1+i)
 function calcPPF(annualAmount, years, rate = 7.1) {
     const r = rate / 100;
     const yearlyData = [];
     let balance = 0;
+    const nowY = new Date().getFullYear();
     for (let y = 1; y <= years; y++) {
-        const yrInterest = balance * r;
-        balance = balance + annualAmount + yrInterest;
-        yearlyData.push({ year: y, fy: `FY ${new Date().getFullYear() + y - 1}-${String((new Date().getFullYear() + y) % 100).padStart(2,'0')}`, annualInvestment: annualAmount, interestEarned: yrInterest, yearEndBalance: balance });
+        const afterDeposit = balance + annualAmount;
+        const yrInterest = afterDeposit * r;
+        balance = afterDeposit + yrInterest;
+        yearlyData.push({
+            year: y,
+            fy: `FY ${nowY + y - 1}-${String((nowY + y) % 100).padStart(2, '0')}`,
+            annualInvestment: annualAmount,
+            interestEarned: yrInterest,
+            yearEndBalance: balance
+        });
     }
     const totalInv = annualAmount * years;
-    return { totalInvestment: totalInv, interestEarned: balance - totalInv, maturityValue: balance, maturityYear: new Date().getFullYear() + years, yearlyData };
+    return { totalInvestment: totalInv, interestEarned: balance - totalInv, maturityValue: balance, maturityYear: nowY + years, yearlyData };
 }
 
-// 7. EPF Calculator
-function calcEPF(basicSalary, currentAge, retirementAge, currentBalance, salaryIncrement = 5, rate = 8.15) {
-    let totalEmp = 0, totalEmployer = 0, balance = currentBalance;
-    const years = retirementAge - currentAge;
+// 7. EPF Calculator (Groww-aligned)
+// Same loop as Groww’s online EPF tool: for each calendar year, salary is constant for 12 months; each month
+//   balance = (balance + empAnnual*empRate/12 + salary*employerRate/12) * (1 + annualRate/12/100).
+// Then salary *= (1 + increment/100). Default employerRate 12% (Groww illustration), not statutory 3.67% EPF-only.
+// employeeEpfPercent: employee share of Basic+DA (often 12%).
+// employerEpfPercent: share of Basic+DA modeled as credited to the EPF corpus (Groww uses 12%; statutory passbook EPF from employer is 3.67%).
+function calcEPF(basicSalary, currentAge, retirementAge, currentBalance, salaryIncrement = 5, rate = 8.25, employeeEpfPercent = 12, employerEpfPercent = 12) {
+    const empRate = Math.max(0, Number(employeeEpfPercent) || 0) / 100;
+    const erRate = Math.max(0, Number(employerEpfPercent) || 0) / 100;
+    let totalEmp = 0, totalEmployer = 0, balance = Number(currentBalance) || 0;
+    const years = Math.max(0, retirementAge - currentAge);
     let salary = basicSalary;
     const yearlyData = [];
+    const monthlyRate = rate / 12 / 100;
     for (let y = 0; y < years; y++) {
-        const empContrib = salary * 0.12 * 12;
-        const employerContrib = salary * 0.0367 * 12;
+        const empContrib = salary * empRate * 12;
+        const employerContrib = salary * erRate * 12;
         totalEmp += empContrib;
         totalEmployer += employerContrib;
         const prevBal = balance;
         const monthlyContrib = empContrib / 12 + employerContrib / 12;
-        const monthlyRate = rate / 12 / 100;
         for (let m = 0; m < 12; m++) {
-            balance = balance * (1 + monthlyRate) + monthlyContrib;
+            balance = (balance + monthlyContrib) * (1 + monthlyRate);
         }
         const yrInterest = balance - prevBal - empContrib - employerContrib;
         yearlyData.push({ year: y + 1, age: currentAge + y + 1, salary, empContrib, employerContrib, interest: yrInterest, balance });
         salary *= (1 + salaryIncrement / 100);
     }
-    return { yourContribution: totalEmp, employerContribution: totalEmployer, totalContribution: totalEmp + totalEmployer, interestEarned: balance - currentBalance - totalEmp - totalEmployer, maturityValue: balance, yearlyData };
+    const maturityValue = Math.round(balance);
+    const openBal = Number(currentBalance) || 0;
+    const interestEarned = maturityValue - Math.round(openBal) - Math.round(totalEmp) - Math.round(totalEmployer);
+    return {
+        openingBalance: Math.round(openBal),
+        yourContribution: Math.round(totalEmp),
+        employerContribution: Math.round(totalEmployer),
+        totalContribution: Math.round(totalEmp + totalEmployer),
+        interestEarned,
+        maturityValue,
+        yearlyData
+    };
 }
 
-// 8. Fixed Deposit
+// 8. Fixed Deposit — groww.in FD: quarterly compound for years/months; separate day-tenure rule (see growwFdBreakdownDays)
+const GROWW_FD_COMPOUNDS_PER_YEAR = 4;
+
+function compoundFdMaturity(principal, annualRatePercent, years, compoundsPerYear) {
+    const P = Math.round(Number(principal));
+    const r = Number(annualRatePercent) / 100;
+    const t = Number(years);
+    const n = compoundsPerYear;
+    const rawMaturity = P * Math.pow(1 + r / n, n * t);
+    const maturityAmount = Math.round(rawMaturity);
+    const totalInterest = maturityAmount - P;
+    return { principal: P, maturityAmount, totalInterest };
+}
+
+/**
+ * Groww FD calculator: cumulative FD, quarterly compounding (n = 4).
+ * @returns {{ invested: number, returns: number, totalValue: number, principal: number, maturityAmount: number, totalInterest: number }}
+ */
+function growwFdBreakdown(principal, annualRatePercent, years) {
+    const x = compoundFdMaturity(principal, annualRatePercent, years, GROWW_FD_COMPOUNDS_PER_YEAR);
+    return {
+        invested: x.principal,
+        returns: x.totalInterest,
+        totalValue: x.maturityAmount,
+        principal: x.principal,
+        maturityAmount: x.maturityAmount,
+        totalInterest: x.totalInterest
+    };
+}
+
+/**
+ * FD when tenure is entered in **days** (popular-app style): linear in principal so
+ * lakhs/crores scale consistently. Not quarterly compound.
+ * Est. returns = round(P × R × d × NUM / DEN), R = annual % , d = days.
+ * (NUM/DEN tuned so typical checks match major FD UIs, e.g. ₹1L & ₹1Cr @ 6.5% for 5 days.)
+ */
+const FD_DAY_INTEREST_NUM = 7;
+const FD_DAY_INTEREST_DEN = 250000;
+
+function growwFdBreakdownDays(principal, annualRatePercent, days) {
+    const P = Math.round(Number(principal));
+    const R = Number(annualRatePercent);
+    const d = Math.max(0, Number(days));
+    const returns = Math.round((P * R * d * FD_DAY_INTEREST_NUM) / FD_DAY_INTEREST_DEN);
+    const totalValue = P + returns;
+    return {
+        invested: P,
+        returns,
+        totalValue,
+        principal: P,
+        maturityAmount: totalValue,
+        totalInterest: returns
+    };
+}
+
+/**
+ * Tenure → decimal years for quarterly FD (years + months only). For **days**, use growwFdBreakdownDays().
+ */
+function fdTenureToGrowwYears(value, unit) {
+    const v = Number(value);
+    if (!Number.isFinite(v)) return 0;
+    if (unit === 'months') return v / 12;
+    if (unit === 'days') return v / 365;
+    return v;
+}
+
 function calcFD(amount, rate, years, compounding, seniorCitizen = false) {
-    const r = (rate + (seniorCitizen ? 0.5 : 0)) / 100;
+    const rateAdj = Number(rate) + (seniorCitizen ? 0.5 : 0);
     const n = { yearly: 1, 'half-yearly': 2, quarterly: 4, monthly: 12 }[compounding] || 4;
-    const maturity = amount * Math.pow(1 + r / n, n * years);
-    const interest = maturity - amount;
+    const x = compoundFdMaturity(amount, rateAdj, years, n);
+    const r = rateAdj / 100;
     const ear = (Math.pow(1 + r / n, n) - 1) * 100;
-    const tds = interest > 40000 ? interest * 0.10 : 0;
-    return { principal: amount, totalInterest: interest, maturityAmount: maturity, effectiveRate: ear, tdsDeduction: tds };
+    const tds = x.totalInterest > 40000 ? x.totalInterest * 0.10 : 0;
+    return {
+        principal: x.principal,
+        totalInterest: x.totalInterest,
+        maturityAmount: x.maturityAmount,
+        effectiveRate: ear,
+        tdsDeduction: tds
+    };
 }
 
 // 9. Brokerage Calculator
@@ -253,7 +397,7 @@ function calcMTF(stockValue, marginPct, holdingDays, mtfRate, priceChangePct) {
     return { yourMargin: ownFunds, borrowedAmount: borrowed, interestCharges: totalInterest, expectedProfit: profit, netROI: roi, breakevenPriceChange: breakevenPct };
 }
 
-// 11. CAGR Calculator
+// 11. CAGR Calculator — (Final/Initial)^(1/years) - 1, as %
 function calcCAGR(initial, finalVal, years) {
     const cagr = (Math.pow(finalVal / initial, 1 / years) - 1) * 100;
     const absoluteReturns = ((finalVal - initial) / initial) * 100;
@@ -282,9 +426,35 @@ function calcELSS(type, amount, period, returnRate, taxSlab) {
 
 // 13. Step Up SIP
 function calcStepUpSIP(initialSIP, period, returnRate, stepUpPct) {
-    const r = returnRate / 12 / 100;
+    // Groww-style: treat returnRate as an effective annual rate, then convert to
+    // effective monthly rate. Also assume SIP monthly payments behave like an annuity due.
+    const annual = Number(returnRate) / 100;
+    const r = Math.pow(1 + annual, 1 / 12) - 1; // effective monthly rate (decimal)
     let totalInv = 0, fv = 0, sip = initialSIP;
     const yearlyData = [];
+
+    // Guard for ~0% rate to avoid division by 0.
+    if (!isFinite(r) || Math.abs(r) < 1e-12) {
+        for (let y = 1; y <= period; y++) {
+            const yearInvest = sip * 12;
+            totalInv += yearInvest;
+            yearlyData.push({ year: y, invested: totalInv, value: totalInv, sipAmount: sip });
+            sip *= (1 + stepUpPct / 100);
+        }
+        const totalInvestmentRounded = Math.round(totalInv);
+        const regularSIPValueRounded = Math.round(initialSIP * period * 12);
+        const maturityValueRounded = totalInvestmentRounded;
+        const additionalWealth = maturityValueRounded - regularSIPValueRounded;
+        return {
+            totalInvestment: totalInvestmentRounded,
+            maturityValue: maturityValueRounded,
+            expectedReturns: 0,
+            regularSIPValue: regularSIPValueRounded,
+            additionalWealth,
+            yearlyData
+        };
+    }
+
     for (let y = 1; y <= period; y++) {
         const yearInvest = sip * 12;
         totalInv += yearInvest;
@@ -293,18 +463,64 @@ function calcStepUpSIP(initialSIP, period, returnRate, stepUpPct) {
         sip *= (1 + stepUpPct / 100);
     }
     const regularSIPFV = initialSIP * (((Math.pow(1 + r, period * 12) - 1) / r) * (1 + r));
-    const additionalWealth = fv - regularSIPFV;
-    return { totalInvestment: totalInv, maturityValue: fv, expectedReturns: fv - totalInv, regularSIPValue: regularSIPFV, additionalWealth, yearlyData };
+
+    // Groww-style: round end results to nearest rupee.
+    const totalInvestmentRounded = Math.round(totalInv);
+    const maturityValueRounded = Math.round(fv);
+    const expectedReturns = maturityValueRounded - totalInvestmentRounded;
+    const regularSIPValueRounded = Math.round(regularSIPFV);
+    const additionalWealth = maturityValueRounded - regularSIPValueRounded;
+
+    return {
+        totalInvestment: totalInvestmentRounded,
+        maturityValue: maturityValueRounded,
+        expectedReturns,
+        regularSIPValue: regularSIPValueRounded,
+        additionalWealth,
+        yearlyData
+    };
 }
 
-// 14. Recurring Deposit
+// 14. Recurring Deposit — Groww-style installment summation
+// For monthly installment P, annual rate R%, and tenure in months M:
+// i = R / 400 (quarterly rate), and each installment compounds for remainingMonths/3 quarters.
+// Maturity = sum( round( P * (1 + i)^(remainingMonths/3) ) ) for remainingMonths = M..1
+function growwRdBreakdown(monthlyDeposit, tenureMonths, annualRatePercent) {
+    const P = Math.round(Number(monthlyDeposit));
+    const months = Math.max(0, Math.round(Number(tenureMonths)));
+    const annualRate = Number(annualRatePercent);
+    const i = annualRate / 400;
+    const invested = P * months;
+
+    if (!Number.isFinite(P) || !Number.isFinite(months) || !Number.isFinite(i) || P <= 0 || months <= 0) {
+        return { invested: 0, returns: 0, totalValue: 0 };
+    }
+
+    if (Math.abs(i) < 1e-12) {
+        return { invested, returns: 0, totalValue: invested };
+    }
+
+    let totalValue = 0;
+    for (let j = 1; j <= months; j++) {
+        const remainingMonths = months - j + 1;
+        const term = P * Math.pow(1 + i, remainingMonths / 3);
+        totalValue += Math.round(term);
+    }
+    const returns = Math.max(0, totalValue - invested);
+    return { invested, returns, totalValue };
+}
+
 function calcRD(monthlyDeposit, tenureMonths, rate, seniorCitizen = false) {
-    const r = (rate + (seniorCitizen ? 0.5 : 0)) / 12 / 100;
-    const totalDeposits = monthlyDeposit * tenureMonths;
-    const fv = monthlyDeposit * (((Math.pow(1 + r, tenureMonths) - 1) / r) * (1 + r));
+    const effectiveRate = Number(rate) + (seniorCitizen ? 0.5 : 0);
+    const x = growwRdBreakdown(monthlyDeposit, tenureMonths, effectiveRate);
     const maturityDate = new Date();
-    maturityDate.setMonth(maturityDate.getMonth() + tenureMonths);
-    return { totalDeposits, interestEarned: fv - totalDeposits, maturityValue: fv, maturityDate };
+    maturityDate.setMonth(maturityDate.getMonth() + Math.max(0, Math.round(Number(tenureMonths))));
+    return {
+        totalDeposits: x.invested,
+        interestEarned: x.returns,
+        maturityValue: x.totalValue,
+        maturityDate
+    };
 }
 
 // 15. Post Office FD
@@ -390,5 +606,35 @@ function calcSTCG(assetType, purchasePrice, sellPrice, purchaseDateOrMonths, sel
 
 // Export to window
 if (typeof window !== 'undefined') {
-    Object.assign(window, { formatNumber, formatCurrency, calcSIP, calcLumpsum, calcSWP, calcMutualFund, calcSSY, calcPPF, calcEPF, calcFD, calcBrokerage, calcMTF, calcCAGR, calcELSS, calcStepUpSIP, calcRD, calcPOFD, calcPORD, calcNSC, calcETF, calcSimpleInterest, calcCompoundInterest, calcSTCG });
+    Object.assign(window, {
+        formatNumber,
+        formatCurrency,
+        calcSIP,
+        calcLumpsum,
+        calcSWP,
+        calcMutualFund,
+        calcSSY,
+        calcPPF,
+        calcEPF,
+        calcFD,
+        growwFdBreakdown,
+        growwFdBreakdownDays,
+        FD_DAY_INTEREST_NUM,
+        FD_DAY_INTEREST_DEN,
+        fdTenureToGrowwYears,
+        calcBrokerage,
+        calcMTF,
+        calcCAGR,
+        calcELSS,
+        calcStepUpSIP,
+        growwRdBreakdown,
+        calcRD,
+        calcPOFD,
+        calcPORD,
+        calcNSC,
+        calcETF,
+        calcSimpleInterest,
+        calcCompoundInterest,
+        calcSTCG
+    });
 }

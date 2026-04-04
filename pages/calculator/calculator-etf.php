@@ -31,19 +31,21 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About ETF Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>ETF (Exchange Traded Fund) Calculator</strong> evaluates returns from passive index investing�a low-cost, transparent alternative to mutual funds. ETFs combine diversification with stock-like flexibility, tracking Nifty 50, Sensex, Gold, or international indices.</p>
-                                <p>This calculator factors in ultra-low expense ratios (0.05�0.5%), trading charges, and tax treatment for accurate net returns. Essential for index investors and cost-conscious long-term wealth builders.</p>
+                                <p>The <strong>ETF (Exchange Traded Fund) Calculator</strong> evaluates returns from passive index investingï¿½a low-cost, transparent alternative to mutual funds. ETFs combine diversification with stock-like flexibility, tracking Nifty 50, Sensex, Gold, or international indices.</p>
+                                <p>This calculator factors in ultra-low expense ratios (0.05ï¿½0.5%), trading charges, and tax treatment for accurate net returns. Essential for index investors and cost-conscious long-term wealth builders.</p>
                                 <h3>How ETFs Work</h3>
-                                <p><strong>Basics:</strong> Tracks index; trades like stocks on exchange; need demat; real-time pricing. <strong>Types:</strong> Equity (Nifty, Sensex), Gold, International, Debt, Sectoral. <strong>Costs:</strong> Expense ratio 0.05�0.5%; brokerage + STT like stocks; no entry/exit load. Net return = Market return - Expense - Trading costs - Tracking error.</p>
+                                <p><strong>Basics:</strong> Tracks index; trades like stocks on exchange; need demat; real-time pricing. <strong>Types:</strong> Equity (Nifty, Sensex), Gold, International, Debt, Sectoral. <strong>Costs:</strong> Expense ratio 0.05ï¿½0.5%; brokerage + STT like stocks; no entry/exit load. Net return = Market return - Expense - Trading costs - Tracking error.</p>
                                 <h3>Benefits</h3>
                                 <ul>
-                                    <li>Ultra-low costs: 5�10x lower than active MFs; transparency; liquidity (buy/sell anytime)</li>
+                                    <li>Ultra-low costs: 5ï¿½10x lower than active MFs; transparency; liquidity (buy/sell anytime)</li>
                                     <li>No fund manager risk; tax-efficient; diverse access (indices, gold, international)</li>
                                     <li>Cost comparison: Over 20yr on &#8377;10L ETF saves ~&#8377;45L vs Active MF, ~&#8377;15L vs Index MF</li>
                                 </ul>
@@ -56,10 +58,10 @@ require_once '../../includes/navbar.php';
                                 <p>&#8377;10L Nifty ETF, 0.1% expense, 12% index return, 10yr: Value ~&#8377;30.8L. Post LTCG tax (~&#8377;2.4L): ~&#8377;28.2L. vs Active MF (14% gross, 2% expense): barely better; 70% of active funds fail to beat index.</p>
                                 <h3>FAQs</h3>
                                 <div class="faq-item"><p class="faq-q">ETF vs Index MF?</p><p>ETF: exchange-traded, real-time, lower expense, demat, brokerage. Index MF: AMC direct, single NAV, no demat, auto-SIP. Small SIP ? MF; large lump sum ? ETF.</p></div>
-                                <div class="faq-item"><p class="faq-q">SIP in ETFs?</p><p>No automatic�manually buy monthly (self-discipline SIP) or invest quarterly to reduce brokerage.</p></div>
+                                <div class="faq-item"><p class="faq-q">SIP in ETFs?</p><p>No automaticï¿½manually buy monthly (self-discipline SIP) or invest quarterly to reduce brokerage.</p></div>
                                 <div class="faq-item"><p class="faq-q">Which ETF for beginners?</p><p>Nifty 50 (large-cap), Nifty Next 50 (mid-cap), Gold. Avoid sectoral, low-liquidity, newly launched.</p></div>
                                 <div class="faq-item"><p class="faq-q">Tracking error?</p><p>Difference between ETF and index return. Good: &lt;0.15%. Caused by expense, cash drag, rebalancing.</p></div>
-                                <div class="faq-item"><p class="faq-q">ETFs safe?</p><p>Yes�SEBI regulated, actual underlying stocks, transparent. Market risk (index falls); liquidity risk in some ETFs.</p></div>
+                                <div class="faq-item"><p class="faq-q">ETFs safe?</p><p>Yesï¿½SEBI regulated, actual underlying stocks, transparent. Market risk (index falls); liquidity risk in some ETFs.</p></div>
                                 <h3>Related Calculators</h3>
                                 <ul class="related-calc-list">
                                     <li><a href="calculator-sip.php">SIP Calculator</a> - Manual SIP strategy for ETF</li>
@@ -104,18 +106,15 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('etfResults').style.display='none';document.getElementById('etfResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('etfInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('etfResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
+                            <div id="etfInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div id="etfResultsContent"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section results-only" id="etfResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">ETF Results</h2>
-                        <div id="etfResultsContent"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -146,7 +145,7 @@ require_once '../../includes/navbar.php';
                     <div class="result-item"><span class="result-label">Effective CAGR:</span><span class="result-value">${r.effectiveCAGR.toFixed(2)}%</span></div>
                 </div>
             </div>`;
-            document.getElementById('etfResults').style.display='block';document.getElementById('etfResults').setAttribute('aria-hidden','false');document.getElementById('etfResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('etfInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -164,4 +163,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

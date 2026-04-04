@@ -167,6 +167,36 @@ document.addEventListener('DOMContentLoaded', () => {
             keywords: ['services', 'trading', 'investment', 'equity', 'derivatives']
         },
         {
+            title: 'Portfolio Management Services (PMS)',
+            description: 'Discretionary portfolio management for qualified investors',
+            url: 'services/service-pms.php',
+            keywords: ['pms', 'portfolio', 'management', 'services', 'discretionary', 'sebi']
+        },
+        {
+            title: 'Depository Participant (DP)',
+            description: 'Demat account, dematerialisation, and depository services',
+            url: 'services/service-depository-participant.php',
+            keywords: ['dp', 'depository', 'participant', 'demat', 'nsdl', 'cdsl', 'pledge']
+        },
+        {
+            title: 'Distribution — Mutual Funds, AIFs & PMS',
+            description: 'Distribution support for mutual funds, AIFs, and PMS',
+            url: 'services/service-distribution.php',
+            keywords: ['distribution', 'mutual', 'fund', 'aif', 'pms', 'arn', 'onboarding']
+        },
+        {
+            title: 'Trading-cum-Clearing Membership',
+            description: 'Trading and clearing membership on permitted exchange segments',
+            url: 'services/service-trading-clearing-membership.php',
+            keywords: ['clearing', 'trading', 'membership', 'settlement', 'margin', 'exchange']
+        },
+        {
+            title: 'AIF (Coming Soon)',
+            description: 'Alternative Investment Funds — updates coming soon',
+            url: 'services/service-aif.php',
+            keywords: ['aif', 'alternative', 'investment', 'fund', 'coming soon']
+        },
+        {
             title: 'Downloads',
             description: 'Download forms, documents, and resources',
             url: 'downloads.php',
@@ -310,8 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isInPagesDir = currentPath.includes('/pages/');
         
         if (isInPagesDir) {
-            // We are already in pages/, so relative links to .php files are fine
-            // But if it's an asset link starting with ../ we need to be careful
+            // From pages/services/*.php, "services/foo.php" would wrongly resolve under services/services/
+            if (currentPath.includes('/pages/services/') && url.startsWith('services/')) {
+                return url.slice('services/'.length);
+            }
             return url;
         } else {
             // We are in root.

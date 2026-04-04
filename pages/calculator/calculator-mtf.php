@@ -31,21 +31,23 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About MTF Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>Margin Trading Facility (MTF) Calculator</strong> shows costs and returns of buying stocks with broker funding. MTF lets you leverage � buy more than your capital � but daily interest and amplified risk must be evaluated.</p>
+                                <p>The <strong>Margin Trading Facility (MTF) Calculator</strong> shows costs and returns of buying stocks with broker funding. MTF lets you leverage ï¿½ buy more than your capital ï¿½ but daily interest and amplified risk must be evaluated.</p>
                                 <p>See margin required, amount borrowed, daily interest, and net returns after all costs. Essential for deciding if leveraged investing fits your situation.</p>
                                 <h3>How MTF Works</h3>
-                                <p>You provide 20�50% margin; broker lends 50�80%. Daily interest on borrowed amount (12�18% p.a.). Can hold days/weeks (not just intraday). Interest debited from trading account; compounds if unpaid.</p>
+                                <p>You provide 20ï¿½50% margin; broker lends 50ï¿½80%. Daily interest on borrowed amount (12ï¿½18% p.a.). Can hold days/weeks (not just intraday). Interest debited from trading account; compounds if unpaid.</p>
                                 <p><strong>Example:</strong> &#8377;1L stock, 25% margin = &#8377;25K yours, &#8377;75K borrowed. At 15% p.a., daily interest ~&#8377;31. Sell: (Sale - Buy) - Interest - Charges = Net P&amp;L.</p>
                                 <h3>Benefits &amp; Risks</h3>
-                                <p>Leverage 2�4x; hold longer than intraday; no daily square-off; participate in medium-term moves. But interest eats profits daily; losses amplified; margin calls; forced liquidation risk.</p>
+                                <p>Leverage 2ï¿½4x; hold longer than intraday; no daily square-off; participate in medium-term moves. But interest eats profits daily; losses amplified; margin calls; forced liquidation risk.</p>
                                 <h3>Who Should Use</h3>
-                                <p>Suitable for experienced traders, high-conviction swing traders (5�30 days), those with insufficient capital. NOT for beginners, risk-averse investors, long-term buy-and-hold. Use only if: strong reason for trade, target achievable in 2�4 weeks, can afford to lose margin, stock liquid. Avoid speculative/penny stocks.</p>
+                                <p>Suitable for experienced traders, high-conviction swing traders (5ï¿½30 days), those with insufficient capital. NOT for beginners, risk-averse investors, long-term buy-and-hold. Use only if: strong reason for trade, target achievable in 2ï¿½4 weeks, can afford to lose margin, stock liquid. Avoid speculative/penny stocks.</p>
                                 <h3>Example</h3>
                                 <p><strong>&#8377;2L stock, 25% margin (&#8377;50K yours), 20 days, 15% interest:</strong> Scenario A - Stock +10%: Net profit &#8377;18,367 (36.7% ROI on margin). Scenario B - Stock -5%: Net loss &#8377;11,633 (-23.3%). Scenario C - Stock flat: Net loss &#8377;1,633 (-3.3%). MTF amplifies: 3.67x profit, 4.66x loss vs no leverage.</p>
                                 <div class="callout-box">
@@ -53,9 +55,9 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <h3>FAQs</h3>
                                 <div class="faq-item"><p class="faq-q">MTF vs intraday margin?</p><p>Intraday (MIS) must close same day; MTF holds weeks/months. MTF charges daily interest; intraday doesn't.</p></div>
-                                <div class="faq-item"><p class="faq-q">Stock falls below margin?</p><p>Broker issues margin call � add funds or positions auto-liquidated (often at loss).</p></div>
-                                <div class="faq-item"><p class="faq-q">Convert MTF to delivery?</p><p>Yes � pay borrowed amount + interest; shares transfer to demat.</p></div>
-                                <div class="faq-item"><p class="faq-q">MTF interest tax deductible?</p><p>No � not deductible from capital gains. Trading cost, doesn't reduce taxable gains.</p></div>
+                                <div class="faq-item"><p class="faq-q">Stock falls below margin?</p><p>Broker issues margin call ï¿½ add funds or positions auto-liquidated (often at loss).</p></div>
+                                <div class="faq-item"><p class="faq-q">Convert MTF to delivery?</p><p>Yes ï¿½ pay borrowed amount + interest; shares transfer to demat.</p></div>
+                                <div class="faq-item"><p class="faq-q">MTF interest tax deductible?</p><p>No ï¿½ not deductible from capital gains. Trading cost, doesn't reduce taxable gains.</p></div>
                                 <div class="faq-item"><p class="faq-q">Which stocks for MTF?</p><p>Usually large-cap, liquid. Broker has approved list. Penny stocks, T2T generally not available.</p></div>
                                 <h3>Related Calculators</h3>
                                 <ul class="related-calc-list">
@@ -93,18 +95,15 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('mtfResults').style.display='none';document.getElementById('mtfResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('mtfInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('mtfResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
+                            <div id="mtfInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div id="mtfResultsContent"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section results-only" id="mtfResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">MTF Results</h2>
-                        <div id="mtfResultsContent"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -133,7 +132,7 @@ require_once '../../includes/navbar.php';
                     <div class="result-item"><span class="result-label">Breakeven Price Change:</span><span class="result-value">${r.breakevenPriceChange.toFixed(2)}%</span></div>
                 </div>
             </div>`;
-            document.getElementById('mtfResults').style.display='block';document.getElementById('mtfResults').setAttribute('aria-hidden','false');document.getElementById('mtfResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('mtfInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -151,4 +150,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

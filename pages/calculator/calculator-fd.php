@@ -12,7 +12,6 @@ $additionalCSS = [
 ];
 
 $additionalScripts = [
-    'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
     'https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js',
 ];
 
@@ -23,7 +22,7 @@ require_once '../../includes/navbar.php';
 
 
 
-    <main class="calculator-page">
+    <main class="calculator-page investment-modern-calc-page">
         <div class="calculator-hero">
             <div class="container">
                 <div class="calculator-hero-content">
@@ -32,47 +31,148 @@ require_once '../../includes/navbar.php';
                         <span>Back to Calculators</span>
                     </a>
                     <h1 class="calculator-page-title">Fixed Deposit Calculator</h1>
-                    <p class="calculator-page-description">Check returns on your fixed deposits (FDs) without any hassle</p>
+                    <p class="calculator-page-description">Estimate maturity on fixed deposits in seconds. Choose <strong>years</strong>, <strong>months</strong>, or <strong>days</strong> for tenure; amounts from &#8377;5,000 up to &#8377;1 crore on the slider. See below for how totals are calculated.</p>
                 </div>
             </div>
         </div>
 
         <div class="calculator-main-section">
             <div class="container">
+                <section class="investment-modern-calc investment-modern-calc--fd" aria-label="Fixed deposit calculator">
+                    <div class="investment-tabs" aria-label="Current calculator">
+                        <button type="button" class="investment-tab is-active" aria-current="page">FD</button>
+                    </div>
+
+                    <div class="investment-modern-calc-grid">
+                        <div class="investment-controls" aria-label="Inputs">
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="fdAmountRange">Total investment</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="fdAmountErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <span class="pill-unit">₹</span>
+                                            <input type="text" class="pill-input" id="fdAmountInput" value="1,00,000" inputmode="numeric" aria-label="Total investment amount" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="fdAmountRange" min="5000" max="10000000" step="500" value="100000" aria-label="Total investment slider" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="fdRateRange">Rate of interest (p.a)</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="fdRateErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="fdRateInput" min="1" max="15" step="0.1" value="6.5" inputmode="decimal" aria-label="Interest rate per annum" />
+                                            <span class="pill-unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="fdRateRange" min="1" max="15" step="0.1" value="6.5" aria-label="Interest rate slider" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <div class="investment-label-with-unit">
+                                        <label class="investment-slider-label" for="fdTimeRange">Time period</label>
+                                        <select id="fdTimeUnit" class="investment-period-unit-select" aria-label="Time period unit">
+                                            <option value="years" selected>Years</option>
+                                            <option value="months">Months</option>
+                                            <option value="days">Days</option>
+                                        </select>
+                                    </div>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="fdTimeErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="fdTimeInput" min="1" max="10" step="1" value="5" inputmode="numeric" aria-label="Time period value" />
+                                            <span class="pill-unit" id="fdTimePillUnit">Yr</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="fdTimeRange" min="1" max="10" step="1" value="5" aria-label="Time period slider" />
+                            </div>
+                        </div>
+
+                        <div class="investment-visual" aria-label="Visualization">
+                            <div class="investment-donut-card">
+                                <div class="investment-graph-quickbar" aria-hidden="false">
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-invested"></span>
+                                            <span class="quickbar-label">Invested amount</span>
+                                        </div>
+                                        <div class="quickbar-value" id="fdSummaryInvested">₹0</div>
+                                    </div>
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-returns"></span>
+                                            <span class="quickbar-label">Est. returns</span>
+                                        </div>
+                                        <div class="quickbar-value quickbar-returns-value" id="fdSummaryReturns">₹0</div>
+                                    </div>
+                                    <div class="quickbar-total">
+                                        <div class="quickbar-total-label">Total value</div>
+                                        <div class="quickbar-total-value" id="fdSummaryTotal">₹0</div>
+                                    </div>
+                                </div>
+                                <div class="investment-donut-wrap">
+                                    <div id="fdPreviewDonutChart"></div>
+                                    <div class="investment-donut-center">
+                                        <div class="investment-donut-center-label">Maturity Value</div>
+                                        <div class="investment-donut-center-value" id="fdDonutCenterValue">₹0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="investment-summary-cta">
+                        <button type="button" class="investment-cta" id="fdInvestNowBtn">INVEST NOW</button>
+                    </div>
+                </section>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About Fixed Deposit Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>Fixed Deposit (FD) Calculator</strong> helps you calculate maturity amount and interest on bank or corporate FDs�one of India's most popular investments. FDs offer guaranteed returns with capital protection, ideal for risk-averse investors, senior citizens, and stable income planning.</p>
-                                <p>This calculator factors in compounding frequency (monthly, quarterly, half-yearly, yearly), senior citizen rates, and tenure options for accurate projections. Compare FD rates across banks and plan short-term savings with instant, accurate results.</p>
-                                <h3>How FD Works</h3>
-                                <p><strong>Deposit:</strong> Min typically &#8377;1,000-&#8377;10,000; no max. Tenure: 7 days-10 years. Rates: 3-9.5% by bank/tenure. Senior citizens get 0.25-0.75% extra.</p>
-                                <p><strong>Interest:</strong> Compounded monthly/quarterly/half-yearly/yearly. TDS 10% if interest &gt;&#8377;40,000/yr (&#8377;50,000 for seniors). Submit Form 15G/15H to avoid TDS if below taxable limit.</p>
-                                <p><strong>Withdrawal:</strong> Premature allowed (0.5�2% penalty). Loan against FD up to 90%. Auto-renewal at maturity.</p>
-                                <h3>Benefits & Features</h3>
+                                <p>The <strong>Fixed Deposit (FD) Calculator</strong> helps you project maturity value and interest on lump-sum FDs. Fixed deposits are widely used in India for predictable returns and capital safety, especially for conservative investors and senior citizens.</p>
+                                <h3>How this calculator works</h3>
+                                <p><strong>Years or months:</strong> We use <strong>quarterly compounding</strong> (four times per year), which is common for cumulative bank FDs:</p>
+                                <p><strong>Maturity A = P &#215; (1 + r/4)<sup>4t</sup></strong>, where <em>P</em> is principal (rounded to whole rupees), <em>r</em> is annual interest as a decimal (rate % &#247; 100), and <em>t</em> is time in <strong>years</strong> (for months, <em>t = months &#247; 12</em>). Maturity is rounded to the nearest rupee; <strong>estimated returns = A &#8722; P</strong>.</p>
+                                <p><strong>Days:</strong> Very short tenures use a <strong>linear</strong> estimate so results scale evenly with principal (e.g. same rate and days on &#8377;1 lakh vs &#8377;1 crore):</p>
+                                <p><strong>Est. returns = round(P &#215; R &#215; d &#215; 7 &#247; 250000)</strong>, where <em>R</em> is the quoted <strong>annual rate in percent</strong> (e.g. 6.5) and <em>d</em> is the number of days. <strong>Total value = P + est. returns</strong>.</p>
+                                <p><strong>Time unit switch:</strong> If you change among years, months, and days, the same number is kept when it still fits the new range; otherwise it is clamped to valid min/max.</p>
+                                <p><strong>Disclaimer:</strong> Actual bank FDs may use different day-count or rounding rules. Use this tool for estimates only; confirm with your bank.</p>
+                                <h3>How FDs work (general)</h3>
+                                <p><strong>Deposit:</strong> Banks often allow from about &#8377;1,000&#8211;&#8377;10,000 minimum; tenures from a few days to 10 years. Rates vary by tenure and institution. Senior citizens often get a small extra rate.</p>
+                                <p><strong>Interest:</strong> Banks may compound quarterly, half-yearly, or yearly on cumulative FDs. TDS may apply if interest exceeds &#8377;40,000 in a year (&#8377;50,000 for senior citizens); Form 15G/15H can help when applicable.</p>
+                                <p><strong>Withdrawal:</strong> Premature withdrawal is usually allowed with a penalty. Loan against FD is often available up to a large fraction of the deposit.</p>
+                                <h3>Benefits &amp; features</h3>
                                 <ul>
-                                    <li>Guaranteed returns, capital protection, DICGC up to &#8377;5L per bank</li>
-                                    <li>2�3x higher interest than savings; senior citizen bonus</li>
-                                    <li>Flexible tenure; loan facility; TDS exemption via 15G/15H</li>
-                                    <li>Tax: Interest fully taxable. Tax-saver FD (5yr lock-in) offers 80C up to &#8377;1.5L</li>
+                                    <li>Predictable returns; DICGC insurance up to &#8377;5 lakh per depositor per bank (check current rules)</li>
+                                    <li>Often materially higher than savings account rates</li>
+                                    <li>Flexible tenures; optional payout frequencies on non-cumulative FDs</li>
+                                    <li>Interest is generally taxable; tax-saver FDs (5-year lock-in) may qualify under Section 80C within limits</li>
                                 </ul>
-                                <h3>Who Should Use</h3>
-                                <p>Risk-averse investors, senior citizens, short-term goals (6mo�5yr), emergency fund parking, FD laddering, rate comparison across banks.</p>
-                                <h3>Important Considerations</h3>
-                                <p><strong>Limitations:</strong> Returns often lower than inflation post-tax; interest fully taxable; premature penalties; opportunity cost vs equity.</p>
+                                <h3>Who should use</h3>
+                                <p>Anyone comparing lump-sum FD options, planning short- to medium-term goals, or parking funds with low volatility tolerance.</p>
+                                <h3>Important considerations</h3>
+                                <p><strong>Limitations:</strong> Post-tax returns may trail inflation; interest is usually taxable; breaking FD early reduces yield; opportunity cost versus growth assets.</p>
                                 <div class="callout-box">
-                                    <strong>Tips:</strong> Compare rates; FD ladder for liquidity; senior citizens check special rates; split &gt;&#8377;5L across banks for DICGC; quarterly compounding &gt; annual; Form 15G/15H if below taxable limit.
+                                    <strong>Tips:</strong> Compare rates across banks; consider FD ladders for liquidity; split large amounts across banks if you rely on deposit insurance limits; verify compounding and TDS rules on your sanction letter.
                                 </div>
-                                <h3>Example</h3>
-                                <p><strong>&#8377;5L, 3yr @7%, quarterly compounding:</strong> Maturity &#8377;6,15,562. Interest &#8377;1,15,562. Effective rate 7.19%. Post-tax (30%): TDS &#8377;34,668, net ~&#8377;5,80,894 (5.12% effective). <strong>Senior citizen (7.5%):</strong> Maturity &#8377;6,20,405; post-tax (20%): ~&#8377;5,96,324.</p>
+                                <h3>Example (quarterly, years)</h3>
+                                <p><strong>&#8377;5,00,000 for 3 years at 7% p.a. (quarterly):</strong> Maturity about &#8377;6,15,562; interest about &#8377;1,15,562. Actual figures depend on bank rules and rounding.</p>
                                 <h3>FAQs</h3>
-                                <div class="faq-item"><p class="faq-q">Which compounding is better?</p><p>Quarterly &gt; yearly. Monthly is better but rarely offered. More frequent = higher effective returns.</p></div>
-                                <div class="faq-item"><p class="faq-q">Should I break FD if rates increase?</p><p>Only if new rate minus penalty is still higher. E.g. current 6%, new 7.5%, penalty 1% = 0.5% effective gain�may not be worth it unless significant amount.</p></div>
+                                <div class="faq-item"><p class="faq-q">Why quarterly for years/months on this page?</p><p>Many cumulative FDs in India compound interest quarterly. This calculator uses that single convention for year- and month-based tenures so projections are easy to compare.</p></div>
+                                <div class="faq-item"><p class="faq-q">Should I break my FD if rates rise?</p><p>Only if the new rate after penalty still beats staying put. Penalties vary by bank and tenure.</p></div>
                                 <div class="faq-item"><p class="faq-q">Is FD rate fixed for tenure?</p><p>Yes, locked at booking. Market rate changes don't affect existing FD.</p></div>
                                 <div class="faq-item"><p class="faq-q">Monthly income from FD?</p><p>Choose non-cumulative, interest paid monthly/quarterly. Lower total returns than cumulative FD.</p></div>
-                                <div class="faq-item"><p class="faq-q">FDs better than savings accounts?</p><p>For amounts not needed immediately, yes. FDs give 2�3x higher interest (7% vs 3%). But FDs have lock-in; savings offer instant liquidity.</p></div>
+                                <div class="faq-item"><p class="faq-q">FDs better than savings accounts?</p><p>For money you do not need immediately, FDs often pay noticeably more than a regular savings rate, but they come with tenure and early-withdrawal rules.</p></div>
                                 <h3>Related Calculators</h3>
                                 <ul class="related-calc-list">
                                     <li><a href="calculator-rd.php">RD Calculator</a> - Monthly deposit savings with similar guaranteed returns</li>
@@ -84,190 +184,428 @@ require_once '../../includes/navbar.php';
                             </div>
                         </div>
                     </div>
-
-                    <!-- Right Section: Calculator Form -->
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate Your FD</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calculateFDResult(event)">
-                                <div class="calculator-field">
-                                    <label for="fd-amount">Principal Amount (&#8377;)</label>
-                                    <input type="number" id="fd-amount" placeholder="100000" required min="0" step="0.01">
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="fd-rate">Interest Rate (% p.a.)</label>
-                                    <input type="number" id="fd-rate" placeholder="6.5" required min="0" max="100" step="0.1">
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="fd-years">Tenure (Years)</label>
-                                    <input type="number" id="fd-years" placeholder="5" required min="0.1" step="0.1">
-                                </div>
-                                
-                                <div class="calculator-field">
-                                    <label for="fd-compounding">Compounding Frequency</label>
-                                    <select id="fd-compounding" required>
-                                        <option value="">Select...</option>
-                                        <option value="yearly">Yearly</option>
-                                        <option value="half-yearly">Half-Yearly</option>
-                                        <option value="quarterly">Quarterly</option>
-                                        <option value="monthly">Monthly</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate">
-                                        <i data-lucide="calculator"></i>
-                                        Calculate
-                                    </button>
-                                    <button type="button" class="calculator-btn-reset" onclick="resetCalculator()">
-                                        <i data-lucide="refresh-cw"></i>
-                                        Reset
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
-                <section class="calculator-results-section" id="resultsCard" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">Results</h2>
-                        <div class="calculator-results-grid">
-                            <div id="calculatorResults" class="calculator-results-content"></div>
-                            <div class="calculator-results-chart">
-                                <div class="calculator-chart-container">
-                                    <canvas id="fdChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
 
     <script src="../../js/gretex-financial.js"></script>
+    <script src="../../js/calculator-functions.js"></script>
     <script>
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
 
-        let fdChartInstance = null;
+        /** Years/months: quarterly growwFdBreakdown. Days handled separately via growwFdBreakdownDays. */
+        function fdBreakdownForPreview(principal, ratePct, yearsDecimal) {
+            if (typeof window.growwFdBreakdown === 'function') {
+                return window.growwFdBreakdown(principal, ratePct, yearsDecimal);
+            }
+            const p = Math.round(Number(principal));
+            const raw = p * Math.pow(1 + (Number(ratePct) / 100) / 4, 4 * Number(yearsDecimal));
+            const totalValue = Math.round(raw);
+            return { invested: p, returns: totalValue - p, totalValue };
+        }
 
-        function calculateFDResult(event) {
-            event.preventDefault();
-            
-            // Reset previous reading first - clear results and destroy chart before calculating
-            const resultsDiv = document.getElementById('calculatorResults');
-            if (resultsDiv) resultsDiv.innerHTML = '';
-            if (fdChartInstance) {
-                fdChartInstance.destroy();
-                fdChartInstance = null;
+        function fdBreakdownDaysPreview(principal, ratePct, daysCount) {
+            if (typeof window.growwFdBreakdownDays === 'function') {
+                return window.growwFdBreakdownDays(principal, ratePct, daysCount);
             }
-            
-            const amount = parseFloat(document.getElementById('fd-amount').value);
-            const rate = parseFloat(document.getElementById('fd-rate').value);
-            const years = parseFloat(document.getElementById('fd-years').value);
-            const compounding = document.getElementById('fd-compounding').value;
-            
-            if (!amount || !rate || !years || !compounding) {
-                alert('Please fill all fields');
-                return;
+            const p = Math.round(Number(principal));
+            const R = Number(ratePct);
+            const d = Number(daysCount);
+            const num = typeof window.FD_DAY_INTEREST_NUM === 'number' ? window.FD_DAY_INTEREST_NUM : 7;
+            const den = typeof window.FD_DAY_INTEREST_DEN === 'number' ? window.FD_DAY_INTEREST_DEN : 250000;
+            const returns = Math.round((p * R * d * num) / den);
+            return { invested: p, returns, totalValue: p + returns };
+        }
+
+        let fdPreviewDonut = null;
+
+        (function initFdModernUi() {
+            const root = document.querySelector('.investment-modern-calc--fd');
+            if (!root) return;
+
+            const amountRange = document.getElementById('fdAmountRange');
+            const amountInput = document.getElementById('fdAmountInput');
+            const rateRange = document.getElementById('fdRateRange');
+            const rateInput = document.getElementById('fdRateInput');
+            const timeRange = document.getElementById('fdTimeRange');
+            const timeInput = document.getElementById('fdTimeInput');
+            const timeUnit = document.getElementById('fdTimeUnit');
+            const timePillUnit = document.getElementById('fdTimePillUnit');
+            const amountField = amountRange ? amountRange.closest('.investment-slider-field') : null;
+            const rateField = rateRange ? rateRange.closest('.investment-slider-field') : null;
+            const timeField = timeRange ? timeRange.closest('.investment-slider-field') : null;
+
+            const summaryInvested = document.getElementById('fdSummaryInvested');
+            const summaryReturns = document.getElementById('fdSummaryReturns');
+            const summaryTotal = document.getElementById('fdSummaryTotal');
+            const donutCenterValue = document.getElementById('fdDonutCenterValue');
+            const investNowBtn = document.getElementById('fdInvestNowBtn');
+
+            const MIN_AMOUNT = 5000;
+            const MAX_AMOUNT = 10000000;
+            const AMOUNT_STEP = 500;
+            const MIN_RATE = 1;
+            const MAX_RATE = 15;
+            const MIN_YEARS = 1;
+            const MAX_YEARS = 10;
+            const MIN_MONTHS = 1;
+            const MAX_MONTHS = 120;
+            const MIN_DAYS = 1;
+            const MAX_DAYS = 3650;
+            const DAYS_PER_YEAR = 365;
+
+            function clamp(n, min, max) {
+                if (!Number.isFinite(n)) return min;
+                return Math.min(max, Math.max(min, n));
             }
-            
-            const compoundingFreq = {
-                'yearly': 1,
-                'half-yearly': 2,
-                'quarterly': 4,
-                'monthly': 12
-            };
-            
-            const n = compoundingFreq[compounding];
-            const futureValue = amount * Math.pow(1 + (rate / 100) / n, n * years);
-            const returns = futureValue - amount;
-            const returnPercentage = (returns / amount) * 100;
-            
-            const resultsCard = document.getElementById('resultsCard');
-            // const resultsDiv = document.getElementById('calculatorResults');
-            
-            // Display new results (previous content already cleared at start)
-            resultsDiv.innerHTML = `
-                <div class="result-item">
-                    <span class="result-label">Principal Amount</span>
-                    <span class="result-value">?${formatNumber(amount)}</span>
-                </div>
-                <div class="result-item highlight">
-                    <span class="result-label">Maturity Value</span>
-                    <span class="result-value">?${formatNumber(futureValue)}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Interest Earned</span>
-                    <span class="result-value">?${formatNumber(returns)}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Return Percentage</span>
-                    <span class="result-value">${returnPercentage.toFixed(2)}%</span>
-                </div>
-            `;
-            
-            // Create Donut Chart (previous chart already destroyed at start)
-            const ctx = document.getElementById('fdChart');
-            fdChartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Principal Amount', 'Interest Earned'],
-                    datasets: [{
-                        data: [amount, returns],
-                        backgroundColor: ['#1a4d7a', '#00a855'],
-                        borderColor: ['#ffffff', '#ffffff'],
-                        borderWidth: 3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 15,
-                                font: { family: "'Inter', sans-serif", size: 13, weight: '600' },
-                                color: '#1a1a1a'
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const label = context.label || '';
-                                    const value = formatNumber(context.parsed);
-                                    const percentage = ((context.parsed / futureValue) * 100).toFixed(2);
-                                    return `${label}: ?${value} (${percentage}%)`;
-                                }
-                            }
-                        }
-                    }
+
+            function formatINR0(num) {
+                const n = Number(num);
+                if (!Number.isFinite(n)) return '₹0';
+                return '₹' + Math.round(n).toLocaleString('en-IN');
+            }
+
+            function formatINRDigits(n) {
+                const x = Number(n);
+                if (!Number.isFinite(x)) return '0';
+                return Math.round(x).toLocaleString('en-IN');
+            }
+
+            function snapAmount(v) {
+                return Math.round(Number(v) / AMOUNT_STEP) * AMOUNT_STEP;
+            }
+
+            function setAmountError(on) {
+                if (amountField) amountField.classList.toggle('is-error', !!on);
+            }
+
+            function setRateError(on) {
+                if (rateField) rateField.classList.toggle('is-error', !!on);
+            }
+
+            function setTimeError(on) {
+                if (timeField) timeField.classList.toggle('is-error', !!on);
+            }
+
+            function setRangeFill(rangeEl, value) {
+                const min = Number(rangeEl.min);
+                const max = Number(rangeEl.max);
+                const percent = ((value - min) / (max - min)) * 100;
+                rangeEl.style.setProperty('--fill', clamp(percent, 0, 100).toFixed(3));
+            }
+
+            function getTimeMode() {
+                const u = timeUnit && timeUnit.value;
+                if (u === 'months') return 'months';
+                if (u === 'days') return 'days';
+                return 'years';
+            }
+
+            function getYearsDecimal() {
+                const t = Math.round(Number(timeInput.value));
+                const mode = getTimeMode();
+                if (!Number.isFinite(t)) {
+                    if (mode === 'months') return MIN_MONTHS / 12;
+                    if (mode === 'days') return MIN_DAYS / DAYS_PER_YEAR;
+                    return MIN_YEARS;
                 }
-            });
-            
-            resultsCard.style.display = 'block';
-            resultsCard.setAttribute('aria-hidden', 'false');
-            resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        
-        function resetCalculator() {
-            document.getElementById('calculatorForm').reset();
-            document.getElementById('resultsCard').style.display = 'none';
-            document.getElementById('resultsCard').setAttribute('aria-hidden', 'true');
-            if (fdChartInstance) {
-                fdChartInstance.destroy();
-                fdChartInstance = null;
+                if (typeof window.fdTenureToGrowwYears === 'function') {
+                    return window.fdTenureToGrowwYears(t, mode);
+                }
+                if (mode === 'months') return t / 12;
+                if (mode === 'days') return t / DAYS_PER_YEAR;
+                return t;
             }
-        }
-        
-        function formatNumber(num) {
-            return num.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-        }
+
+            function computePreview() {
+                const amount = clamp(snapAmount(Number(amountRange.value)), MIN_AMOUNT, MAX_AMOUNT);
+                const rate = clamp(Number(rateRange.value), MIN_RATE, MAX_RATE);
+                const mode = getTimeMode();
+                const tRaw = Math.round(Number(timeInput.value));
+                const t = Number.isFinite(tRaw) ? tRaw : (mode === 'days' ? MIN_DAYS : mode === 'months' ? MIN_MONTHS : MIN_YEARS);
+                let g;
+                let years;
+                if (mode === 'days') {
+                    const d = clamp(t, MIN_DAYS, MAX_DAYS);
+                    g = fdBreakdownDaysPreview(amount, rate, d);
+                    years = d / DAYS_PER_YEAR;
+                } else {
+                    years = getYearsDecimal();
+                    g = fdBreakdownForPreview(amount, rate, years);
+                }
+                return {
+                    amount,
+                    rate,
+                    years,
+                    invested: g.invested,
+                    returns: g.returns,
+                    totalValue: g.totalValue
+                };
+            }
+
+            function ensurePreviewDonut() {
+                if (fdPreviewDonut || typeof ApexCharts === 'undefined') return;
+                const el = document.getElementById('fdPreviewDonutChart');
+                if (!el) return;
+                const d = computePreview();
+                fdPreviewDonut = new ApexCharts(el, {
+                    series: [Math.max(0, d.invested), Math.max(0, d.returns)],
+                    chart: { type: 'donut', height: 285 },
+                    labels: ['Invested amount', 'Est. returns'],
+                    colors: ['#F97316', '#3B6DFF'],
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    stroke: { show: false },
+                    plotOptions: { pie: { donut: { size: '84%', labels: { show: false } } } }
+                });
+                fdPreviewDonut.render();
+            }
+
+            function updatePreview(animate) {
+                const d = computePreview();
+                if (summaryInvested) summaryInvested.textContent = formatINR0(d.invested);
+                if (summaryReturns) summaryReturns.textContent = formatINR0(d.returns);
+                if (summaryTotal) summaryTotal.textContent = formatINR0(d.totalValue);
+                if (donutCenterValue) donutCenterValue.textContent = formatINR0(d.totalValue);
+                ensurePreviewDonut();
+                if (fdPreviewDonut) {
+                    fdPreviewDonut.updateSeries([Math.max(0, d.invested), Math.max(0, d.returns)], animate !== false);
+                }
+            }
+
+            function applyTimeUnitUi() {
+                const mode = getTimeMode();
+                if (mode === 'months') {
+                    timeRange.min = MIN_MONTHS;
+                    timeRange.max = MAX_MONTHS;
+                    timeRange.step = 1;
+                    timeInput.min = MIN_MONTHS;
+                    timeInput.max = MAX_MONTHS;
+                    if (timePillUnit) timePillUnit.textContent = 'Mo';
+                    let m = Math.round(Number(timeInput.value));
+                    if (!Number.isFinite(m)) m = MIN_MONTHS;
+                    m = clamp(m, MIN_MONTHS, MAX_MONTHS);
+                    timeRange.value = m;
+                    timeInput.value = m;
+                } else if (mode === 'days') {
+                    timeRange.min = MIN_DAYS;
+                    timeRange.max = MAX_DAYS;
+                    timeRange.step = 1;
+                    timeInput.min = MIN_DAYS;
+                    timeInput.max = MAX_DAYS;
+                    if (timePillUnit) timePillUnit.textContent = 'D';
+                    let d = Math.round(Number(timeInput.value));
+                    if (!Number.isFinite(d)) d = MIN_DAYS;
+                    d = clamp(d, MIN_DAYS, MAX_DAYS);
+                    timeRange.value = d;
+                    timeInput.value = d;
+                } else {
+                    timeRange.min = MIN_YEARS;
+                    timeRange.max = MAX_YEARS;
+                    timeRange.step = 1;
+                    timeInput.min = MIN_YEARS;
+                    timeInput.max = MAX_YEARS;
+                    if (timePillUnit) timePillUnit.textContent = 'Yr';
+                    let y = Math.round(Number(timeInput.value));
+                    if (!Number.isFinite(y)) y = MIN_YEARS;
+                    y = clamp(y, MIN_YEARS, MAX_YEARS);
+                    timeRange.value = y;
+                    timeInput.value = y;
+                }
+                setRangeFill(timeRange, Number(timeRange.value));
+            }
+
+            /**
+             * Groww-style: changing Years / Months / Days keeps the same numeral when it fits
+             * the new range (e.g. 5 → 5 → 5), only clamping if out of bounds — no ×12 / ×365 conversion.
+             */
+            function timeBoundsForMode(mode) {
+                if (mode === 'months') return { min: MIN_MONTHS, max: MAX_MONTHS, def: MIN_MONTHS };
+                if (mode === 'days') return { min: MIN_DAYS, max: MAX_DAYS, def: MIN_DAYS };
+                return { min: MIN_YEARS, max: MAX_YEARS, def: MIN_YEARS };
+            }
+
+            function onTimeUnitChange() {
+                if (!timeUnit || !timeRange || !timeInput) return;
+                const mode = getTimeMode();
+                const { min, max, def } = timeBoundsForMode(mode);
+                let v = Math.round(Number(timeInput.value));
+                if (!Number.isFinite(v)) v = def;
+                v = clamp(v, min, max);
+                timeInput.value = v;
+                timeUnit.dataset.prevUnit = mode;
+                applyTimeUnitUi();
+                setTimeError(false);
+                updatePreview(true);
+            }
+
+            amountRange.addEventListener('input', function() {
+                let v = clamp(snapAmount(amountRange.value), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = v;
+                amountInput.value = formatINRDigits(v);
+                setAmountError(false);
+                setRangeFill(amountRange, v);
+                updatePreview(false);
+            });
+            amountRange.addEventListener('change', function() {
+                updatePreview(true);
+            });
+
+            rateRange.addEventListener('input', function() {
+                const v = clamp(Number(rateRange.value), MIN_RATE, MAX_RATE);
+                const rounded = Math.round(v * 10) / 10;
+                rateRange.value = rounded;
+                rateInput.value = rounded;
+                setRateError(false);
+                setRangeFill(rateRange, rounded);
+                updatePreview(false);
+            });
+            rateRange.addEventListener('change', function() {
+                updatePreview(true);
+            });
+
+            timeRange.addEventListener('input', function() {
+                const maxT = Number(timeRange.max);
+                const minT = Number(timeRange.min);
+                let v = Math.round(Number(timeRange.value));
+                v = clamp(v, minT, maxT);
+                timeRange.value = v;
+                timeInput.value = v;
+                setTimeError(false);
+                setRangeFill(timeRange, v);
+                updatePreview(false);
+            });
+            timeRange.addEventListener('change', function() {
+                updatePreview(true);
+            });
+
+            amountInput.addEventListener('input', function() {
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                if (!digits) {
+                    setAmountError(raw.trim() !== '');
+                    return;
+                }
+                const v = Number(digits);
+                const invalid = v < MIN_AMOUNT || v > MAX_AMOUNT;
+                setAmountError(invalid);
+                const clamped = clamp(snapAmount(v), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = clamped;
+                setRangeFill(amountRange, clamped);
+                amountInput.value = formatINRDigits(v);
+                if (!invalid) updatePreview(false);
+            });
+            amountInput.addEventListener('change', function() {
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                const v = digits ? Number(digits) : MIN_AMOUNT;
+                const clamped = clamp(snapAmount(v), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = clamped;
+                amountInput.value = formatINRDigits(clamped);
+                setAmountError(false);
+                setRangeFill(amountRange, clamped);
+                updatePreview(true);
+            });
+
+            rateInput.addEventListener('input', function() {
+                const raw = String(rateInput.value || '');
+                if (raw.trim() === '') {
+                    setRateError(true);
+                    return;
+                }
+                const v = Number(rateInput.value);
+                if (!Number.isFinite(v)) {
+                    setRateError(true);
+                    return;
+                }
+                const invalid = v < MIN_RATE || v > MAX_RATE;
+                setRateError(invalid);
+                const rounded = Math.round(clamp(v, MIN_RATE, MAX_RATE) * 10) / 10;
+                rateRange.value = rounded;
+                setRangeFill(rateRange, rounded);
+                if (!invalid) updatePreview(false);
+            });
+            rateInput.addEventListener('change', function() {
+                const raw = String(rateInput.value || '');
+                const v = raw.trim() === '' ? MIN_RATE : Number(raw);
+                const safe = Number.isFinite(v) ? v : MIN_RATE;
+                const rounded = Math.round(clamp(safe, MIN_RATE, MAX_RATE) * 10) / 10;
+                rateRange.value = rounded;
+                rateInput.value = rounded;
+                setRateError(false);
+                setRangeFill(rateRange, rounded);
+                updatePreview(true);
+            });
+
+            timeInput.addEventListener('input', function() {
+                const raw = String(timeInput.value || '');
+                if (raw.trim() === '') {
+                    setTimeError(true);
+                    return;
+                }
+                const v = Math.round(Number(timeInput.value));
+                if (!Number.isFinite(v)) {
+                    setTimeError(true);
+                    return;
+                }
+                const minT = Number(timeInput.min);
+                const maxT = Number(timeInput.max);
+                const invalid = v < minT || v > maxT;
+                setTimeError(invalid);
+                const clamped = clamp(v, minT, maxT);
+                timeRange.value = clamped;
+                setRangeFill(timeRange, clamped);
+                if (!invalid) updatePreview(false);
+            });
+            timeInput.addEventListener('change', function() {
+                const raw = String(timeInput.value || '');
+                const minT = Number(timeInput.min);
+                const maxT = Number(timeInput.max);
+                const v = raw.trim() === '' ? minT : Math.round(Number(raw));
+                const safe = Number.isFinite(v) ? v : minT;
+                const clamped = clamp(safe, minT, maxT);
+                timeRange.value = clamped;
+                timeInput.value = clamped;
+                setTimeError(false);
+                setRangeFill(timeRange, clamped);
+                updatePreview(true);
+            });
+
+            if (timeUnit) {
+                timeUnit.dataset.prevUnit = 'years';
+                timeUnit.addEventListener('change', onTimeUnitChange);
+            }
+
+            if (investNowBtn) {
+                investNowBtn.addEventListener('click', function() {
+                    updatePreview(true);
+                    const target = document.querySelector('.calculator-wrapper')
+                        || document.querySelector('.calculator-info-section');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            setRangeFill(amountRange, Number(amountRange.value));
+            amountInput.value = formatINRDigits(Number(amountRange.value));
+            setRangeFill(rateRange, Number(rateRange.value));
+            applyTimeUnitUi();
+
+            let apexWait = 0;
+            (function waitForApex() {
+                updatePreview(false);
+                if (typeof ApexCharts === 'undefined') {
+                    apexWait += 1;
+                    if (apexWait < 80) setTimeout(waitForApex, 60);
+                    return;
+                }
+                ensurePreviewDonut();
+            })();
+        })();
     </script>
 
 <script src="../../js/search.js"></script>
@@ -284,4 +622,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 

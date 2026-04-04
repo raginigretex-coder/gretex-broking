@@ -31,16 +31,18 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
+                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
                             <h2 class="calculator-info-title">About STCG Tax Calculator</h2>
                             <div class="calculator-info-content">
-                                <p>The <strong>STCG (Short-Term Capital Gains) Tax Calculator</strong> computes tax on profits from selling shares, mutual funds, or securities held under 12 months (equity) or 36 months (debt). STCG is taxed higher than long-term � 20% for equity, slab rate for debt � significantly impacting net returns.</p>
+                                <p>The <strong>STCG (Short-Term Capital Gains) Tax Calculator</strong> computes tax on profits from selling shares, mutual funds, or securities held under 12 months (equity) or 36 months (debt). STCG is taxed higher than long-term ï¿½ 20% for equity, slab rate for debt ï¿½ significantly impacting net returns.</p>
                                 <p>Get a complete breakdown of capital gains, applicable tax, and net profit after taxes. Essential for deciding when to book profits, whether to hold for LTCG, and structuring trading strategy for post-tax returns.</p>
                                 <h3>How STCG Works</h3>
-                                <p><strong>Holding period:</strong> Equity: &lt;12mo = STCG, &gt;12mo = LTCG. Debt: &lt;36mo = STCG, &gt;36mo = LTCG. <strong>Rates:</strong> Equity STCG: flat 20%. Debt STCG: slab rate (5/20/30%). <strong>Formula:</strong> Sale - Purchase - Transaction costs = STCG. Equity tax = STCG � 20%.</p>
+                                <p><strong>Holding period:</strong> Equity: &lt;12mo = STCG, &gt;12mo = LTCG. Debt: &lt;36mo = STCG, &gt;36mo = LTCG. <strong>Rates:</strong> Equity STCG: flat 20%. Debt STCG: slab rate (5/20/30%). <strong>Formula:</strong> Sale - Purchase - Transaction costs = STCG. Equity tax = STCG ï¿½ 20%.</p>
                                 <p><strong>Critical:</strong> Even 1 day short of 12 months = STCG. Bought 15-Jan-24, sell 15-Jan-25 = STCG; 16-Jan-25 = LTCG.</p>
                                 <h3>Benefits</h3>
                                 <p>Accurate tax liability; net profit after taxes; sell-now vs hold-for-LTCG decision support; transaction cost inclusion; year-end tax planning; tax loss harvesting (offset gains with losses).</p>
@@ -104,18 +106,15 @@ require_once '../../includes/navbar.php';
                                 </div>
                                 <div class="calculator-actions">
                                     <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();document.getElementById('stcgResults').style.display='none';document.getElementById('stcgResults').setAttribute('aria-hidden','true')"><i data-lucide="refresh-cw"></i> Reset</button>
+                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('stcgInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('stcgResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
                                 </div>
                             </form>
+                            <div id="stcgInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
+                                <div id="stcgResultsContent"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="calculator-results-section results-only" id="stcgResults" aria-hidden="true">
-                    <div class="calculator-results-wrapper">
-                        <h2 class="calculator-section-title">STCG Results</h2>
-                        <div id="stcgResultsContent"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </main>
@@ -143,7 +142,7 @@ require_once '../../includes/navbar.php';
                     <div class="result-item"><span class="result-label">Effective Return:</span><span class="result-value">${r.effectiveReturn.toFixed(2)}%</span></div>
                 </div>
             </div>`;
-            document.getElementById('stcgResults').style.display='block';document.getElementById('stcgResults').setAttribute('aria-hidden','false');document.getElementById('stcgResults').scrollIntoView({behavior:'smooth',block:'start'});
+            document.getElementById('stcgInlineWrap').classList.remove('is-hidden');
         }
     </script>
 
@@ -161,4 +160,6 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
+
+
 
