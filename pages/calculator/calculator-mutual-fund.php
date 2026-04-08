@@ -142,78 +142,207 @@ require_once '../../includes/navbar.php';
             <div class="calculator-wrapper">
                 <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                 <div class="calculator-info-section">
-                    <div class="calculator-info-card">
-                        <h2 class="calculator-info-title">About Mutual Fund Returns Calculator</h2>
+                      <div class="calculator-info-card">
+                        <h3 class="calculator-info-title">Mutual Fund Calculator</h3>
                         <div class="calculator-info-content">
-                            <p>The <strong>Mutual Fund Returns Calculator</strong> helps you estimate how your investments may grow over time through SIP or lumpsum investing. It is useful for goal planning, comparing investment styles, and understanding the power of compounding in mutual funds.</p>
+                            <p>Mutual funds are investment instruments that pool money from multiple investors to invest in diversified financial assets such as equities, debt instruments, or a combination of both. Investments in mutual funds can typically be made through two approaches:<strong> lumpsum investment </strong> or <strong> Systematic Investment Plan (SIP)</strong>.</p>
+                            <p>A Mutual Fund Calculator is a financial tool used to estimate the potential returns and future value of investments made through either of these approaches.</p>
+                        </div>
 
-                            <h3>How It Works</h3>
-                            <ul>
-                                <li><strong>SIP:</strong> Invest a fixed amount every month and build wealth gradually</li>
-                                <li><strong>Lumpsum:</strong> Invest one amount at the start and let it compound over time</li>
-                                <li><strong>Expected return:</strong> The annual growth rate you assume for your mutual fund investment</li>
-                                <li><strong>Time period:</strong> The duration for which your money stays invested</li>
+                        <h3 class="calculator-info-title">What is a Mutual Fund Calculator?</h3>
+                        <div class="calculator-info-content">
+                            <p>A Mutual Fund Calculator is an online utility that helps investors estimate the growth of their investments over a specified period.</p>
+                            <p>By entering basic inputs such as:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Investment amount (lumpsum or periodic SIP)</li>
+                                <li>Investment duration</li>
+                                <li>Expected rate of return</li>
                             </ul>
+                            <p>the calculator provides:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimated future value of the investment</li>
+                                <li>Total returns generated over time</li>
+                            </ul>
+                            <p>The results are indicative and depend on market performance and other investment-related factors.</p>
+                        </div>
 
-                            <h3>Formula</h3>
-                            <div class="formula-box">
-                                <strong>SIP:</strong> FV = P × [((1 + r)<sup>n</sup> - 1) / r] × (1 + r)<br>
-                                <strong>Lumpsum:</strong> A = P × (1 + r)<sup>t</sup><br><br>
-                                <strong>Where:</strong><br>
-                                <strong>P</strong> = Investment amount<br>
-                                <strong>r</strong> = Periodic rate of return<br>
-                                <strong>n</strong> = Total number of monthly investments<br>
-                                <strong>t</strong> = Time period in years
-                            </div>
-
-                            <h3>Example</h3>
-                            <p><strong>SIP example:</strong> If you invest &#8377;5,000 every month for 10 years at an expected return of 12% per year, your total investment becomes &#8377;6,00,000 and the estimated maturity value is much higher because your returns keep compounding over time.</p>
-
-                            <h3>Why Investors Use It</h3>
-                            <p>Mutual fund calculators are helpful for retirement planning, child education goals, wealth creation, and comparing SIP vs lumpsum strategies before starting an investment.</p>
-
-                            <h3>FAQs</h3>
-                            <div class="stepup-faq-accordion" aria-label="Mutual Fund Calculator Frequently Asked Questions">
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="0">
-                                    <span class="stepup-faq-question">What is the difference between SIP and lumpsum?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="mf-faq-panel-0" hidden>
-                                    SIP means investing a fixed amount regularly, usually every month. Lumpsum means investing one amount at a single time and letting it grow.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="1">
-                                    <span class="stepup-faq-question">What return rate should I use?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="mf-faq-panel-1" hidden>
-                                    Many investors use 10% to 15% as a long-term estimate for equity mutual funds, but actual returns can vary depending on market conditions and fund type.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="2">
-                                    <span class="stepup-faq-question">Is SIP better than lumpsum?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="mf-faq-panel-2" hidden>
-                                    SIP is often preferred for disciplined investing and reducing market timing risk, while lumpsum can work well if you have a large amount available and a long investment horizon.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-mf-faq="3">
-                                    <span class="stepup-faq-question">Does this calculator guarantee returns?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="mf-faq-panel-3" hidden>
-                                    No. This calculator only gives estimates based on the return rate you enter. Mutual fund returns are market-linked and are not guaranteed.
-                                </div>
-                            </div>
-
-                            <h3>Related Calculators</h3>
-                            <ul class="related-calc-list">
-                                <li><a href="calculator-sip.php">SIP Calculator</a> - estimate monthly investment growth</li>
-                                <li><a href="calculator-lumpsum.php">Lumpsum Calculator</a> - project one-time investment returns</li>
-                                <li><a href="calculator-compound-interest.php">Compound Interest</a> - understand long-term growth</li>
+                        <h3 class="calculator-info-title">Purpose and Use of a Mutual Fund Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>The calculator is designed to assist investors in planning and evaluating their investments in mutual funds.</p>
+                            <p>It can be used to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimate returns for both SIP and lumpsum investments</li>
+                                <li>Compare different investment scenarios</li>
+                                <li>Assess alignment with financial goals</li>
+                                <li>Understand the impact of time and return assumptions on investment outcomes</li>
                             </ul>
                         </div>
+
+                        <h3 class="calculator-info-title">Types of Returns in Mutual Funds</h3>
+                            <div class="calculator-info-content">
+                                <p>Investors may evaluate mutual fund performance using different return metrics:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li><strong>Absolute Return</strong> - Total return over a specific period</li>
+                                    <li><strong>Annualised Return</strong> - Average yearly return over the investment duration</li>
+                                    <li><strong>Total Return</strong> - Includes both capital gains and income</li>
+                                    <li><strong>Point-to-Point Return</strong> - Return between two specific dates</li>
+                                    <li><strong>Trailing Return</strong> - Historical return over a fixed timeframe</li>
+                                    <li><strong>Rolling Return</strong> - Returns calculated over continuous overlapping periods</li>
+                                </ul>
+                                <p>Understanding these measures helps in better interpretation of investment performance.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">How Does a Mutual Fund Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>A mutual fund calculator estimates returns using compound growth principles. The calculation method depends on the investment type:</p>
+
+                                <p><strong>1. Lumpsum Investment</strong></p>
+                                <p>For one-time investments, the future value is calculated as:</p>
+                                <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                    FV = P (1 + 
+                                        <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                            <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                            r
+                                            </span>
+                                            <span style="display:block; font-size:14px;">n</span>
+                                        </span>
+                                        )<sup>nt</sup>
+                                </p>
+                                <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                                <ul>
+                                    <li><strong>FV</strong> = Future value</li>
+                                    <li><strong>P</strong> = Initial investment</li>
+                                    <li><strong>r</strong> = Expected rate of return</li>
+                                    <li><strong>t</strong> = Investment duration</li>
+                                    <li><strong>n</strong> = Compounding frequency</li>
+                                </ul>
+
+                                <p><strong>2. SIP Investment</strong></p>
+                                <p>For periodic investments, the future value is calculated as:</p>
+                                <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                    FV = P × 
+                                    <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                        <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                            (1 + i)<sup>n</sup> - 1
+                                        </span>
+                                        <span style="display:block; font-size:14px;">i</span>
+                                    </span>
+                                    × (1 + i)
+                                </p>
+                                <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                                <ul>
+                                    <li><strong>FV</strong> = Future value</li>
+                                    <li><strong>P</strong> = Periodic investment amount</li>
+                                    <li><strong>i</strong> = Periodic rate of return</li>
+                                    <li><strong>n</strong> = Number of contributions</li>
+                                </ul>
+
+                                <p><strong>Example</strong></p>
+                                <p><strong>Lumpsum Example</strong></p>
+                                <p>Investment: Rs.5,00,000</p>
+                                <p>Duration: 8 years</p>
+                                <p>Expected return: 11%</p>
+                                <p>Estimated future value:</p>
+                                <p> <strong>Rs.11,52,269 (approx.)</strong></p>
+
+                                <p><strong>SIP Example</strong></p>
+                                <p>Monthly investment: Rs.1,000</p>
+                                <p>Duration: 10 years</p>
+                                <p>Expected return: 8%</p>
+                                <p>Estimated future value: </p>
+                                <p><strong>Rs.1,83,493  (approx.)</strong></p>
+                            </div>
+
+
+                        <h3 class="calculator-info-title">How to Use the Mutual Fund Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>To calculate estimated returns:</p>
+                            <ol>
+                                <li>Select the investment type (lumpsum or SIP)</li>
+                                <li>Enter the investment amount</li>
+                                <li>Specify the investment duration</li>
+                                <li>Input the expected rate of return</li>
+                                <li>The calculator will display:
+                                    <ul>
+                                        <li>Total invested amount</li>
+                                        <li>Estimated returns</li>
+                                        <li>Projected maturity value</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Investors</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides a structured estimate of investment growth</li>
+                                <li>Simplifies financial planning without manual calculations</li>
+                                <li>Helps evaluate different investment strategies</li>
+                                <li>Enables comparison between SIP and lumpsum approaches</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Mutual fund returns are market-linked and not guaranteed</li>
+                                <li>The calculator provides indicative results only</li>
+                                <li>It does not account for:
+                                    <ul>
+                                        <li>Expense ratios</li>
+                                        <li>Exit loads</li>
+                                        <li>Taxes</li>
+                                    </ul>
+                                </li>
+                                <li>Assumed rate of return has a significant impact on projections</li>
+                            </ul>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                        <div class="stepup-faq-accordion" aria-label="Mutual fund calculator frequently asked questions">
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                <span class="stepup-faq-question">Is a mutual fund calculator accurate?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                It provides estimates based on assumed inputs. Actual returns may vary.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                <span class="stepup-faq-question">Can it be used for both SIP and lumpsum investments?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                Yes, most mutual fund calculators support both investment methods.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                <span class="stepup-faq-question">What rate of return should be considered?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                The expected return depends on the type of mutual fund and market conditions.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                <span class="stepup-faq-question">Does the calculator include taxes and charges?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                No, it excludes taxes, expense ratios, and other applicable costs.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                <span class="stepup-faq-question">Can I use it for goal-based planning?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                Yes, it can help estimate the required investment to achieve a financial goal.
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
