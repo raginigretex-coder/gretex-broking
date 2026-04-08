@@ -320,7 +320,7 @@ require_once '../../includes/navbar.php';
 
                             <h3 class="calculator-info-title">FAQs</h3>
                             <div class="stepup-faq-accordion" aria-label="Step-Up SIP calculator frequently asked questions">
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="0">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="stepup-faq-panel-0" data-stepup-faq="0">
                                     <span class="stepup-faq-question">What is a Step-Up SIP?</span>
                                     <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                                 </button>
@@ -328,7 +328,7 @@ require_once '../../includes/navbar.php';
                                     It is a SIP where the investment amount increases periodically, usually annually.
                                 </div>
 
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="1">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="stepup-faq-panel-1" data-stepup-faq="1">
                                     <span class="stepup-faq-question">How is it different from a regular SIP?</span>
                                     <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                                 </button>
@@ -336,7 +336,7 @@ require_once '../../includes/navbar.php';
                                     In a regular SIP, the contribution remains constant, whereas in a Step-Up SIP it increases over time.
                                 </div>
 
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="2">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="stepup-faq-panel-2" data-stepup-faq="2">
                                     <span class="stepup-faq-question">Does Step-Up SIP guarantee higher returns?</span>
                                     <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                                 </button>
@@ -344,7 +344,7 @@ require_once '../../includes/navbar.php';
                                     No, returns are market-linked. However, higher contributions may lead to higher accumulated value over time.
                                 </div>
 
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="3">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="stepup-faq-panel-3" data-stepup-faq="3">
                                     <span class="stepup-faq-question">Can the step-up percentage be modified?</span>
                                     <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                                 </button>
@@ -352,7 +352,7 @@ require_once '../../includes/navbar.php';
                                     Yes, it can be adjusted based on financial capacity and goals.
                                 </div>
 
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="4">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="stepup-faq-panel-4" data-stepup-faq="4">
                                     <span class="stepup-faq-question">Is Step-Up SIP suitable for all investors?</span>
                                     <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                                 </button>
@@ -667,36 +667,6 @@ require_once '../../includes/navbar.php';
                 runCalculation();
             });
 
-            // Step Up FAQ accordion (close/open) UI.
-            // Keeps markup simple and doesn't require any external JS.
-            window.addEventListener('DOMContentLoaded', function() {
-                const accordion = document.querySelector('.stepup-faq-accordion');
-                if (!accordion) return;
-
-                const rows = accordion.querySelectorAll('.stepup-faq-row');
-                rows.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const idx = btn.getAttribute('data-stepup-faq');
-                        const panelId = `stepup-faq-panel-${idx}`;
-                        const panel = document.getElementById(panelId);
-                        if (!panel) return;
-
-                        const expanded = btn.getAttribute('aria-expanded') === 'true';
-
-                        rows.forEach(otherBtn => {
-                            const otherIdx = otherBtn.getAttribute('data-stepup-faq');
-                            const otherPanel = document.getElementById(`stepup-faq-panel-${otherIdx}`);
-                            otherBtn.setAttribute('aria-expanded', 'false');
-                            if (otherPanel) otherPanel.hidden = true;
-                        });
-
-                        if (!expanded) {
-                            btn.setAttribute('aria-expanded', 'true');
-                            panel.hidden = false;
-                        }
-                    });
-                });
-            });
         })();
     </script>
 
