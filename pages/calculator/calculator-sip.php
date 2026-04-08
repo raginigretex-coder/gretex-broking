@@ -60,7 +60,7 @@ require_once '../../includes/navbar.php';
                                         </div>
                                     </div>
                                 </div>
-                                <input type="range" class="investment-range" id="investmentAmountRange" min="100" max="10000000" step="100" value="5000" aria-labelledby="amountLabel" />
+                                <input type="range" class="investment-range" id="investmentAmountRange" min="100" max="1000000" step="100" value="5000" aria-labelledby="amountLabel" />
                             </div>
 
                             <div class="investment-slider-field">
@@ -150,38 +150,166 @@ require_once '../../includes/navbar.php';
                     <!-- Left Section: Calculator Information -->
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About SIP Calculator</h2>
+                             <h3 class="calculator-info-title">SIP Calculator: Plan Your Systematic Investments</h3>
                             <div class="calculator-info-content">
-                                <p>A Systematic Investment Plan (SIP) is an investment strategy where you invest a fixed amount regularly in mutual funds. This calculator helps you understand how your SIP investments can grow over time.</p>
-                                
-                                <h3>How SIP Works</h3>
-                                <ul>
-                                    <li><strong>Regular Investment:</strong> You invest a fixed amount every month</li>
-                                    <li><strong>Power of Compounding:</strong> Your returns generate more returns over time</li>
-                                    <li><strong>Rupee Cost Averaging:</strong> You buy more units when prices are low and fewer when prices are high</li>
-                                    <li><strong>Disciplined Saving:</strong> Helps build a habit of regular investing</li>
-                                </ul>
-                                
-                                <h3>Benefits of SIP</h3>
-                                <ul>
-                                    <li>Start with as little as &#8377;500 per month</li>
-                                    <li>No need to time the market</li>
-                                    <li>Reduces the impact of market volatility</li>
-                                    <li>Flexible - increase, decrease, or pause anytime</li>
-                                    <li>Long-term wealth creation through compounding</li>
-                                </ul>
-                                
-                                <h3>Algorithm & Formula</h3>
-                                <div class="formula-box">FV = P &times; [((1 + r)<sup>n</sup> - 1) / r] &times; (1 + r)<br>Where: P = Monthly amount, r = Effective monthly return rate, n = Total months</div>
-                                
-                                <h3>Who Should Use?</h3>
-                                <p>Long-term investors, salaried individuals, and first-time mutual fund investors seeking disciplined wealth creation through regular investments.</p>
-                                
-                                <h3>Key Factors</h3>
-                                <p><strong>Monthly SIP Amount:</strong> The fixed amount you invest every month (&#8377;500 - &#8377;1,00,000)</p>
-                                <p><strong>Expected Return:</strong> The annualized return you expect (typically 10-15% for equity funds)</p>
-                                <p><strong>Investment Period:</strong> Duration for which you plan to invest (1-40 years)</p>
+                                <p>Many investors often confuse SIPs with mutual funds. In reality, a SIP (Systematic Investment Plan) is simply a method of investing in mutual funds, while lump sum investing is another approach.</p>
+                                <p>A SIP calculator is a smart financial tool that helps you estimate how much your investments can grow over time when you invest regularly in mutual funds.</p>
+                                <p>With SIPs, you invest a fixed amount at regular intervals monthly, quarterly, or even weekly making it a disciplined and convenient way to build wealth.</p>
                             </div>
+
+                            <h3 class="calculator-info-title">What is a SIP Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>A SIP calculator is an online tool designed to give you an approximate idea of the returns you can generate by investing in mutual funds through SIPs.</p>
+                                <p>It helps investors understand:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>The future value of their investments</li>
+                                    <li>The total amount invested</li>
+                                    <li>The potential wealth created over time</li>
+                                </ul>
+                                <p>While it provides a reliable estimate, actual returns may vary depending on market performance, fund selection, expense ratios, and exit loads.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">Why Should You Use a SIP Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>SIPs are widely preferred because they promote disciplined investing and reduce the impact of market volatility through rupee cost averaging.</p>
+                                <p>A SIP calculator helps you:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li><strong>Plan your investments effectively</strong> based on your financial goals</li>
+                                    <li><strong>Understand total capital invested</strong> over time</li>
+                                    <li><strong>Estimate potential returns</strong> before you start investing</li>
+                                    <li><strong>Make informed financial decisions</strong> without manual calculations</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">How Does a SIP Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>A SIP calculator uses a mathematical formula to estimate the maturity value of your investments:</p>
+                               
+                                    <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                        M = P × 
+                                        <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                            <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                            (1 + i)<sup>n</sup> − 1
+                                            </span>
+                                            <span style="display:block; font-size:14px;">i</span>
+                                        </span>
+                                        × (1 + i)
+                                    </p>
+
+                                <p style="margin-top: 20px;"><strong>Where:</strong></p> 
+
+                                <ul>
+                                    <li><strong>M</strong> = Maturity amount</li>
+                                    <li><strong>P</strong> = Fixed investment amount per period</li>
+                                    <li><strong>n</strong> = Total number of contributions</li>
+                                    <li><strong>i</strong> = Periodic interest rate</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">Understanding the Return Calculation</h3>
+                            <div class="calculator-info-content">
+                                <p>When working with SIPs, returns are compounded. This means you cannot simply divide the annual return by 12 to get monthly returns.</p>
+                                <p>Instead, the correct way to calculate the monthly return is:</p>
+
+                                    <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                        i = (1 + r)<sup>1/12</sup> − 1
+                                    </p>
+                               
+                                <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                                <ul style="margin-left: 14px; line-height: 1.8;">
+                                    <li><strong>r</strong> = Annual return rate</li>
+                                </ul>
+                                <p>This ensures that compounding is accurately factored into your calculations.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">Example: SIP Calculation</h3>
+                            <div class="calculator-info-content">
+                                <p>Let's assume:</p>
+                                <ul style="margin-left:14px">
+                                    <li>Monthly investment = Rs. 1,000</li>
+                                    <li>Investment duration = 12 months</li>
+                                    <li>Expected annual return = 12%</li>
+                                </ul>
+                                <p><strong>Step 1: Convert annual return into monthly return</strong></p>
+                                <p>Monthly rate approximately = 0.95%</p>
+                                <p><strong>Step 2: Apply the SIP formula</strong></p>
+                                <p>The estimated maturity amount comes out to approximately: <strong>Rs. 12,766</strong></p>
+                                <p>This includes both your invested amount and the returns generated.</p>
+                                <p><strong>Note:</strong> Actual returns may vary depending on market conditions.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">How to Use the SIP Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>Using a SIP calculator on your website is simple:</p>
+                                <ol>
+                                    <li>Enter your <strong>monthly investment amount</strong></li>
+                                    <li>Select your <strong>investment duration</strong></li>
+                                    <li>Input the <strong>expected rate of return</strong></li>
+                                    <li>Instantly view:
+                                        <ul>
+                                            <li>Total invested amount</li>
+                                            <li>Estimated returns</li>
+                                            <li>Final maturity value</li>
+                                        </ul>
+                                    </li>
+                                </ol> 
+                            </div>
+
+                            <h3 class="calculator-info-title">Benefits of Using a SIP Calculator</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Helps you <strong>plan for long-term wealth creation</strong></li>
+                                    <li>Saves time compared to manual calculations</li>
+                                    <li>Assists in <strong>goal-based financial planning</strong></li>
+                                    <li>Enables better <strong> investment decision-making</strong></li>
+                                    <li>Provides quick and reliable estimates</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">FAQs on SIP Calculator</h3>
+                            <div class="stepup-faq-accordion" aria-label="SIP calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="sip-faq-panel-0">
+                                    <span class="stepup-faq-question">Is a SIP calculator accurate?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="sip-faq-panel-0" hidden>
+                                    It provides a close estimate, but actual returns depend on market performance and fund-specific factors.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="sip-faq-panel-1">
+                                    <span class="stepup-faq-question">Can I change the SIP amount later?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="sip-faq-panel-1" hidden>
+                                    Yes, most mutual fund SIPs allow you to increase, decrease, or pause investments.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="sip-faq-panel-2">
+                                    <span class="stepup-faq-question">Does the calculator include charges like expense ratio?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="sip-faq-panel-2" hidden>
+                                    No, it does not factor in fund expenses or exit loads.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="sip-faq-panel-3">
+                                    <span class="stepup-faq-question">What is a good SIP return rate?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="sip-faq-panel-3" hidden>
+                                    Typically, long-term equity SIPs are assumed to generate around 10-15% annually, but returns are market-linked.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="sip-faq-panel-4">
+                                    <span class="stepup-faq-question">Is SIP better than lump sum investing?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="sip-faq-panel-4" hidden>
+                                    It depends on market conditions and your financial strategy, but SIPs help reduce timing risk and promote disciplined investing.
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -229,7 +357,7 @@ require_once '../../includes/navbar.php';
             const investNowBtn = document.getElementById('investNowBtn');
 
             const MIN_AMOUNT = 100;
-            const MAX_AMOUNT = 10000000;
+            const MAX_AMOUNT = 1000000;
             const MIN_RATE = 1;
             const MAX_RATE = 30;
             const MIN_YEARS = 1;
@@ -599,4 +727,3 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-

@@ -237,6 +237,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
+    // Shared FAQ accordion behavior for calculator pages
+    const faqAccordions = document.querySelectorAll('.stepup-faq-accordion');
+    faqAccordions.forEach(accordion => {
+        const rows = accordion.querySelectorAll('.stepup-faq-row');
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                const currentPanelId = row.getAttribute('aria-controls');
+                const currentPanel = currentPanelId
+                    ? document.getElementById(currentPanelId)
+                    : row.nextElementSibling;
+
+                if (!currentPanel || !currentPanel.classList.contains('stepup-faq-panel')) {
+                    return;
+                }
+
+                const isExpanded = row.getAttribute('aria-expanded') === 'true';
+
+                rows.forEach(otherRow => {
+                    const otherPanelId = otherRow.getAttribute('aria-controls');
+                    const otherPanel = otherPanelId
+                        ? document.getElementById(otherPanelId)
+                        : otherRow.nextElementSibling;
+
+                    otherRow.setAttribute('aria-expanded', 'false');
+                    if (otherPanel && otherPanel.classList.contains('stepup-faq-panel')) {
+                        otherPanel.hidden = true;
+                    }
+                });
+
+                if (!isExpanded) {
+                    row.setAttribute('aria-expanded', 'true');
+                    currentPanel.hidden = false;
+                }
+            });
+        });
+    });
+
     // Real-time Indian stock market data fetching
     async function fetchIndianMarketData() {
         try {
