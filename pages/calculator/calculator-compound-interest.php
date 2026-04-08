@@ -154,84 +154,211 @@ require_once '../../includes/navbar.php';
             <div class="calculator-wrapper">
                 <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                 <div class="calculator-info-section">
-                    <div class="calculator-info-card">
-                        <h2 class="calculator-info-title">About Compound Interest Calculator</h2>
+                   <div class="calculator-info-card">
+                        <h3 class="calculator-info-title">Compound Interest Calculator</h3>
                         <div class="calculator-info-content">
-                            <p>The <strong>Compound Interest Calculator</strong> shows how your money grows when interest is earned not only on the principal but also on previously accumulated interest. This is why compounding plays a major role in long-term investing.</p>
-                            <p>Use this calculator to compare the effect of yearly, half-yearly, quarterly, and monthly compounding on your investment value over time.</p>
+                            <p>Compound interest is the method of calculating interest where the returns earned are reinvested, allowing interest to be generated on both the principal and previously accumulated interest.</p>
+                            <p>A Compound Interest Calculator is a financial tool used to estimate the future value of an investment or loan by accounting for this compounding effect over time.</p>
+                        </div>
 
-                            <h3>Formula</h3>
-                            <div class="formula-box">
-                                <strong>A = P (1 + r / n)<sup>nt</sup></strong><br>
-                                <strong>CI = A - P</strong><br><br>
-                                <strong>Where:</strong><br>
-                                <strong>A</strong> = Total amount at maturity<br>
-                                <strong>CI</strong> = Compound interest earned<br>
-                                <strong>P</strong> = Principal amount<br>
-                                <strong>r</strong> = Annual rate of interest (decimal form)<br>
-                                <strong>n</strong> = Number of times interest is compounded in a year<br>
-                                <strong>t</strong> = Time period in years
-                            </div>
+                        <h3 class="calculator-info-title">What is a Compound Interest Calculator?</h3>
+                        <div class="calculator-info-content">
+                            <p>A Compound Interest Calculator is an online utility that helps estimate the total value of an investment after a specified period, considering compounding.</p>
+                            <p>By entering:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Initial investment amount</li>
+                                <li>Rate of interest</li>
+                                <li>Investment duration</li>
+                                <li>Compounding frequency</li>
+                            </ul>
+                            <p>the calculator computes:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Total interest earned</li>
+                                <li>Final maturity value</li>
+                            </ul>
+                            <p>The results are indicative and depend on the compounding frequency and rate of return applied.</p>
+                        </div>
 
-                            <h3>Example</h3>
-                            <p><strong>Example:</strong> For a principal amount of &#8377;1,00,000 at 6% annual interest for 5 years with quarterly compounding, the maturity amount is approximately &#8377;1,34,686. Using the formula, A = 1,00,000 (1 + 0.06 / 4)<sup>4 × 5</sup> = &#8377;1,34,686. Therefore, the compound interest earned is approximately &#8377;34,686, which matches the calculator result shown above.</p>
-
-                            <h3>Why Compound Interest Matters</h3>
-                            <p>Compound interest creates faster growth than simple interest because every compounding period adds new interest on top of the earlier balance. The longer the investment period, the stronger this compounding effect becomes.</p>
-
-                            <h3>Simple vs Compound</h3>
-                            <p><strong>Same &#8377;1,00,000 at 10% for 5 years:</strong> Simple interest gives a total of &#8377;1,50,000, while compound interest gives a higher maturity value because interest is earned on interest as well. This makes compound interest more effective for long-term wealth creation.</p>
-
-                            <h3>FAQs</h3>
-                            <div class="stepup-faq-accordion" aria-label="Compound Interest Frequently Asked Questions">
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ci-faq="0">
-                                    <span class="stepup-faq-question">What is compound interest?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="ci-faq-panel-0" hidden>
-                                    Compound interest is interest calculated on the principal plus previously earned interest. Because of this, your amount grows faster than in simple interest.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ci-faq="1">
-                                    <span class="stepup-faq-question">Which compounding frequency gives higher returns?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="ci-faq-panel-1" hidden>
-                                    More frequent compounding usually gives slightly higher returns. Monthly compounding generally earns more than quarterly, and quarterly usually earns more than yearly, for the same principal, rate, and time.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ci-faq="2">
-                                    <span class="stepup-faq-question">What is the difference between simple and compound interest?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="ci-faq-panel-2" hidden>
-                                    Simple interest is calculated only on the principal, while compound interest is calculated on the principal plus accumulated interest. That is why compound interest produces a larger final amount over longer periods.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ci-faq="3">
-                                    <span class="stepup-faq-question">Is compound interest good for investors?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="ci-faq-panel-3" hidden>
-                                    Yes. Compound interest is highly beneficial for investors because it accelerates long-term growth, especially when investments are left untouched for many years.
-                                </div>
-
-                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ci-faq="4">
-                                    <span class="stepup-faq-question">Can compound interest work against borrowers?</span>
-                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                </button>
-                                <div class="stepup-faq-panel" id="ci-faq-panel-4" hidden>
-                                    Yes. On loans and credit cards, compound interest can increase the outstanding balance quickly if payments are delayed, which is why high-interest debt can become expensive.
-                                </div>
-                            </div>
-
-                            <h3>Related Calculators</h3>
-                            <ul class="related-calc-list">
-                                <li><a href="calculator-simple-interest.php">Simple Interest</a> - compare with non-compounding growth</li>
-                                <li><a href="calculator-sip.php">SIP Calculator</a> - monthly investment compounding</li>
-                                <li><a href="calculator-fd.php">FD Calculator</a> - compare fixed deposit growth</li>
+                        <h3 class="calculator-info-title">Purpose and Use of a Compound Interest Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>The calculator is designed to assist in evaluating long-term investment growth where compounding plays a significant role.</p>
+                            <p>It can be used to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimate future value of investments</li>
+                                <li>Compare returns across different compounding frequencies</li>
+                                <li>Understand the impact of time on investment growth</li>
+                                <li>Support long-term financial planning</li>
                             </ul>
                         </div>
+
+                        <h3 class="calculator-info-title">How Does Compound Interest Work?</h3>
+                        <div class="calculator-info-content">
+                            <p>In compound interest, interest is calculated on:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>The original principal amount</li>
+                                <li>The accumulated interest from previous periods</li>
+                            </ul>
+                            <p>This results in exponential growth of the investment value over time. The frequency of compounding (monthly, quarterly, annually, etc.) influences the total returns.</p>
+                        </div>
+
+                        <h3 class="calculator-info-title">Compound Interest Formula</h3>
+                        <div class="calculator-info-content">
+                            <p>The future value of an investment under compound interest is calculated using the following formula:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                  A = P (1 + 
+                                <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                    <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                    r
+                                    </span>
+                                    <span style="display:block; font-size:14px;">n</span>
+                                </span>
+                                )<sup>nt</sup>
+
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul style="margin-left: 14px;">
+                                <li><strong>A</strong> = Future value (principal + interest)</li>
+                                <li><strong>P</strong> = Principal amount</li>
+                                <li><strong>r</strong> = Annual interest rate</li>
+                                <li><strong>n</strong> = Number of times interest is compounded per year</li>
+                                <li><strong>t</strong> = Investment duration</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Illustrative Example</h3>
+                        <div class="calculator-info-content">
+                            <p>Assume:</p>
+                            <p>Investment amount: ₹50,000</p>
+                            <p>Interest rate: 8% per annum</p>
+                            <p>Tenure: 5 years</p>
+                            <p>Compounding frequency: Annual</p>
+                            <p>The estimated maturity value is:</p>
+                            <p><strong>₹73,466 (approx.)</strong></p>
+                            <p>The total interest earned is approximately ₹23,466.</p>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">How to Use the Compound Interest Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>To calculate compound interest:</p>
+                            <ol>
+                                <li>Enter the principal amount</li>
+                                <li>Input the interest rate</li>
+                                <li>Select the investment duration</li>
+                                <li>Choose compounding frequency (monthly, quarterly, annually, etc.)</li>
+                                <li>The calculator will display:
+                                    <ul>
+                                        <li>Total interest earned</li>
+                                        <li>Final maturity value</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Users</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides quick and accurate projections</li>
+                                <li>Eliminates manual calculation complexity</li>
+                                <li>Helps compare multiple investment scenarios</li>
+                                <li>Assists in long-term financial planning</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Characteristics of Compound Interest</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Interest is calculated on both principal and accumulated interest</li>
+                                <li>Returns grow at an increasing rate over time</li>
+                                <li>Higher compounding frequency generally leads to higher returns</li>
+                                <li>Particularly relevant for long-term investments</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Difference Between Simple and Compound Interest</h3>
+                        <div class="calculator-info-content">
+                            <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="border:1px solid #000; padding:12px; text-align:left;">Parameter</th>
+                                        <th style="border:1px solid #000; padding:12px; text-align:left;">Simple Interest</th>
+                                        <th style="border:1px solid #000; padding:12px; text-align:left;">Compound Interest</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border:1px solid #000; padding:12px;">Interest calculation</td>
+                                        <td style="border:1px solid #000; padding:12px;">On principle only</td>
+                                        <td style="border:1px solid #000; padding:12px;">On principle + accumulated interest</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000; padding:12px;">Growth pattern</td>
+                                        <td style="border:1px solid #000; padding:12px;">Linear</td>
+                                        <td style="border:1px solid #000; padding:12px;">Exponential</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000; padding:12px;">Returns</td>
+                                        <td style="border:1px solid #000; padding:12px;">Lower</td>
+                                        <td style="border:1px solid #000; padding:12px;">Higher over long term</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Returns depend on compounding frequency and rate</li>
+                                <li>Market-linked investments may not provide fixed returns</li>
+                                <li>Longer investment horizons enhance compounding benefits</li>
+                                <li>The calculator provides indicative values only</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                        <div class="stepup-faq-accordion" aria-label="Compound interest calculator frequently asked questions">
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                <span class="stepup-faq-question">What is compound interest?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                It is interest calculated on both the principal and previously earned interest.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                <span class="stepup-faq-question">Why is compound interest important?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                It enables faster growth of investments over time due to reinvestment of returns.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                <span class="stepup-faq-question">Does compounding frequency affect returns?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                Yes, more frequent compounding generally results in higher returns.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                <span class="stepup-faq-question">Is the calculator accurate?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                It provides estimates based on given inputs and assumptions.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                <span class="stepup-faq-question">Where is compound interest commonly used?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                It is used in investments, loans, fixed deposits, and savings instruments.
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
