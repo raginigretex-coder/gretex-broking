@@ -52,7 +52,7 @@ require_once '../../includes/navbar.php';
                                     <div class="investment-input-wrap">
                                         <span class="investment-error-icon" id="amountErrorIcon" aria-hidden="true">i</span>
                                         <div class="investment-value-pill">
-                                            <span class="pill-unit">₹</span>
+                                            <span class="pill-unit">â‚¹</span>
                                             <input type="text" class="pill-input" id="investmentAmountInput" value="25000" inputmode="numeric" aria-label="Total investment amount" />
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@ require_once '../../includes/navbar.php';
                                             <span class="legend-dot legend-invested"></span>
                                             <span class="quickbar-label">Invested amount</span>
                                         </div>
-                                        <div class="quickbar-value" id="summaryInvested">₹0</div>
+                                        <div class="quickbar-value" id="summaryInvested">â‚¹0</div>
                                     </div>
 
                                     <div class="quickbar-item">
@@ -105,12 +105,12 @@ require_once '../../includes/navbar.php';
                                             <span class="legend-dot legend-returns"></span>
                                             <span class="quickbar-label">Estimated returns</span>
                                         </div>
-                                        <div class="quickbar-value quickbar-returns-value" id="summaryReturns">₹0</div>
+                                        <div class="quickbar-value quickbar-returns-value" id="summaryReturns">â‚¹0</div>
                                     </div>
 
                                     <div class="quickbar-total">
                                         <div class="quickbar-total-label">Total value</div>
-                                        <div class="quickbar-total-value" id="summaryTotal">₹0</div>
+                                        <div class="quickbar-total-value" id="summaryTotal">â‚¹0</div>
                                     </div>
                                 </div>
 
@@ -118,7 +118,7 @@ require_once '../../includes/navbar.php';
                                     <div id="investmentDonutChart"></div>
                                     <div class="investment-donut-center">
                                         <div class="investment-donut-center-label">Maturity Value</div>
-                                        <div class="investment-donut-center-value" id="donutCenterValue">₹0</div>
+                                        <div class="investment-donut-center-value" id="donutCenterValue">â‚¹0</div>
                                     </div>
                                 </div>
 
@@ -144,32 +144,189 @@ require_once '../../includes/navbar.php';
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
-                        <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About Lumpsum Calculator</h2>
+                         <div class="calculator-info-card">
+                             <h3 class="calculator-info-title">Lumpsum Calculator</h3>
                             <div class="calculator-info-content">
-                                <p>A Lumpsum investment is a one-time investment where you invest a large amount at once. This calculator helps you estimate the future value of your lumpsum investment based on expected returns.</p>
-                                
-                                <h3>How Lumpsum Investment Works</h3>
-                                <ul>
-                                    <li><strong>One-Time Investment:</strong> Invest a large amount in a single transaction</li>
-                                    <li><strong>Compound Growth:</strong> Your investment grows through the power of compounding</li>
-                                    <li><strong>Market Timing:</strong> Returns depend on when you enter the market</li>
-                                    <li><strong>Long-Term Benefits:</strong> Ideal for long-term wealth creation</li>
-                                </ul>
-                                
-                                <h3>When to Choose Lumpsum</h3>
-                                <ul>
-                                    <li>When you have a large amount available at once</li>
-                                    <li>For specific financial goals with fixed timelines</li>
-                                    <li>When you're confident about market entry timing</li>
-                                    <li>For tax-saving investments like ELSS</li>
-                                </ul>
-                                
-                                <h3>Key Factors</h3>
-                                <p><strong>Investment Amount:</strong> The total amount you invest at once</p>
-                                <p><strong>Expected Return:</strong> The annualized return you expect (typically 10-15% for equity, 6-8% for debt)</p>
-                                <p><strong>Investment Period:</strong> The duration you plan to stay invested (longer periods show better compounding)</p>
+                                <p>Investments in mutual funds are generally classified into two approaches:<strong> lumpsum investment</strong> and <strong>Systematic Investment Plan (SIP)</strong>.</p>
+                                <p>A lumpsum investment involves deploying a single, substantial amount into a mutual fund scheme at one point in time, whereas SIP involves periodic investments over a defined interval.</p>
+                                <p>A Lumpsum Calculator is a financial tool used to estimate the future value of such a one-time investment based on assumed return rates and investment duration.</p>
                             </div>
+
+                            <h3 class="calculator-info-title">What is a Lumpsum Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>A Lumpsum Calculator is an online utility that provides an indicative estimate of the maturity value of a single investment made today.</p>
+                                <p>By entering:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Investment amount</li>
+                                    <li>Investment duration</li>
+                                    <li>Expected annual return</li>
+                                </ul>
+                                <p>the calculator computes:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Projected future value of the investment</li>
+                                    <li>Estimated returns generated over the investment period</li>
+                                </ul>
+                                <p>The output is indicative in nature and actual returns may vary depending on market conditions and fund performance.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">Types of Returns in Lumpsum Investments</h3>
+                            <div class="calculator-info-content">
+                                <p>When evaluating lumpsum investments, different return measures may be considered:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li><strong>Absolute Return</strong> - Total return over the investment period</li>
+                                    <li><strong>Total Return</strong> - Includes income and capital appreciation</li>
+                                    <li><strong>Annualised Return</strong> - Average yearly return over the holding period</li>
+                                    <li><strong>Point-to-Point Return</strong> - Return between two specific time points</li>
+                                    <li><strong>Trailing Return</strong> - Historical return over a defined period</li>
+                                    <li><strong>Rolling Return</strong> - Returns calculated over overlapping time periods</li>
+                                </ul>
+                                <p>Understanding these return measures can assist in evaluating investment performance more effectively.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">Purpose and Use of a Lumpsum Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>A lumpsum calculator assists investors in assessing the potential outcome of a one-time investment.</p>
+                                <p>It can be used to:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Estimate the future value of an investment over different time horizons</li>
+                                    <li>Compare outcomes under varying return assumptions</li>
+                                    <li>Support financial planning and goal assessment</li>
+                                    <li>Evaluate whether a specific investment amount aligns with future requirements</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">How Does a Lumpsum Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>A lumpsum calculator is based on the principle of compound interest, where returns generated are reinvested over time.</p>
+                                <p>The future value is calculated using the following formula:</p>
+
+                                  <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                        A = P (1 + 
+                                        <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                            <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                            r
+                                            </span>
+                                            <span style="display:block; font-size:14px;">n</span>
+                                        </span>
+                                        )<sup>nt</sup>
+                                        </p>
+
+                                <p style="margin-top: 20px;"><strong>Where:</strong></p>
+
+                                <ul>
+                                    <li><strong>A</strong> = Future value of the investment</li>
+                                    <li><strong>P</strong> = Initial investment amount</li>
+                                    <li><strong>r</strong> = Expected annual rate of return</li>
+                                    <li><strong>t</strong> = Investment duration (in years)</li>
+                                    <li><strong>n</strong> = Number of compounding periods in a year</li>
+                                </ul>
+                            </div>
+
+                           
+
+                            <h3 class="calculator-info-title">Example</h3>
+                            <div class="calculator-info-content">
+                                <p>Assume:</p>
+                                <ul style="margin-left:14px">
+                                    <li>Investment amount: Rs. 15,00,000</li>
+                                    <li>Investment duration: 5 years</li>
+                                    <li>Expected annual return = 12%</li>
+                                    <li>Compounding frequency: Annually</li>
+                                </ul>
+                                <p>The estimated future value of the investment is:</p>
+                                <p><strong>Rs. 26,43,513 (approx.)</strong></p>
+                                <p>This value reflects compounded growth over the investment period. Actual returns may differ based on market performance.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">How to Use the Lumpsum Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>To calculate the estimated returns:</p>
+                                <ol>
+                                    <li>Enter the investment amount</li>
+                                    <li>Select the investment duration</li>
+                                    <li>Input the expected annual rate of return</li>
+                                    <li>The calculator will display:
+                                        <ul>
+                                            <li>Estimated future value</li>
+                                            <li>Total returns generated</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <p>The results update dynamically when inputs are modified.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">How a Lumpsum Calculator Assists Investors</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Provides a quick estimate without manual calculations</li>
+                                    <li>Helps in evaluating multiple investment scenarios</li>
+                                    <li>Supports goal-based financial planning</li>
+                                    <li>Assists in understanding the effect of compounding</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">Key Considerations</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Returns are market-linked and not guaranteed</li>
+                                    <li>The calculator provides indicative values only</li>
+                                    <li>It does not factor in:</li>
+                                </ul>
+                                <ul style="margin-left: 28px;">
+                                    <li>Expense ratios</li>
+                                    <li>Exit loads</li>
+                                    <li>Taxes</li>
+                                </ul>
+                                <ul style="margin-left: 14px;">
+                                    <li>Assumed return rate has a significant impact on output</li>
+                                    <li>Longer investment horizons generally enhance compounding</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="Lumpsum calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="lumpsum-faq-panel-0">
+                                    <span class="stepup-faq-question">Are lumpsum calculator results accurate?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="lumpsum-faq-panel-0" hidden>
+                                    They provide estimates based on assumed inputs. Actual returns may vary.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="lumpsum-faq-panel-1">
+                                    <span class="stepup-faq-question">What return rate should be considered?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="lumpsum-faq-panel-1" hidden>
+                                    The expected return depends on the asset class and market conditions.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="lumpsum-faq-panel-2">
+                                    <span class="stepup-faq-question">Does the calculator include charges and taxes?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="lumpsum-faq-panel-2" hidden>
+                                    No, it excludes taxes, expense ratios, and other applicable charges.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="lumpsum-faq-panel-3">
+                                    <span class="stepup-faq-question">Is lumpsum investing suitable for all investors?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="lumpsum-faq-panel-3" hidden>
+                                    It is generally suitable when a significant amount is available for investment, subject to individual risk tolerance and financial goals.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="lumpsum-faq-panel-4">
+                                    <span class="stepup-faq-question">How is lumpsum different from SIP?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="lumpsum-faq-panel-4" hidden>
+                                    Lumpsum involves a one-time investment, whereas SIP involves periodic contributions over time.
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -233,7 +390,7 @@ require_once '../../includes/navbar.php';
             }
 
             if (amount < LUMPSUM_LIMITS.amount.min || amount > LUMPSUM_LIMITS.amount.max) {
-                alert(`Investment amount should be between ₹${LUMPSUM_LIMITS.amount.min.toLocaleString('en-IN')} and ₹${LUMPSUM_LIMITS.amount.max.toLocaleString('en-IN')}.`);
+                alert(`Investment amount should be between â‚¹${LUMPSUM_LIMITS.amount.min.toLocaleString('en-IN')} and â‚¹${LUMPSUM_LIMITS.amount.max.toLocaleString('en-IN')}.`);
                 return false;
             }
 
@@ -308,8 +465,8 @@ require_once '../../includes/navbar.php';
 
             function formatINR0(num) {
                 const n = Number(num);
-                if (!isFinite(n)) return '₹0';
-                return '₹' + Math.round(n).toLocaleString('en-IN');
+                if (!isFinite(n)) return 'â‚¹0';
+                return 'â‚¹' + Math.round(n).toLocaleString('en-IN');
             }
 
             function formatINRDigits(n) {
@@ -627,4 +784,3 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-
