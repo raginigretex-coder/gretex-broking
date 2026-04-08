@@ -138,77 +138,179 @@ require_once '../../includes/navbar.php';
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
-                        <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About Simple Interest Calculator</h2>
-                            <div class="calculator-info-content">
-                                <p>The <strong>Simple Interest Calculator</strong> calculates interest on the principal only—no compounding. Interest is computed on the original amount throughout the tenure. It is common in short-term loans, certain deposits, and quick estimations.</p>
-                                <p>While most modern banking uses compound interest, understanding simple interest is essential for comparing loan offers, some government schemes, and the fundamentals of interest math.</p>
-                                <h3>Formula</h3>
-                                <div class="formula-box">
-                                    <strong>Simple Interest (SI) = (P × R × T) / 100</strong><br>
-                                    <strong>Total Amount = P + SI</strong><br><br>
-                                    <strong>Where:</strong><br>
-                                    <strong>P</strong> = Principal amount<br>
-                                    <strong>R</strong> = Rate of interest (% per annum)<br>
-                                    <strong>T</strong> = Time period in years<br>
-                                    <strong>SI</strong> = Simple interest earned
-                                </div>
-                                <h3>Example</h3>
-                                <p><strong>Example:</strong> For a principal amount of &#8377;1,00,000 at 8% interest for 3 years, the simple interest is &#8377;24,000. Using the formula, SI = (1,00,000 � 8 � 3) / 100 = &#8377;24,000. Therefore, the total amount = &#8377;1,00,000 + &#8377;24,000 = &#8377;1,24,000, which matches the calculator result shown above.</p>
-                                <h3>Common Uses</h3>
-                                <p>Short-term personal loans (6–12 months), some auto loans, informal lending, certificates of deposit, quick estimates, educational examples.</p>
-                                <h3>Simple vs Compound</h3>
-                                <p><strong>Same ₹1,00,000 @10% for 5 years:</strong> Simple = ₹1,50,000 total (₹50,000 interest). Compound = ₹1,61,000 (₹61,000 interest). Compound gives ~₹11,000 more. Use SI for short tenures and quick estimates; use compound for FDs, PPF, and investments.</p>
-                                
-                                <h3>FAQs</h3>
-                                <div class="stepup-faq-accordion" aria-label="Simple Interest Frequently Asked Questions">
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-si-faq="0">
-                                        <span class="stepup-faq-question">What is simple interest?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="si-faq-panel-0" hidden>
-                                        Simple interest is calculated only on the original principal amount for the entire period. It does not add interest on previously earned interest.
-                                    </div>
+                    <div class="calculator-info-card">
+                        <h3 class="calculator-info-title">Simple Interest Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>Simple interest is a basic method of calculating interest on a principal amount over a specified period at a fixed rate. It is commonly used in short-term loans, basic savings instruments, and certain financial agreements.</p>
+                            <p>A Simple Interest Calculator is a financial tool used to estimate the interest earned or payable on a principal amount without considering compounding.</p>
+                        </div>
 
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-si-faq="1">
-                                        <span class="stepup-faq-question">Simple interest vs compound interest?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="si-faq-panel-1" hidden>
-                                        In simple interest, interest is charged only on the principal. In compound interest, interest is charged on the principal plus accumulated interest, so the total grows faster.
-                                    </div>
+                        <h3 class="calculator-info-title">What is a Simple Interest Calculator?</h3>
+                        <div class="calculator-info-content">
+                            <p>A Simple Interest Calculator is an online utility that helps determine the interest amount and total maturity value based on three primary inputs:</p>
+                            <p>By entering:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Principal amount</li>
+                                <li>Rate of interest</li>
+                                <li>Time period</li>
+                            </ul>
+                            <p>the calculator provides:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Total interest accrued</li>
+                                <li>Final amount (principal + interest)</li>
+                            </ul>
+                            <p>It simplifies calculations and reduces the possibility of manual errors.</p>
+                        </div>
 
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-si-faq="2">
-                                        <span class="stepup-faq-question">Can I calculate time in months or days?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="si-faq-panel-2" hidden>
-                                        Yes. Convert months or days into years before using the formula. For example, 6 months = 0.5 years and 90 days is approximately 90/365 years.
-                                    </div>
+                        <h3 class="calculator-info-title">Purpose and Use of a Simple Interest Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>The calculator is designed to assist in basic financial calculations where interest is applied only on the original principal.</p>
+                            <p>It can be used to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimate interest on loans or deposits</li>
+                                <li>Evaluate short-term investment returns</li>
+                                <li>Compare different interest rate scenarios</li>
+                                <li>Support basic financial planning and decision-making</li>
+                            </ul>
+                        </div>
 
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-si-faq="3">
-                                        <span class="stepup-faq-question">Is simple interest better for borrowers?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="si-faq-panel-3" hidden>
-                                        Usually yes. For the same principal, rate, and time, simple interest usually results in a lower total amount payable than compound interest.
-                                    </div>
+                        <h3 class="calculator-info-title">How Does a Simple Interest Calculator Work?</h3>
+                        <div class="calculator-info-content">
+                            <p>Simple interest is calculated only on the initial principal amount and remains constant over the investment or loan period.</p>
+                            <p>The formula used is:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                SI = 
+                                <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                    <span style="display:block; border-bottom:2px solid #000; padding:0 6px;">
+                                    P × R × T
+                                    </span>
+                                    <span style="display:block; font-size:14px;">100</span>
+                                </span>
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul style="margin-left: 14px;">
+                                <li><strong>SI</strong> = Simple Interest</li>
+                                <li><strong>P</strong> = Principal amount</li>
+                                <li><strong>R</strong> = Rate of interest (per annum)</li>
+                                <li><strong>T</strong> = Time period</li>
+                            </ul>
+                            <p>The total maturity amount is calculated as:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                <span style="font-style:italic;">A</span> = <span style="font-style:italic;">P</span> (1 + <span style="font-style:italic;">r</span> × <span style="font-style:italic;">t</span>)
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul style="margin-left: 14px;">
+                                <li><strong>A</strong> = Total amount (principal + interest)</li>
+                                <li><strong>r</strong> = Rate of interest (in decimal form)</li>
+                            </ul>
+                        </div>
 
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-si-faq="4">
-                                        <span class="stepup-faq-question">Do banks use simple interest?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="si-faq-panel-4" hidden>
-                                        Some short-term loans may use simple interest, but most deposits and many modern loans use compound interest or a reducing balance method.
-                                    </div>
-                                </div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-compound-interest.php">Compound Interest</a> - compare compounding effect</li>
-                                    <li><a href="calculator-fd.php">FD Calculator</a> - actual compounding in FDs</li>
-                                </ul>
+                        <h3 class="calculator-info-title">Illustrative Example</h3>
+                        <div class="calculator-info-content">
+                            <p>Assume:</p>
+                            <p>Principal amount: ₹50,000</p>
+                            <p>Interest rate: 8% per annum</p>
+                            <p>Time period: 3 years</p>
+                            <p>Simple Interest:</p>
+                            <p><strong>₹12,000</strong></p>
+                            <p>Maturity Amount:</p>
+                            <p><strong>₹62,000</strong></p>
+                            <p>This reflects the total amount after adding interest to the principal.</p>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">How to Use the Simple Interest Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>To calculate simple interest:</p>
+                            <ol>
+                                <li>Enter the principal amount</li>
+                                <li>Input the annual interest rate</li>
+                                <li>Specify the time period</li>
+                                <li>The calculator will display:
+                                    <ul>
+                                        <li>Interest amount</li>
+                                        <li>Total maturity value</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Users</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides quick and accurate results</li>
+                                <li>Eliminates manual calculation errors</li>
+                                <li>Helps in evaluating short-term financial decisions</li>
+                                <li>Enables easy comparison of different scenarios</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Characteristics of Simple Interest</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Interest is calculated only on the principal amount</li>
+                                <li>The interest amount remains constant over time</li>
+                                <li>It is generally used for short-term financial arrangements</li>
+                                <li>It is simpler compared to compound interest calculations</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Does not account for compounding</li>
+                                <li>Suitable mainly for short-term calculations</li>
+                                <li>Actual financial products may use compound interest instead</li>
+                                <li>Results are indicative and depend on input assumptions</li>
+                            </ul>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                        <div class="stepup-faq-accordion" aria-label="Simple interest calculator frequently asked questions">
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                <span class="stepup-faq-question">What is simple interest?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                Simple interest is calculated only on the principal amount for a fixed period.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                <span class="stepup-faq-question">Is simple interest used in all financial products?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                No, many financial instruments use compound interest instead.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                <span class="stepup-faq-question">Does the calculator provide exact values?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                It provides accurate results based on the inputs, assuming a simple interest structure.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                <span class="stepup-faq-question">Can this calculator be used for loans?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                Yes, it can be used to estimate interest on loans where simple interest is applicable.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                <span class="stepup-faq-question">What is the difference between simple and compound interest?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                Simple interest is calculated only on the principal, whereas compound interest includes interest on accumulated interest.
                             </div>
                         </div>
+
+
+                    </div>
                     </div>
                 </div>
             </div>
