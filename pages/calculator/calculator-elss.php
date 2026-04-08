@@ -142,91 +142,208 @@ require_once '../../includes/navbar.php';
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About ELSS Calculator</h2>
-                            <div class="calculator-info-content">
-                                <p>The <strong>ELSS (Equity Linked Savings Scheme) Calculator</strong> combines Section 80C tax deductions with equity growth potential. ELSS is the only mutual fund eligible for 80C and has the shortest lock-in (3 years) among 80C options.</p>
-                                <p>Understand potential returns, immediate tax savings on contributions, tax-free growth during holding, and LTCG implications at redemption. Essential for allocating your &#8377;1.5L 80C limit between ELSS, PPF, insurance, and others.</p>
+                        <h3 class="calculator-info-title">ELSS Calculator (Equity Linked Savings Scheme)</h3>
+                        <div class="calculator-info-content">
+                            <p>Equity Linked Savings Scheme (ELSS) is a category of mutual funds that primarily invests in equity markets while offering tax benefits under applicable income tax provisions. ELSS investments qualify for deductions under Section 80C of the Income Tax Act, subject to prescribed limits, and are subject to a lock-in period of three years.</p>
+                            <p>An ELSS Calculator is a financial tool used to estimate the potential returns and tax savings associated with investments in ELSS funds.</p>
+                        </div>
 
-                                <h3>How this calculator works (formulas)</h3>
-                                <p>The chart and numbers above are an <strong>illustrative wealth projection</strong>: they use the full monthly SIP or lumpsum you enter and assume the stated return is earned every year. They do <strong>not</strong> cap your inputs at the &#8377;1.5 lakh Section 80C limit (that limit affects <em>how much</em> of your investment may qualify for a tax deduction in a given year, not the mutual fund growth math shown here).</p>
+                        <h3 class="calculator-info-title">What is an ELSS Calculator?</h3>
+                        <div class="calculator-info-content">
+                            <p>An ELSS Calculator is an online utility that helps investors estimate the future value of their investments made through either lump sum or SIP mode.</p>
+                            <p>By entering:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Investment amount</li>
+                                <li>Investment duration</li>
+                                <li>Expected rate of return</li>
+                                <li>Investment type (SIP or lump sum)</li>
+                            </ul>
+                            <p>the calculator provides:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimated maturity value</li>
+                                <li>Total returns generated</li>
+                                <li>Indicative tax savings under Section 80C</li>
+                            </ul>
+                            <p>The results are indicative and depend on market performance and applicable tax provisions.</p>
+                        </div>
 
-                                <h4>SIP mode</h4>
-                                <ul>
-                                    <li><strong>Total invested:</strong> &#8377;<em>P</em> &times; 12 &times; <em>Y</em>, where <em>P</em> is monthly investment and <em>Y</em> is years.</li>
-                                    <li><strong>Monthly rate:</strong> <em>i</em> = (annual return % &divide; 100) &divide; 12 — i.e. the yearly rate is split equally across 12 months (nominal monthly rate).</li>
-                                    <li><strong>Number of instalments:</strong> <em>n</em> = 12<em>Y</em> months.</li>
-                                    <li><strong>Maturity value (FV):</strong> instalments are treated as at the <strong>start</strong> of each month (common for SIP calculators). Then<br>
-                                    <div class="formula-box">FV = <em>P</em> &times; [((1 + <em>i</em>)<sup><em>n</em></sup> &minus; 1) / <em>i</em>] &times; (1 + <em>i</em>)</div>
-                                    If <em>i</em> = 0, FV = <em>P</em> &times; <em>n</em>.</li>
-                                    <li><strong>Estimated returns:</strong> FV &minus; total invested.</li>
-                                    <li><strong>Total value</strong> shown is the same as maturity value (FV).</li>
-                                </ul>
+                        <h3 class="calculator-info-title">Purpose and Use of an ELSS Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>The ELSS calculator assists investors in evaluating both investment growth and tax-saving benefits.</p>
+                            <p>It can be used to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimate returns from ELSS investments</li>
+                                <li>Compare SIP and lump sum investment approaches</li>
+                                <li>Evaluate tax savings under Section 80C</li>
+                                <li>Support goal-based and tax-efficient financial planning</li>
+                            </ul>
+                        </div>
 
-                                <h4>Lumpsum mode</h4>
-                                <ul>
-                                    <li><strong>Total invested:</strong> one-time amount <em>L</em>.</li>
-                                    <li>Annual return <em>r</em> = (annual %) &divide; 100. One-time investment compounds once per year:<br>
-                                    <div class="formula-box">FV = <em>L</em> &times; (1 + <em>r</em>)<sup><em>Y</em></sup></div></li>
-                                    <li><strong>Estimated returns:</strong> FV &minus; <em>L</em>.</li>
-                                </ul>
+                        <h3 class="calculator-info-title">How Does an ELSS Calculator Work?</h3>
+                        <div class="calculator-info-content">
+                            <p>The calculation method depends on the mode of investment:</p>
 
-                                <h4>Formula letters (definitions)</h4>
-                                <ul>
-                                    <li><strong><em>P</em></strong> = monthly investment (₹) in SIP mode.</li>
-                                    <li><strong><em>L</em></strong> = one-time lumpsum investment (₹) in lumpsum mode.</li>
-                                    <li><strong><em>Y</em></strong> = time period in years (selected on the slider).</li>
-                                    <li><strong><em>n</em></strong> = number of instalments/months = 12Y in SIP mode.</li>
-                                    <li><strong><em>i</em></strong> = nominal monthly rate = (annual return % &divide; 100) &divide; 12.</li>
-                                    <li><strong><em>r</em></strong> = annual return as a decimal = annual % &divide; 100 (used in lumpsum).</li>
-                                    <li><strong><em>FV</em></strong> = Future Value / maturity value shown on the chart.</li>
-                                </ul>
+                            <p><strong>1. Lump Sum Investment</strong></p>
+                            <p>For one-time investments, the future value is calculated using:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                <span style="font-style:italic;">FV</span> = <span style="font-style:italic;">P</span> (1 + <span style="font-style:italic;">r</span>)<sup><span style="font-style:italic;">n</span></sup>
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul>
+                                <li><strong>FV</strong> = Future value</li>
+                                <li><strong>P</strong> = Initial investment</li>
+                                <li><strong>r</strong> = Expected annual return</li>
+                                <li><strong>n</strong> = Investment duration</li>
+                            </ul>
 
-                                <h4>Worked example (same as default SIP inputs)</h4>
-                                <p>Monthly SIP <strong>&#8377;50,000</strong>, expected return <strong>12% p.a.</strong>, horizon <strong>15 years</strong>:</p>
-                                <ul>
-                                    <li>Total invested = 50,000 &times; 12 &times; 15 = <strong>&#8377;90,00,000</strong>.</li>
-                                    <li><em>i</em> = 12% &divide; 12 = 1% per month = 0.01; <em>n</em> = 180 months.</li>
-                                    <li>Apply the SIP formula: the future value comes to about <strong>&#8377;2,52,28,800</strong> (maturity value).</li>
-                                    <li>Estimated returns = 2,52,28,800 &minus; 90,00,000 &approx; <strong>&#8377;1,62,28,800</strong>.</li>
-                                </ul>
-                                <p>The donut splits <strong>invested</strong> vs <strong>returns</strong>; the centre shows maturity value. Results are rounded for display. Actual fund returns vary; this is not a guarantee.</p>
+                            <p><strong>2. SIP Investment</strong></p>
+                            <p>For periodic investments, the future value is calculated using:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                M = P × 
+                                    <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                        <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                        (1 + r)<sup>n</sup> − 1
+                                        </span>
+                                        <span style="display:block; font-size:14px;">r</span>
+                                    </span>
+                                    × (1 + r)
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul>
+                                <li><strong>M</strong> = Maturity value</li>
+                                <li><strong>P</strong> = Periodic investment amount</li>
+                                <li><strong>r</strong> = Rate of return</li>
+                                <li><strong>n</strong> = Investment duration</li>
+                            </ul>
 
-                                <h4>Lumpsum worked example</h4>
-                                <p>Lumpsum investment <strong>&#8377;50,000</strong>, expected return <strong>12% p.a.</strong>, horizon <strong>15 years</strong>:</p>
-                                <ul>
-                                    <li>Total invested = <strong>&#8377;50,000</strong>.</li>
-                                    <li><em>r</em> = 12% &divide; 100 = <strong>0.12</strong>. Maturity value (FV) = 50,000 &times; (1.12)<sup>15</sup> &asymp; <strong>&#8377;2,73,678</strong>.</li>
-                                    <li>Estimated returns = FV &minus; L &asymp; <strong>&#8377;2,23,678</strong>.</li>
-                                </ul>
+                        </div>
 
-                                <h3>ELSS in 60 seconds</h3>
-                                <ul>
-                                    <li><strong>Lock-in:</strong> ELSS has a minimum <strong>3-year</strong> lock-in (no premature withdrawal, except special circumstances as per rules).</li>
-                                    <li><strong>Tax benefit:</strong> ELSS qualifies under <strong>Section 80C</strong>; deduction up to <strong>&#8377;1.5L</strong> per financial year (subject to eligibility).</li>
-                                    <li><strong>What this calculator shows:</strong> The chart uses your <strong>entered return rate</strong> to estimate <strong>maturity value</strong>.
-                                        <ul>
-                                            <li><strong>SIP tab:</strong> assumes you invest the monthly amount for the selected years.</li>
-                                            <li><strong>Lumpsum tab:</strong> assumes you invest the one-time amount for the selected years.</li>
-                                        </ul>
-                                        It does <strong>not</strong> compute your exact tax deduction or final LTCG tax.</li>
-                                </ul>
+                        <h3 class="calculator-info-title">Examples</h3>
+                        <div class="calculator-info-content">
+                            <p><strong>Lump Sum Example</strong></p>
+                            <p>Investment: ₹1,00,000</p>
+                            <p>Duration: 3 years</p>
+                            <p>Expected return: 12%</p>
+                            <p>Estimated maturity value:</p>
+                            <p><strong>₹1,40,493 (approx.)</strong></p>
 
-                                <h4>Quick note on taxes (important)</h4>
-                                <p>Capital-gains taxation at redemption depends on applicable tax rules (and the year of investment). Use this tool for investment growth illustration; not as tax advice.</p>
+                            <p><strong>SIP Example</strong></p>
+                            <p>Monthly investment: ₹5,000</p>
+                            <p>Duration: 3 years</p>
+                            <p>Expected return: 12%</p>
+                            <p>Estimated maturity value:</p>
+                            <p><strong>₹2,17,538 (approx.)</strong></p>
 
-                                <div class="callout-box">
-                                    <strong>Tip:</strong> If you plan to claim 80C benefit, align your ELSS contribution with your yearly &#8377;1.5L limit. For growth assumptions, use the return rate you feel is reasonable for equities.
-                                </div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-sip.php">SIP Calculator</a> - Systematic investment growth</li>
-                                    <li><a href="calculator-ppf.php">PPF Calculator</a> - Compare safer alternative</li>
-                                    <li><a href="calculator-stcg.php">STCG/LTCG Tax Calculator</a> - Tax on redemption</li>
-                                    <li><a href="calculator-nsc.php">NSC Calculator</a> - Compare fixed-return 80C</li>
-                                    <li><a href="calculator-mutual-fund.php">Mutual Fund Calculator</a> - Non-ELSS equity funds</li>
-                                </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Tax Benefits of ELSS</h3>
+                        <div class="calculator-info-content">
+                            <p>Investments in ELSS are eligible for deduction under <strong>Section 80C</strong> of the Income Tax Act, subject to the applicable limit.</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Maximum eligible deduction: ₹1.5 lakh per financial year</li>
+                                <li>Tax savings depend on the individual’s applicable tax slab</li>
+                                
+                            </ul>
+                            <p>The calculator provides an indicative estimate of potential tax savings based on the investment amount.</p>
+                        </div>
+
+                        <h3 class="calculator-info-title">How to Use the ELSS Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>To calculate returns:</p>
+                            <ol>
+                                <li>Select investment type (SIP or lump sum)</li>
+                                <li>Enter the investment amount</li>
+                                <li>Specify the investment duration</li>
+                                <li>Input the expected rate of return</li>
+                                <li>The calculator will display:
+                                    <ul>
+                                        <li>Estimated maturity value</li>
+                                        <li>Total returns</li>
+                                        <li>Indicative tax savings</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Investors</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides a combined view of returns and tax benefits</li>
+                                <li>Helps compare investment strategies</li>
+                                <li>Supports tax planning decisions</li>
+                                <li>Simplifies complex calculations</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Features of ELSS</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Equity-oriented mutual fund</li>
+                                <li>Mandatory lock-in period of 3 years</li>
+                                <li>Eligible for tax deduction under Section 80C</li>
+                                <li>Market-linked returns with potential for long-term growth</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Returns are market-linked and not guaranteed</li>
+                                <li>Lock-in period restricts withdrawal for 3 years</li>
+                                <li>Tax benefits are subject to prevailing regulations</li>
+                                <li>The calculator provides indicative values and does not account for:</li>
+                                <li>Expense ratios</li>
+                                <li>Exit loads</li>
+                                <li>Capital gains taxation</li>
+                            </ul>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                        <div class="stepup-faq-accordion" aria-label="ELSS calculator frequently asked questions">
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                <span class="stepup-faq-question">What is ELSS?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                ELSS is an equity mutual fund that offers tax benefits under Section 80C.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                <span class="stepup-faq-question">What is the lock-in period for ELSS?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                ELSS investments have a mandatory lock-in period of 3 years.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                <span class="stepup-faq-question">Does the ELSS calculator provide exact returns?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                No, it provides estimates based on assumed inputs.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                <span class="stepup-faq-question">Can I invest in ELSS through SIP?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                Yes, ELSS investments can be made via SIP or lump sum.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                <span class="stepup-faq-question">Are ELSS returns guaranteed?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                No, returns are market-linked and may vary.
                             </div>
                         </div>
+
+
+                    </div>
                     </div>
                 </div>
             </div>
