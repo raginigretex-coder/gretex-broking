@@ -138,27 +138,28 @@ require_once '../../includes/navbar.php';
                 <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                 <div class="calculator-info-section">
                     <div class="calculator-info-card">
-                        <h3 class="calculator-info-title">Mutual Fund Calculator</h3>
+                        <h3 class="calculator-info-title">FD Calculator</h3>
                         <div class="calculator-info-content">
-                            <p>Mutual funds are investment instruments that pool money from multiple investors to invest in diversified financial assets such as equities, debt instruments, or a combination of both. Investments in mutual funds can typically be made through two approaches:<strong> lumpsum investment </strong> or <strong> Systematic Investment Plan (SIP)</strong>.</p>
-                            <p>A Mutual Fund Calculator is a financial tool used to estimate the potential returns and future value of investments made through either of these approaches.</p>
+                            <p>A Fixed Deposit (FD) is a term-based investment offered by banks and non-banking financial companies (NBFCs), where a lump sum amount is invested for a predetermined period at a fixed rate of interest.</p>
+                            <p>An FD Calculator is a financial tool used to estimate the maturity value and interest earned on such deposits based on investment amount, tenure, interest rate, and compounding frequency.</p>
                         </div>
 
-                        <h3 class="calculator-info-title">What is a Mutual Fund Calculator?</h3>
+                        <h3 class="calculator-info-title">What is an FD Calculator?</h3>
                         <div class="calculator-info-content">
-                            <p>A Mutual Fund Calculator is an online utility that helps investors estimate the growth of their investments over a specified period.</p>
-                            <p>By entering basic inputs such as:</p>
+                            <p>An FD Calculator is an online utility that provides an indicative estimate of the total amount receivable at maturity.</p>
+                            <p>By entering:</p>
                             <ul style="margin-left: 14px;">
-                                <li>Investment amount (lumpsum or periodic SIP)</li>
-                                <li>Investment duration</li>
-                                <li>Expected rate of return</li>
+                                <li>Deposit amount</li>
+                                <li>Investment tenure</li>
+                                <li>Interest rate</li>
+                                <li>Compounding frequency</li>
                             </ul>
-                            <p>the calculator provides:</p>
+                            <p>the calculator computes:</p>
                             <ul style="margin-left: 14px;">
-                                <li>Estimated future value of the investment</li>
-                                <li>Total returns generated over time</li>
+                                <li>Interest earned over the investment period</li>
+                                <li>Total maturity value</li>
                             </ul>
-                            <p>The results are indicative and depend on market performance and other investment-related factors.</p>
+                            <p>The results are indicative and depend on the terms offered by the financial institution.</p>
                         </div>
 
                         <h3 class="calculator-info-title">Purpose and Use of an FD Calculator</h3>
