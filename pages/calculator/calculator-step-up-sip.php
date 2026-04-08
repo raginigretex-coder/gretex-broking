@@ -157,117 +157,217 @@ require_once '../../includes/navbar.php';
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
-                        <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About Step Up SIP Calculator</h2>
+                         <div class="calculator-info-card">
+                        <h3 class="calculator-info-title">Step-Up SIP Calculator (Top-Up SIP)</h3>
                             <div class="calculator-info-content">
-                                <p>The <strong>Step-Up SIP Calculator</strong> helps you understand the impact of increasing your SIP investment by a fixed percentage every year—typically aligned with your salary growth. By gradually increasing your contributions, you can build significantly higher wealth over time compared to a regular SIP with a fixed monthly amount.</p>
-                                <h3>How Step Up SIP Works</h3>
-                                <p>In a <strong>Step-Up SIP</strong>, your monthly investment amount increases every year by a fixed percentage (<strong>Step-Up Rate</strong>). This helps align your investments with income growth over time.</p>
-                                <p>If your starting SIP is <strong>&#8377;P</strong> per month, then your investment increases as:</p>
-                                <ul>
-                                    <li><strong>Year 1:</strong> &#8377;P</li>
-                                    <li><strong>Year 2:</strong> &#8377;P &times; (1 + step-up%)</li>
-                                    <li><strong>Year 3:</strong> &#8377;P &times; (1 + step-up%)<sup>2</sup></li>
-                                    <li>and so on...</li>
+                                <p>A Step-Up SIP (Systematic Investment Plan) is a variation of a regular SIP where the investment amount is increased periodically, typically on an annual basis. This approach allows investors to align their investments with potential increases in income over time.</p>
+                                <p>A Step-Up SIP Calculator is a financial tool used to estimate the future value of investments when periodic contributions are increased at a predefined rate.</p>
+                            </div>
+
+                        <h3 class="calculator-info-title">What is a Step-Up SIP Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>A Step-Up SIP Calculator is an online utility that helps estimate the growth of SIP investments when the contribution amount increases at regular intervals.</p>
+                                <p>By entering:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Initial SIP amount</li>
+                                    <li>Investment duration</li>
+                                    <li>Expected rate of return</li>
+                                    <li>Annual increment percentage</li>
                                 </ul>
-                                <div class="formula-box" role="region" aria-label="Step-up SIP formula">
-                                    <p><strong>Monthly SIP in Year n</strong> = &#8377;P × (1 + r)<sup>(n-1)</sup></p>
-                                </div>
-                                <p><strong>Where</strong>:</p>
-                                <ul>
-                                    <li><strong>P</strong> = Initial monthly investment</li>
-                                    <li><strong>r</strong> = Annual step-up rate (in decimal)</li>
-                                    <li><strong>n</strong> = Year number</li>
+                                <p>the calculator computes:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Total investment made</li>
+                                    <li>Estimated returns generated</li>
+                                    <li>Projected maturity value</li>
                                 </ul>
-                                <p><strong>Returns Calculation:</strong> The calculator applies your <strong>Expected annual return rate (p.a.)</strong> with <strong>monthly compounding</strong>. Each SIP installment earns returns based on how long it remains invested. Since the investment amount increases every year, a Step-Up SIP generally results in a higher maturity value compared to a regular SIP with a fixed monthly contribution.</p>
-                                <h3>Benefits</h3>
-                                <ul>
-                                    <li>Matches your growing income by increasing investments every year</li>
-                                    <li>Helps generate significantly higher wealth compared to a regular SIP</li>
-                                    <li>Small yearly increases make investing more practical and manageable</li>
-                                    <li>Enhances the power of long-term compounding</li>
-                                    <li>Helps you achieve financial goals faster</li>
-                                    <li>Reduces the need to start with a high investment amount</li>
-                                    <li>Encourages disciplined and consistent investing</li>
-                                </ul>
-                                <h3>Who Should Use</h3>
-                                <ul>
-                                    <li><strong>Early-career professionals</strong> seeking to build wealth over time through disciplined investing</li>
-                                    <li><strong>Salaried individuals</strong> with predictable annual income increments</li>
-                                    <li><strong>Long-term investors</strong> with an investment horizon of 10–15 years or more</li>
-                                    <li><strong>Goal-oriented investors</strong> planning for major financial milestones such as retirement, home ownership, or education</li>
-                                    <li><strong>Disciplined investors</strong> willing to increase their contributions annually</li>
-                                </ul>
-                                <h3>Important Considerations</h3>
-                                <p>Requires disciplineï¿½must increase annually. Step-up: Conservative 5ï¿½7%; Moderate 8ï¿½12%; Aggressive 15ï¿½20%. Can skip a year if needed; most AMCs allow. Common pitfall: too aggressive % becomes unaffordable.</p>
-                                <h3>Example</h3>
-                                <p>Suppose you start with a Step-Up SIP of <strong>&#8377;25,000/month</strong> and choose <strong>10% annual step-up</strong> for <strong>10 years</strong> at an <strong>expected return of 12% (p.a.)</strong>.</p>
-                                <p>Your monthly SIP becomes: <strong>Year 1: &#8377;25,000</strong>, <strong>Year 2: &#8377;27,500</strong>, <strong>Year 3: &#8377;30,250</strong>, and continues with the same pattern until maturity.</p>
-                                <p>Based on this calculator’s assumptions, you will invest <strong>&#8377;47,81,227</strong> in total and reach a maturity value of <strong>&#8377;81,72,246</strong> (expected returns: <strong>&#8377;33,91,019</strong>). For comparison, a regular SIP (no step-up) with the starting monthly amount would be about <strong>&#8377;56,00,897</strong>. So the Step-Up advantage is approximately <strong>&#8377;25,71,349</strong>.</p>
-                                <h3>FAQs</h3>
-                                <div class="stepup-faq-accordion" aria-label="Step Up SIP Frequently Asked Questions">
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="0">
-                                        <span class="stepup-faq-question">Can't increase SIP in a year?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-0" hidden>
-                                        Most AMCs allow skip and continue with previous amount. Resume next year. One year doesn't derail plan.
-                                    </div>
+                                <p>The results are indicative and depend on market performance and input assumptions.</p>
+                            </div>
 
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="1">
-                                        <span class="stepup-faq-question">Is 10% increase realistic?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-1" hidden>
-                                        Yes for salaried. Avg increments 8ï¿½12%. Half for step-up (5ï¿½6%) is manageable. 10% needs ~20% salary growth.
-                                    </div>
-
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="2">
-                                        <span class="stepup-faq-question">Decrease SIP if needed?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-2" hidden>
-                                        Yes but defeats purpose. In hardship (job loss, emergency) can reduce/pause. Better to have emergency fund.
-                                    </div>
-
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="3">
-                                        <span class="stepup-faq-question">Higher amount or higher step-up %?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-3" hidden>
-                                        Start affordable with moderate step-up (10%). &#8377;3K +15% step-up &gt; &#8377;8K +5% over 20+ years.
-                                    </div>
-
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="4">
-                                        <span class="stepup-faq-question">Step Up vs Regular SIP?</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-4" hidden>
-                                        Step Up: long horizon 15+yr, rising income, young. Regular: short horizon, stable income, can start higher.
-                                    </div>
-
-                                    <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="5">
-                                        <span class="stepup-faq-question">Advantages of Using Step Up SIP Calculator</span>
-                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="stepup-faq-panel" id="stepup-faq-panel-5" hidden>
-                                        <p>Here are some of the basic advantages of using the Step Up SIP Calculator:</p>
-                                        <ul>
-                                            <li>You cannot modify your Step SIP that is already availed, that is why the calculator allows you a pre-estimation before you can start your investment.</li>
-                                            <li>It is easy and simple to use.</li>
-                                            <li>It is free of cost, and you can access it from anywhere at any time.</li>
-                                            <li>You do not need to seek assistance with the digital tool.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-sip.php">SIP Calculator</a> - compare with regular SIP returns</li>
-                                    <li><a href="calculator-lumpsum.php">Lumpsum Calculator</a> - lump sum vs systematic approach</li>
-                                    <li><a href="calculator-cagr.php">CAGR Calculator</a> - track actual returns achieved</li>
+                        <h3 class="calculator-info-title">Purpose and Use of a Step-Up SIP Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>The calculator is designed to assist investors in evaluating the impact of increasing contributions over time.</p>
+                                <p>It can be used to:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Estimate long-term wealth accumulation with incremental investments</li>
+                                    <li>Align investments with expected income growth</li>
+                                    <li>Compare outcomes with a fixed SIP approach</li>
+                                    <li>Support goal-based financial planning</li>
                                 </ul>
                             </div>
+
+                        <h3 class="calculator-info-title">How Does a Step-Up SIP Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>In a Step-Up SIP:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>The investor begins with a fixed SIP amount</li>
+                                    <li>The contribution is increased periodically (usually annually) by a fixed percentage</li>
+                                    <li>Each increased contribution continues to remain invested and earns returns</li>
+                                    
+                                </ul>
+                                <p>This results in a higher total investment and potentially higher returns compared to a fixed SIP, particularly over longer durations.</p>
+                            </div>
+
+                        <h3 class="calculator-info-title">Working Principle of a Step-Up SIP Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>A Step-Up SIP calculator works by:</p>
+                                
+                                <ul style="margin-left: 14px;">
+                                    <li>Increasing the SIP contribution at predefined intervals</li>
+                                    <li>Applying compounding returns on each installment</li>
+                                    <li>Aggregating the future value of all contributions</li>
+                                </ul>
+                                <p>Unlike a regular SIP, where contributions remain constant, Step-Up SIP calculations account for the progressive increase in investment amounts over time.</p>
+                            </div>
+
+                        <h3 class="calculator-info-title">Illustrative Example</h3>
+                                <div class="calculator-info-content">
+                                    <p>Assume:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Initial SIP: ₹10,000 per month</li>
+                                        <li>Annual step-up: 10%</li>
+                                        <li>Investment duration: 10 years</li>
+                                        <li>Expected return: 8%</li>
+                                    </ul>
+                                    <p>Each year, the SIP amount increases by 10%, resulting in higher contributions over time.</p>
+                                    <p>The calculator estimates:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Total amount invested</li>
+                                        <li>Total returns generated</li>
+                                        <li>Final maturity value</li>
+                                    </ul>
+                                    <p>This helps in understanding the impact of incremental investing on long-term wealth creation.</p>
+                                </div>
+
+                        <h3 class="calculator-info-title">How to Use the Step-Up SIP Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>To calculate returns:</p>
+                                <ol>
+                                    <li>Enter the initial SIP amount</li>
+                                    <li>Specify the investment duration</li>
+                                    <li>Input the expected rate of return</li>
+                                    <li>Enter the annual step-up percentage</li>
+                                    <li>The calculator will display:
+                                        <ul>
+                                            <li>Total investment</li>
+                                            <li>Estimated returns</li>
+                                            <li>Projected maturity value</li>
+                                        </ul>
+                                    </li>
+                                </ol> 
+                            </div>
+
+                            <h3 class="calculator-info-title">How the Calculator Assists Investors?</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Provides a structured estimate of increasing investment scenarios</li>
+                                    <li>Helps evaluate the impact of incremental contributions</li>
+                                    <li>Enables comparison between fixed SIP and Step-Up SIP</li>
+                                    <li>Assists in long-term financial planning</li>      
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">Key Considerations</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Returns are market-linked and not guaranteed</li>
+                                    <li>The effectiveness of a Step-Up SIP depends on consistency of contributions</li>
+                                    <li>Higher step-up rates increase investment obligations over time</li>
+                                    <li>The calculator does not account for:
+                                        <ul>
+                                            <li>Expense ratios</li>
+                                            <li>Exit loads</li>
+                                            <li>Taxes</li>
+                                        </ul>
+                                    </li>
+                                    <li>Results are indicative and based on assumed inputs</li>
+                                </ul>
+                            </div>
+
+                            <h3 class="calculator-info-title">Step-Up SIP vs Regular SIP</h3>
+                            <div class="table-wrapper">
+                                <table class="yearly-breakdown-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Regular SIP</th>
+                                            <th>Step-Up SIP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Contribution</td>
+                                            <td>Fixed</td>
+                                            <td>Increases periodically</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Investment growth</td>
+                                            <td>Linear contribution</td>
+                                            <td>Increasing contribution</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Suitability</td>
+                                            <td>Stable income</td>
+                                            <td>Growing income</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Potential returns</td>
+                                            <td>Lower (relative)</td>
+                                            <td>Higher over long term</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3 class="calculator-info-title">FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="Step-Up SIP calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="0">
+                                    <span class="stepup-faq-question">What is a Step-Up SIP?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="stepup-faq-panel-0" hidden>
+                                    It is a SIP where the investment amount increases periodically, usually annually.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="1">
+                                    <span class="stepup-faq-question">How is it different from a regular SIP?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="stepup-faq-panel-1" hidden>
+                                    In a regular SIP, the contribution remains constant, whereas in a Step-Up SIP it increases over time.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="2">
+                                    <span class="stepup-faq-question">Does Step-Up SIP guarantee higher returns?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="stepup-faq-panel-2" hidden>
+                                    No, returns are market-linked. However, higher contributions may lead to higher accumulated value over time.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="3">
+                                    <span class="stepup-faq-question">Can the step-up percentage be modified?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="stepup-faq-panel-3" hidden>
+                                    Yes, it can be adjusted based on financial capacity and goals.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-stepup-faq="4">
+                                    <span class="stepup-faq-question">Is Step-Up SIP suitable for all investors?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="stepup-faq-panel-4" hidden>
+                                    It is generally suitable for individuals expecting growth in income and aiming for long-term wealth accumulation.
+                                </div>
+                            </div>
+  
+                              
+
+                              
+
                         </div>
+
+                    </div>
                     </div>
                 </div>
             </div>
@@ -582,8 +682,18 @@ require_once '../../includes/navbar.php';
                         if (!panel) return;
 
                         const expanded = btn.getAttribute('aria-expanded') === 'true';
-                        btn.setAttribute('aria-expanded', String(!expanded));
-                        panel.hidden = expanded;
+
+                        rows.forEach(otherBtn => {
+                            const otherIdx = otherBtn.getAttribute('data-stepup-faq');
+                            const otherPanel = document.getElementById(`stepup-faq-panel-${otherIdx}`);
+                            otherBtn.setAttribute('aria-expanded', 'false');
+                            if (otherPanel) otherPanel.hidden = true;
+                        });
+
+                        if (!expanded) {
+                            btn.setAttribute('aria-expanded', 'true');
+                            panel.hidden = false;
+                        }
                     });
                 });
             });
@@ -604,6 +714,3 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-
-
-

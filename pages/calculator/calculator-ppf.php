@@ -132,45 +132,173 @@ $ppfRatePercent = 7.1;
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About PPF Calculator</h2>
-                            <div class="calculator-info-content">
-                                <p>The <strong>Public Provident Fund (PPF) Calculator</strong> is a comprehensive financial planning tool for India's most trusted long-term investment scheme. Launched in 1968 by the National Savings Organization, PPF offers a unique combination of guaranteed returns, complete tax exemption, and government-backed security.</p>
-                                <p>This calculator shows how your contributions grow over the 15-year mandatory period and longer tenures. Experiment with yearly deposits from &#8377;500 to &#8377;1.5 lakh and visualize the impact of consistent investing with triple tax benefit (EEE status).</p>
-                                <h3>How PPF Works</h3>
-                                <p><strong>Eligibility:</strong> All Indian residents. One account per person. Minor accounts allowed (convert to adult at 18). Open at post offices or authorized banks.</p>
-                                <p><strong>Deposits:</strong> Min &#8377;500, max &#8377;1,50,000/year. Lump sum or up to 12 installments. Deposit before 5th of month for full-month interest. 15-year mandatory period.</p>
-                                <p><strong>Interest:</strong> Calculated on lowest balance between 5th and month-end. Compounded annually. Current illustrative rate: <?php echo htmlspecialchars((string) $ppfRatePercent, ENT_QUOTES, 'UTF-8'); ?>% p.a. Completely tax-free.</p>
-                                <p><strong>Maturity:</strong> After 15 years – close, extend with deposits (max &#8377;1.5L/yr), or extend without deposits. Partial withdrawal from year 7 (50% limit). Loan facility year 3–6.</p>
-                                <h3>Benefits & Features</h3>
-                                <ul>
-                                    <li>Government-notified rate – stable, long-term savings</li>
-                                    <li>EEE status: Tax-free on deposit, interest, and maturity</li>
-                                    <li>100% government-backed, zero credit risk</li>
-                                    <li>Partial withdrawal from year 7; loan from year 3–6</li>
-                                    <li>Extension in 5-year blocks; no maximum age to open</li>
-                                </ul>
-                                <h3>Who Should Use</h3>
-                                <p>Salaried employees, self-employed professionals, conservative investors, first-time investors, retirees, and parents planning children's education – anyone seeking stable, tax-efficient, risk-free long-term wealth building.</p>
-                                <h3>Important Considerations</h3>
-                                <div class="callout-box">
-                                    <strong>Key Points:</strong> Deposit before April 5th for maximum interest. Account becomes inactive if minimum &#8377;500 is not deposited (&#8377;50 penalty to reactivate). NRIs cannot open new accounts. Premature closure reduces interest to ~4%.
+                           <h3 class="calculator-info-title">PPF Calculator (Public Provident Fund)</h3>
+                                <div class="calculator-info-content">
+                                    <p>Public Provident Fund (PPF) is a government-backed long-term savings scheme designed to encourage disciplined savings with a fixed tenure and tax benefits. It is widely used for capital preservation and long-term financial planning.</p>
+                                    <p>A PPF Calculator is a financial tool that helps estimate the maturity value of investments made in a PPF account based on annual contributions, tenure, and applicable interest rates.</p>
                                 </div>
-                                <h3>Example</h3>
-                                <p><strong>Scenario:</strong> Age 30, &#8377;1.5L/year for 15 years @ <?php echo htmlspecialchars((string) $ppfRatePercent, ENT_QUOTES, 'UTF-8'); ?>%. Total investment: &#8377;22.5L. Maturity at 45 depends on notified rates each year; use the calculator above for projections.</p>
-                                <h3>FAQs</h3>
-                                <div class="faq-item"><p class="faq-q">Can I open PPF at 50?</p><p>Yes, no maximum age. But 15-year lock-in applies.</p></div>
-                                <div class="faq-item"><p class="faq-q">What if I miss a year's deposit?</p><p>Account becomes inactive. Pay &#8377;50 penalty per default year + &#8377;500 for each missed year to reactivate.</p></div>
-                                <div class="faq-item"><p class="faq-q">Best time to deposit?</p><p>Before April 5th – deposits after 5th lose that month's interest.</p></div>
-                                <div class="faq-item"><p class="faq-q">PPF vs ELSS for tax saving?</p><p>Combine both: PPF for stability, ELSS for growth (12–15% potential).</p></div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-epf.php">EPF Calculator</a> - compare with employer provident fund</li>
-                                    <li><a href="calculator-elss.php">ELSS Calculator</a> - balance safe + growth for 80C</li>
-                                    <li><a href="calculator-ssy.php">SSY Calculator</a> - if you have a girl child (higher returns)</li>
-                                    <li><a href="calculator-sip.php">SIP Calculator</a> - supplement with equity for inflation-beating returns</li>
-                                    <li><a href="calculator-cagr.php">CAGR Calculator</a> - track actual returns over time</li>
+
+                            <h3 class="calculator-info-title">What is a PPF Calculator?</h3>
+                                <div class="calculator-info-content">
+                                    <p>A PPF Calculator is an online utility that provides an indicative estimate of the maturity amount accumulated under a Public Provident Fund account.</p>
+                                    <p>By entering:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Annual investment amount</li>
+                                        <li>Investment duration</li>
+                                        <li>Applicable interest rate</li>
+                                    </ul>
+                                    <p>the calculator computes:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Total amount invested</li>
+                                        <li>Interest earned over the tenure</li>
+                                        <li>Estimated maturity value</li>
+                                    </ul>
+                                    <p>The results are indicative and depend on the prevailing interest rates notified periodically.</p>
+                                </div>
+
+                            <h3 class="calculator-info-title">What is PPF?</h3>
+                                <div class="calculator-info-content">
+                                    <p>Public Provident Fund (PPF) is a long-term savings scheme introduced to mobilize small savings while offering stable returns and tax benefits. It has a fixed tenure and interest is compounded annually.</p>
+                                    <p>It is commonly used for:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Long-term wealth accumulation</li>
+                                        <li>Retirement planning</li>
+                                        <li>Tax-efficient savings</li>
+                                    </ul>
+                                </div>
+                            <h3 class="calculator-info-title">Purpose and Use of a PPF Calculator</h3>
+                                <div class="calculator-info-content">
+                                    <p>The PPF calculator assists investors in understanding how their contributions may grow over time.</p>
+                                    <p>It can be used to:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Estimate maturity value based on annual investments</li>
+                                        <li>Plan contributions in line with financial goals</li>
+                                        <li>Understand the effect of compounding over long durations</li>
+                                        <li>Support tax planning under applicable provisions</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">How Does a PPF Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>A PPF calculator uses a compound interest formula to estimate the maturity value of your yearly investments:</p>
+                                <p><strong style="margin-left: 10px;">F = P × ((1 + i)^n - 1) / i</strong></p>
+                                <p>Where:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li><strong>F</strong> = Maturity amount</li>
+                                    <li><strong>P</strong> = Annual investment</li>
+                                    <li><strong>i</strong> = Rate of interest</li>
+                                    <li><strong>n</strong> = Investment tenure (in years)</li>
                                 </ul>
+                                <p>Interest is compounded annually and applied to the accumulated balance each year.</p>
                             </div>
+
+                            <h3 class="calculator-info-title">Illustrative Example</h3>
+                                <div class="calculator-info-content">
+                                    <p>Assume:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Annual investment: ₹1,50,000</li>
+                                        <li>Investment duration: 15 years</li>
+                                        <li>Interest rate: 7.1%</li>
+                                    </ul>
+                                    <p>The estimated maturity amount at the end of the tenure is:</p>
+                                    <p><strong>₹40,68,209 (approx.)</strong></p>
+                                    <p>This includes both invested capital and accumulated interest.</p>
+                                </div>
+
+                            <h3 class="calculator-info-title">How to Use the PPF Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>To calculate returns:</p>
+                                <ol>
+                                    <li>Enter the annual investment amount</li>
+                                    <li>Select the investment tenure</li>
+                                    <li>Input the applicable interest rate</li>
+                                    <li>The calculator will display:
+                                        <ul>
+                                            <li>Total investment</li>
+                                            <li>Interest earned</li>
+                                            <li>Maturity amount </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <p>The results update dynamically based on input values.</p>
+                            </div>
+
+                            <h3 class="calculator-info-title">How the PPF Calculator Assists Investors</h3>
+                                <div class="calculator-info-content">
+                                    <ul style="margin-left: 14px;">
+                                        <li>Provides a structured estimate of long-term savings</li>
+                                        <li>Eliminates the need for manual calculations</li>
+                                        <li>Helps in evaluating different contribution scenarios</li>
+                                        <li>Supports planning for long-term financial goals</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">Tax Benefits of PPF</h3>
+                                <div class="calculator-info-content">
+                                    <p>PPF investments are generally classified under the EEE (Exempt-Exempt-Exempt) category:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Contributions are eligible for deduction under Section 80C (subject to applicable limits)</li>
+                                        <li>Interest earned is tax-exempt</li>
+                                        <li>Maturity amount is also tax-exempt</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">Key Considerations</h3>
+                                <div class="calculator-info-content">
+                                    <ul style="margin-left: 14px;">
+                                        <li>Interest rates are revised periodically by the Government</li>
+                                        <li>The scheme has a fixed tenure (typically 15 years, extendable)</li>
+                                        <li>Annual contributions are required to keep the account active</li>
+                                        <li>The calculator provides indicative values and does not account for changes in interest rates over time</li>
+                                        
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="PPF calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ppf-faq="0">
+                                    <span class="stepup-faq-question">What is the tenure of a PPF account?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ppf-faq-panel-0" hidden>
+                                    The standard tenure is 15 years, which can be extended in blocks.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ppf-faq="1">
+                                    <span class="stepup-faq-question">Is the interest rate fixed?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ppf-faq-panel-1" hidden>
+                                    No, it is revised periodically by the Government.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ppf-faq="2">
+                                    <span class="stepup-faq-question">Does the calculator provide exact returns?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ppf-faq-panel-2" hidden>
+                                    No, it provides estimates based on assumed inputs.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ppf-faq="3">
+                                    <span class="stepup-faq-question">Are PPF returns taxable?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ppf-faq-panel-3" hidden>
+                                    No, returns are generally tax-exempt under applicable provisions.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ppf-faq="4">
+                                    <span class="stepup-faq-question">Can I change my annual contribution?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ppf-faq-panel-4" hidden>
+                                    Yes, contributions can be varied within the prescribed limits.
+                                </div>
+                            </div>
+
+
+                        
                         </div>
                     </div>
                 </div>
@@ -400,6 +528,7 @@ $ppfRatePercent = 7.1;
                     }
                 }
                 waitApex();
+
 
                 return true;
             }

@@ -118,6 +118,193 @@ $epfRetirementAge = 58;
                         </div>
                     </div>
                 </section>
+
+                
+            <div class="calculator-wrapper">
+                <aside class="calculator-sidebar" id="calculatorSidebar" aria-label="All calculators"></aside>
+                <div class="calculator-info-section">
+                    <div class="calculator-info-card">
+                      <h3 class="calculator-info-title">EPF Calculator (Employee Provident Fund)</h3>
+                            <div class="calculator-info-content">
+                                <p>Employee Provident Fund (EPF) is a government-regulated retirement savings scheme for salaried employees in the organised sector. It involves monthly contributions from both the employee and employer, 
+                                    which accumulate over time with interest.</p>
+                                <p>An EPF Calculator is a financial tool used to estimate the total corpus that may be accumulated in an EPF account by the time of retirement.</p>
+                            </div>
+                            
+                        <h3 class="calculator-info-title">What is an EPF Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>An EPF Calculator is an online utility that provides an indicative estimate of the total balance in an EPF account based on contributions and interest over time.</p>
+                                <p>By entering inputs such as:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Basic salary and dearness allowance</li>
+                                    <li>Employee contribution</li>
+                                    <li>Employer contribution</li>
+                                    <li>Current age and retirement age</li>
+                                    <li>Existing EPF balance (if any)</li>
+                                </ul>
+                                <p>the calculator computes:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Total contributions made</li>
+                                    <li>Interest earned</li>
+                                    <li>Estimated retirement corpus</li>
+                                </ul>
+                                <p>The output is indicative and depends on contribution patterns and applicable interest rates.</p>
+                            </div>
+                        <h3 class="calculator-info-title">What is EPF?</h3>
+                            <div class="calculator-info-content">
+                                <p>Employee Provident Fund (EPF) is a retirement benefit scheme governed by the Employees’ Provident Fund Organisation (EPFO). Under this scheme:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Both employee and employer contribute a fixed percentage of salary</li>
+                                    <li>Contributions accumulate over time with interest</li>
+                                    <li>The corpus is primarily intended for post-retirement financial security</li>
+                                </ul>
+                                <p>It is mandatory for eligible organisations to register under the EPF framework as per applicable regulations.</p>
+                            </div>
+
+                        <h3 class="calculator-info-title">Purpose and Use of an EPF Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>The EPF calculator helps individuals understand the long-term growth of their retirement savings.</p>
+                                <p>It can be used to:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Estimate the retirement corpus based on current contributions</li>
+                                    <li>Track the impact of salary changes on EPF accumulation</li>
+                                    <li>Evaluate different contribution scenarios</li>
+                                    <li>Support long-term financial and retirement planning</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">How Does an EPF Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>An EPF calculator estimates the accumulated balance by considering:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Monthly contributions from employee and employer</li>
+                                    <li>Applicable EPF interest rate</li>
+                                    <li>Investment duration until retirement</li>
+                                </ul>
+                                <p>Each month:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Contributions are added to the EPF account</li>
+                                    <li>Interest is applied periodically (compounded annually, calculated monthly)</li>
+                                </ul>
+                                <p>The total corpus grows over time due to consistent contributions and compounding.</p>
+                            </div>
+
+                        <h3 class="calculator-info-title">Example</h3>
+                            <div class="calculator-info-content">
+                                <p>Assume:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Basic salary + DA: ₹14,000 per month</li>
+                                    <li>Employee contribution: 12% (₹1,680)</li>
+                                    <li>Employer contribution to EPF: ₹514</li>
+                                    <li>Total monthly EPF contribution: ₹2,194</li>
+                                    <li>Interest rate: 8.1% per annum</li>
+                                </ul>
+                                <p>Over time, the contributions accumulate along with interest, resulting in a growing retirement corpus.</p>
+                                <p>The calculator helps estimate:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Total accumulated balance</li>
+                                    <li>Interest earned over the investment period</li>
+                                </ul>
+                            </div>
+
+
+                        <h3 class="calculator-info-title">How to Use the EPF Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>To calculate your EPF balance:</p>
+                                <ol>
+                                    <li>Enter your basic salary and dearness allowance</li>
+                                    <li>Input your current age and expected retirement age</li>
+                                    <li>Enter contribution percentages (employee and employer)</li>
+                                    <li>Add your current EPF balance (if applicable)</li>
+                                    <li>The calculator will display:
+                                        <ul>
+                                            <li>Total contributions</li>
+                                            <li>Interest earned</li>
+                                            <li>Estimated retirement corpus</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                
+                            </div>
+                        
+                        <h3 class="calculator-info-title">How the EPF Calculator Assists Individuals</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Provides an estimate of long-term retirement savings</li>
+                                    <li>Eliminates the need for manual calculations</li>
+                                    <li>Helps track contribution growth over time</li>
+                                    <li>Assists in planning for financial security post-retirement</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">Key Features of EPF</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Mandatory savings mechanism for eligible employees</li>
+                                    <li>Contributions made by both employee and employer</li>
+                                    <li>Interest rate declared periodically by EPFO</li>
+                                    <li>Long-term accumulation with compounding benefits</li>
+                                    <li>Partial withdrawals permitted under specified conditions</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Interest rates are subject to periodic revision</li>
+                                    <li>Contributions depend on salary structure</li>
+                                    <li>Withdrawals are governed by regulatory provisions</li>
+                                    <li>The calculator provides indicative values and does not account for policy changes</li>
+                                    
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="EPF calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-epf-faq="0">
+                                    <span class="stepup-faq-question">What is the contribution rate for EPF?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="epf-faq-panel-0" hidden>
+                                    Typically, employees contribute 12% of basic salary and dearness allowance, with a corresponding employer contribution as per applicable rules.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-epf-faq="1">
+                                    <span class="stepup-faq-question">Is EPF mandatory?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="epf-faq-panel-1" hidden>
+                                    It is mandatory for eligible organisations and employees under applicable regulations.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-epf-faq="2">
+                                    <span class="stepup-faq-question">Does the calculator provide exact returns?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="epf-faq-panel-2" hidden>
+                                    No, it provides estimates based on current assumptions.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-epf-faq="3">
+                                    <span class="stepup-faq-question">Can EPF be withdrawn before retirement?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="epf-faq-panel-3" hidden>
+                                    Partial withdrawals are allowed under specific conditions such as medical needs or housing.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-epf-faq="4">
+                                    <span class="stepup-faq-question">Is EPF interest taxable?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="epf-faq-panel-4" hidden>
+                                    Tax treatment depends on prevailing regulations and withdrawal conditions.
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
             </div>
         </div>
     </main>
@@ -244,163 +431,6 @@ $epfRetirementAge = 58;
             }
 
             function ensureEpfDonutChart() {
-                // Donut chart removed intentionally; no rendering required.
-            }
-
-            function updateEpfDonutChart(contributions, interest, animate) {
-                // Donut chart removed intentionally; no update required.
-            }
-
-            function refreshAll() {
-                var r = computeEPF();
-                if (donutCenterValue) donutCenterValue.textContent = formatINR0(r.maturityValue);
-            }
-
-            function bindPercentPair(rangeEl, inputEl, minV, maxV, setErr) {
-                rangeEl.addEventListener('input', function () {
-                    var v = clamp(roundHalf(Number(rangeEl.value)), minV, maxV);
-                    rangeEl.value = v;
-                    inputEl.value = v;
-                    setErr(false);
-                    setRangeFill(rangeEl, v);
-                    refreshAll();
-                });
-                rangeEl.addEventListener('change', function () {
-                    setErr(false);
-                    refreshAll();
-                });
-                inputEl.addEventListener('input', function () {
-                    var raw = String(inputEl.value || '');
-                    if (raw.trim() === '') {
-                        setErr(true);
-                        return;
-                    }
-                    var v = roundHalf(Number(inputEl.value));
-                    if (!isFinite(v)) {
-                        setErr(true);
-                        return;
-                    }
-                    var invalid = v < minV || v > maxV;
-                    setErr(invalid);
-                    var c = clamp(v, minV, maxV);
-                    rangeEl.value = c;
-                    setRangeFill(rangeEl, c);
-                    if (!invalid) refreshAll();
-                });
-                inputEl.addEventListener('change', function () {
-                    var raw = String(inputEl.value || '');
-                    var v = raw.trim() === '' ? minV : roundHalf(Number(raw));
-                    var safe = isFinite(v) ? v : minV;
-                    var c = clamp(safe, minV, maxV);
-                    rangeEl.value = c;
-                    inputEl.value = c;
-                    setErr(false);
-                    setRangeFill(rangeEl, c);
-                    refreshAll();
-                });
-            }
-
-            function bindWhenReady() {
-                if (document.body.dataset.epfModernBound === '1') return true;
-                if (typeof calcEPF !== 'function' || !salaryRange || !salaryInput || !ageRange || !ageInput) return false;
-
-                document.body.dataset.epfModernBound = '1';
-
-                salaryRange.addEventListener('input', function () {
-                    var v = clamp(snapSalary(Number(salaryRange.value)), MIN_SALARY, MAX_SALARY);
-                    salaryRange.value = v;
-                    salaryInput.value = formatINRDigits(v);
-                    setSalaryError(false);
-                    setRangeFill(salaryRange, v);
-                    refreshAll();
-                });
-                salaryRange.addEventListener('change', function () {
-                    setSalaryError(false);
-                    refreshAll();
-                });
-
-                salaryInput.addEventListener('input', function () {
-                    var raw = String(salaryInput.value || '');
-                    var digits = raw.replace(/[^\d]/g, '');
-                    if (!digits) {
-                        setSalaryError(raw.trim() !== '');
-                        return;
-                    }
-                    var v = Number(digits);
-                    var invalid = v < MIN_SALARY || v > MAX_SALARY;
-                    setSalaryError(invalid);
-                    var clamped = clamp(snapSalary(v), MIN_SALARY, MAX_SALARY);
-                    salaryRange.value = clamped;
-                    setRangeFill(salaryRange, clamped);
-                    salaryInput.value = formatINRDigits(v);
-                    if (!invalid) refreshAll();
-                });
-                salaryInput.addEventListener('change', function () {
-                    var raw = String(salaryInput.value || '');
-                    var digits = raw.replace(/[^\d]/g, '');
-                    var v = digits ? Number(digits) : MIN_SALARY;
-                    var clamped = clamp(snapSalary(v), MIN_SALARY, MAX_SALARY);
-                    salaryRange.value = clamped;
-                    salaryInput.value = formatINRDigits(clamped);
-                    setSalaryError(false);
-                    setRangeFill(salaryRange, clamped);
-                    refreshAll();
-                });
-
-                ageRange.addEventListener('input', function () {
-                    var v = clamp(Math.round(Number(ageRange.value)), MIN_AGE, MAX_AGE);
-                    ageRange.value = v;
-                    ageInput.value = v;
-                    setAgeError(false);
-                    setRangeFill(ageRange, v);
-                    refreshAll();
-                });
-                ageRange.addEventListener('change', function () {
-                    setAgeError(false);
-                    refreshAll();
-                });
-
-                ageInput.addEventListener('input', function () {
-                    var raw = String(ageInput.value || '');
-                    if (raw.trim() === '') {
-                        setAgeError(true);
-                        return;
-                    }
-                    var v = Math.round(Number(ageInput.value));
-                    if (!isFinite(v)) {
-                        setAgeError(true);
-                        return;
-                    }
-                    var invalid = v < MIN_AGE || v > MAX_AGE;
-                    setAgeError(invalid);
-                    var c = clamp(v, MIN_AGE, MAX_AGE);
-                    ageRange.value = c;
-                    setRangeFill(ageRange, c);
-                    if (!invalid) refreshAll();
-                });
-                ageInput.addEventListener('change', function () {
-                    var raw = String(ageInput.value || '');
-                    var v = raw.trim() === '' ? MIN_AGE : Math.round(Number(raw));
-                    var safe = isFinite(v) ? v : MIN_AGE;
-                    var c = clamp(safe, MIN_AGE, MAX_AGE);
-                    ageRange.value = c;
-                    ageInput.value = c;
-                    setAgeError(false);
-                    setRangeFill(ageRange, c);
-                    refreshAll();
-                });
-
-                bindPercentPair(empPctRange, empPctInput, MIN_EMP_PCT, MAX_EMP_PCT, setEmpPctError);
-                bindPercentPair(incrementRange, incrementInput, MIN_INCREMENT, MAX_INCREMENT, setIncrementError);
-
-                setRangeFill(salaryRange, readSalary());
-                salaryInput.value = formatINRDigits(readSalary());
-                setRangeFill(ageRange, readAge());
-                ageInput.value = readAge();
-                setRangeFill(empPctRange, readEmpPct());
-                empPctInput.value = readEmpPct();
-                setRangeFill(incrementRange, readIncrement());
-                incrementInput.value = readIncrement();
 
                 refreshAll();
                 return true;

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Compound Interest Calculator - Gretex Financial
  * Gretex Share Broking Limited

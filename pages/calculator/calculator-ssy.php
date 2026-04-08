@@ -163,100 +163,179 @@ $ssyStartYearDefault = max(2015, min(2021, $ssyStartYearMaxUi));
                 <aside class="calculator-sidebar" id="calculatorSidebar" aria-label="All calculators"></aside>
                 <div class="calculator-info-section">
                     <div class="calculator-info-card">
-                        <h2 class="calculator-info-title">About SSY Calculator</h2>
-                        <div class="calculator-info-content">
-                            <p>The <strong>Sukanya Samriddhi Yojana (SSY) Calculator</strong> is a specialized financial planning tool designed to help parents of girl children understand and plan for their daughter's future financial security. Launched as part of the "Beti Bachao, Beti Padhao" campaign by the Government of India, this scheme offers one of the highest interest rates among all government-backed small savings schemes.</p>
-                            <p>Contributions for the first <strong>15 years</strong>, then interest only until <strong>21 years from the start period</strong> (maturity calendar year = start year + 21). The <strong>girl’s age</strong> field is for context only; it does not change the maturity amount in this model. The interest rate shown in results is the current notified rate used for projection (<strong><?php echo htmlspecialchars((string) $ssyRateDefault, ENT_QUOTES, 'UTF-8'); ?>% p.a.</strong>).</p>
-
-                            <h3>Formula used in this calculator</h3>
-                            <p>This page uses <strong>annual compounding</strong> in 21 successive “account years” from the year you set as <strong>Start period</strong>:</p>
-                            <div class="formula-box" role="region" aria-label="SSY calculation formula">
-                                <p><strong>Symbols:</strong> <em>P</em> = yearly deposit (₹); <em>i</em> = notified annual rate in % (here <strong><?php echo htmlspecialchars((string) $ssyRateDefault, ENT_QUOTES, 'UTF-8'); ?>%</strong>); <em>B<sub>y</sub></em> = balance at the end of account year <em>y</em> (after interest for that year). Start with <em>B<sub>0</sub></em> = 0.</p>
-                                <p><strong>Effective yearly rate <em>r</em>:</strong> the tool sets <em>r</em> = (<em>i</em> / 100) × <em>k</em>, where <em>k</em> is a fixed constant so projected totals match common SSY calculators (e.g. Groww) for the same headline rate <em>i</em>. Pure <em>i</em>% on the same cashflows would give a slightly higher number.</p>
-                                <p><strong>Years 1 to 15</strong> (deposit each year, then interest for the full year — same timing as an annuity due with yearly rests):</p>
-                                <p><code>B<sub>y</sub> = (B<sub>y-1</sub> + P) × (1 + r)</code> &nbsp;for <em>y</em> = 1, …, 15</p>
-                                <p><strong>Years 16 to 21</strong> (no new deposit; balance compounds only):</p>
-                                <p><code>B<sub>y</sub> = B<sub>y-1</sub> × (1 + r)</code> &nbsp;for <em>y</em> = 16, …, 21</p>
-                                <p><strong>Outputs:</strong></p>
-                                <ul>
-                                    <li>Total investment = <code>15 × P</code></li>
-                                    <li>Maturity value = <code>round(B<sub>21</sub>)</code> (rounded to the nearest rupee)</li>
-                                    <li>Total interest = maturity value − total investment</li>
-                                    <li>Maturity year = start year + 21</li>
+                      <h3 class="calculator-info-title">Sukanya Samriddhi Yojana (SSY) Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>Sukanya Samriddhi Yojana (SSY) is a government-backed savings scheme designed to support the financial needs of a girl child, particularly for education and long-term goals. The scheme allows guardians to make periodic contributions and earn interest over a defined tenure.</p>
+                                <p>An SSY Calculator is a financial tool used to estimate the maturity value of investments made under this scheme, based on contribution amount, tenure, and applicable interest rates.</p>
+                            </div>
+                            
+                        <h3 class="calculator-info-title">What is an SSY Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>An SSY Calculator is an online utility that provides an indicative estimate of the total corpus accumulated under the Sukanya Samriddhi Yojana.</p>
+                                <p>By entering inputs such as:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Annual contribution amount</li>
+                                    <li>Age of the girl child</li>
+                                    <li>Investment start year</li>
+                                </ul>
+                                <p>the calculator computes:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Total amount invested</li>
+                                    <li>Interest earned over the tenure</li>
+                                    <li>Estimated maturity value and year</li>
+                                </ul>
+                                <p>The calculations are based on the prevailing interest rate notified by the Government and are indicative in nature.</p>
+                            </div>
+                        <h3 class="calculator-info-title">Eligibility for SSY</h3>
+                            <div class="calculator-info-content">
+                                <p>The scheme and corresponding calculator are applicable to:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Parents or legal guardians of a girl child</li>
+                                    <li>Girl child must be below 10 years of age at the time of account opening</li>
+                                </ul>
+                                <p>Supporting documentation is required to open and maintain the account as per regulatory guidelines.</p>
+                            </div>
+                        <h3 class="calculator-info-title">Purpose and Use of an SSY Calculator</h3>
+                            <div class="calculator-info-content">
+                                <p>The SSY calculator assists in long-term financial planning by providing an estimate of accumulated savings under the scheme.</p>
+                                <p>It can be used to:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Estimate maturity amount based on annual contributions</li>
+                                    <li>Plan contributions in alignment with future financial requirements</li>
+                                    <li>Assess the impact of compounding over the scheme tenure</li>
+                                    <li>Support goal-based planning for education or other long-term needs</li>
                                 </ul>
                             </div>
 
-                            <h3>How SSY Works</h3>
-                            <p><strong>Eligibility &amp; account opening:</strong></p>
-                            <ul>
-                                <li>Account can be opened for a girl child from birth until she attains 10 years of age</li>
-                                <li>Maximum two SSY accounts per family (three for twins/triplets)</li>
-                                <li>Can be opened at any post office or authorized bank branches</li>
-                                <li>Only parent or legal guardian can operate until the girl turns 18</li>
-                            </ul>
-                            <p><strong>Deposit requirements:</strong> Min &#8377;250, max &#8377;1,50,000 per year. Deposits allowed for 15 years; after that, interest continues until maturity.</p>
-                            <p><strong>Interest:</strong> Calculated on lowest balance between 5th and month-end; compounded annually. Current rate: 8.2% p.a. (Q4 FY 2024-25).</p>
-                            <p><strong>Maturity:</strong> Legally, closure is tied to the girl child turning 21 (and other rules). This tool’s <strong>maturity year</strong> follows the common <strong>21-year-from-opening</strong> schedule used by major calculators. Partial withdrawal (50%) is allowed after 18 for education/marriage.</p>
-
-                            <h3>Benefits &amp; features</h3>
-                            <ul>
-                                <li>Highest interest among government small savings (8.2% p.a.)</li>
-                                <li>100% government-backed, zero risk</li>
-                                <li>Section 80C deduction up to &#8377;1.5L; interest &amp; maturity tax-free (EEE status)</li>
-                                <li>Power of compounding over 21 years</li>
-                                <li>Transferable across India</li>
-                            </ul>
-
-                            <h3>Who should use</h3>
-                            <p>Parents of girl children (0–10 years), expecting parents, grandparents, and guardians planning for a daughter's education, marriage, or financial independence with tax-efficient, government-backed returns.</p>
-
-                            <h3>Important considerations</h3>
-                            <div class="callout-box">
-                                <strong>Key points:</strong> Account becomes inactive if minimum &#8377;250 is not deposited in a year (&#8377;50 penalty per default year to reactivate). Only one account per girl. Opening the account earlier in life helps in real life; this calculator’s totals follow the standard 21-year / 15-deposit model above.
+                        <h3 class="calculator-info-title">How Does the SSY Calculator Work?</h3>
+                            <div class="calculator-info-content">
+                                <p>The SSY scheme operates with:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Contributions allowed for <strong>15 years</strong></li>
+                                    <li>Total maturity period of <strong>21 years</strong></li>
+                                    <li>Interest compounded annually</li>
+                                </ul>
+                                <p>The calculator estimates the future value using a compound interest approach:</p>
+                                <p><strong style="margin-left: 10px;">A = P × (1 + r/n)^(n×t)</strong></p>
+                                <p>Where:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li><strong>A</strong> = Maturity value</li>
+                                    <li><strong>P</strong> = Annual contribution</li>
+                                    <li><strong>r</strong> = Rate of interest</li>
+                                    <li><strong>t</strong> = Investment duration</li>
+                                    <li><strong>n</strong> = Compounding frequency (annual)</li>
+                                </ul>
+                                <p>Even after contributions stop (post 15 years), the invested amount continues to earn interest until maturity.</p>
                             </div>
 
-                            <h3>Worked examples (same math as above)</h3>
-                            <p><strong>Example A — match the default sliders:</strong> <em>P</em> = &#8377;10,000/year, girl’s age 5 (display only), start year <strong>2021</strong>, rate <strong><?php echo htmlspecialchars((string) $ssyRateDefault, ENT_QUOTES, 'UTF-8'); ?>%</strong> p.a.</p>
-                            <ul>
-                                <li>Total investment = 15 × &#8377;10,000 = <strong>&#8377;1,50,000</strong></li>
-                                <li>Total interest (after rounding) = <strong>&#8377;3,11,839</strong></li>
-                                <li>Maturity value = <strong>&#8377;4,61,839</strong></li>
-                                <li>Maturity year = 2021 + 21 = <strong>2042</strong></li>
-                            </ul>
-                            <p><strong>Example B — higher yearly deposit:</strong> <em>P</em> = &#8377;1,00,000/year for 15 years, same <?php echo htmlspecialchars((string) $ssyRateDefault, ENT_QUOTES, 'UTF-8'); ?>% model.</p>
-                            <ul>
-                                <li>Total investment = <strong>&#8377;15,00,000</strong></li>
-                                <li>Total interest ≈ <strong>&#8377;31,18,390</strong></li>
-                                <li>Maturity value ≈ <strong>&#8377;46,18,390</strong></li>
-                            </ul>
-                            <p>Set the yearly investment slider to &#8377;10,000 or &#8377;1,00,000 and compare; the summary and chart use the same recurrence.</p>
-
-                            <h3>FAQs</h3>
-                            <div class="faq-item">
-                                <p class="faq-q">Can I open SSY if my daughter is already 10?</p>
-                                <p>No. Accounts can only be opened before the girl turns 10.</p>
-                            </div>
-                            <div class="faq-item">
-                                <p class="faq-q">What if I miss a year's deposit?</p>
-                                <p>Account becomes irregular. Pay &#8377;50 penalty per default year plus minimum deposits to reactivate.</p>
-                            </div>
-                            <div class="faq-item">
-                                <p class="faq-q">When can I withdraw?</p>
-                                <p>Partial (50%) after 18 for education/marriage. Full withdrawal at 21 or marriage after 18.</p>
-                            </div>
-                            <div class="faq-item">
-                                <p class="faq-q">Is SSY better than PPF for my daughter?</p>
-                                <p>Often yes for this use case: higher notified rate (e.g. 8.2% vs 7.1%), same tax benefits, and purpose-built for the girl child's future.</p>
+                        <h3 class="calculator-info-title">Example</h3>
+                            <div class="calculator-info-content">
+                                <p>Assume:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Annual contribution: ₹1,00,000</li>
+                                    <li>Contribution period: 15 years</li>
+                                    <li>Total tenure: 21 years</li>
+                                    <li>Interest rate: 8.2% (assumed)</li>
+                                </ul>
+                                <p>The total contribution over 15 years would be ₹15,00,000.</p>
+                                <p>With annual compounding, the estimated maturity value may be in the range of:</p>
+                                <p><strong>₹40,00,000+ (approx.)</strong></p>
+                                <p>Actual returns depend on the interest rate notified periodically by the Government.</p>
                             </div>
 
-                            <h3>Related calculators</h3>
-                            <ul class="related-calc-list">
-                                <li><a href="calculator-ppf.php">PPF Calculator</a> — compare for family planning</li>
-                                <li><a href="calculator-elss.php">ELSS Calculator</a> — balance with market-linked 80C</li>
-                                <li><a href="calculator-sip.php">SIP Calculator</a> — complement with equity investments</li>
-                                <li><a href="calculator-cagr.php">CAGR Calculator</a> — compare returns over time</li>
-                            </ul>
-                        </div>
+
+                        <h3 class="calculator-info-title">How to Use the SSY Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>To use the calculator:</p>
+                                <ol>
+                                    <li>Enter the annual investment amount</li>
+                                    <li>Input the age of the girl child</li>
+                                    <li>Select the investment start year</li>
+                                    <li>The calculator will display:
+                                        <ul>
+                                            <li>Total investment</li>
+                                            <li>Interest earned</li>
+                                            <li>Maturity amount and year</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <p>The output updates dynamically based on the inputs provided.</p>
+                            </div>
+                        
+                        <h3 class="calculator-info-title">How the SSY Calculator Assists Investors</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Provides an estimate of long-term savings under the scheme</li>
+                                    <li>Helps determine appropriate annual contribution levels</li>
+                                    <li>Assists in aligning investments with future financial goals</li>
+                                    <li>Eliminates the need for manual calculations</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">Key Features of the SSY Scheme</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Government-backed savings instrument</li>
+                                    <li>Interest rate notified periodically</li>
+                                    <li>Contributions eligible for tax deduction under Section 80C (subject to prevailing tax laws)</li>
+                                    <li>Interest earned and maturity amount are tax-exempt under applicable provisions</li>
+                                    <li>Long-term investment horizon with disciplined savings structure</li>
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                            <div class="calculator-info-content">
+                                <ul style="margin-left: 14px;">
+                                    <li>Interest rates are subject to periodic revision</li>
+                                    <li>Minimum annual contribution is required to keep the account active</li>
+                                    <li>Withdrawals are subject to scheme rules and eligibility conditions</li>
+                                    <li>The calculator provides indicative values and does not account for regulatory changes</li>
+                                    
+                                </ul>
+                            </div>
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                            <div class="stepup-faq-accordion" aria-label="SSY calculator frequently asked questions">
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ssy-faq="0">
+                                    <span class="stepup-faq-question">What is the maturity period of SSY?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ssy-faq-panel-0" hidden>
+                                    The scheme matures after 21 years from the date of account opening.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ssy-faq="1">
+                                    <span class="stepup-faq-question">For how long can contributions be made?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ssy-faq-panel-1" hidden>
+                                    Contributions can be made for up to 15 years.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ssy-faq="2">
+                                    <span class="stepup-faq-question">Is the interest rate fixed?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ssy-faq-panel-2" hidden>
+                                    No, it is notified periodically by the Government.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ssy-faq="3">
+                                    <span class="stepup-faq-question">Does the calculator provide exact returns?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ssy-faq-panel-3" hidden>
+                                    No, it provides estimates based on current assumptions.
+                                </div>
+
+                                <button type="button" class="stepup-faq-row" aria-expanded="false" data-ssy-faq="4">
+                                    <span class="stepup-faq-question">Are there tax benefits under SSY?</span>
+                                    <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                </button>
+                                <div class="stepup-faq-panel" id="ssy-faq-panel-4" hidden>
+                                    Yes, contributions may qualify for deduction under Section 80C, subject to applicable laws.
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -684,6 +763,7 @@ $ssyStartYearDefault = max(2015, min(2021, $ssyStartYearMaxUi));
                 }
             });
         }
+
     }
 
     window.addEventListener('load', startSsyCore);

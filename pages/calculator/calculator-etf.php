@@ -31,89 +31,174 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
-                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+               
 
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                     <div class="calculator-info-section">
                         <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About ETF Calculator</h2>
+                          <h3 class="calculator-info-title">ETF Calculator (Exchange-Traded Fund)</h3>
                             <div class="calculator-info-content">
-                                <p>The <strong>ETF (Exchange Traded Fund) Calculator</strong> evaluates returns from passive index investingï¿½a low-cost, transparent alternative to mutual funds. ETFs combine diversification with stock-like flexibility, tracking Nifty 50, Sensex, Gold, or international indices.</p>
-                                <p>This calculator factors in ultra-low expense ratios (0.05ï¿½0.5%), trading charges, and tax treatment for accurate net returns. Essential for index investors and cost-conscious long-term wealth builders.</p>
-                                <h3>How ETFs Work</h3>
-                                <p><strong>Basics:</strong> Tracks index; trades like stocks on exchange; need demat; real-time pricing. <strong>Types:</strong> Equity (Nifty, Sensex), Gold, International, Debt, Sectoral. <strong>Costs:</strong> Expense ratio 0.05ï¿½0.5%; brokerage + STT like stocks; no entry/exit load. Net return = Market return - Expense - Trading costs - Tracking error.</p>
-                                <h3>Benefits</h3>
-                                <ul>
-                                    <li>Ultra-low costs: 5ï¿½10x lower than active MFs; transparency; liquidity (buy/sell anytime)</li>
-                                    <li>No fund manager risk; tax-efficient; diverse access (indices, gold, international)</li>
-                                    <li>Cost comparison: Over 20yr on &#8377;10L ETF saves ~&#8377;45L vs Active MF, ~&#8377;15L vs Index MF</li>
-                                </ul>
-                                <p><strong>Tax:</strong> Equity ETFs: &lt;12mo STCG 20%; &gt;12mo LTCG 12.5% (above &#8377;1.25L).</p>
-                                <h3>Who Should Use</h3>
-                                <p>Index enthusiasts, cost-conscious investors, long-term builders (15+yr), DIY investors with demat. Perfect if: believe market is hard to beat, want minimal cost. NOT if: no demat, want hands-off (MF SIP easier), seeking to beat market.</p>
-                                <h3>Important Considerations</h3>
-                                <p>Requires demat; trading charges each buy/sell; no auto-SIP; bid-ask spread; tracking error (choose &lt;0.15%). Use limit orders; focus on liquid ETFs (high AUM, &gt;10K daily volume). <strong>Optimal:</strong> Large amounts -> ETF; small SIP (&lt;&#8377;5K) -> Index MF.</p>
-                                <h3>Example</h3>
-                                <p>&#8377;10L Nifty ETF, 0.1% expense, 12% index return, 10yr: Value ~&#8377;30.8L. Post LTCG tax (~&#8377;2.4L): ~&#8377;28.2L. vs Active MF (14% gross, 2% expense): barely better; 70% of active funds fail to beat index.</p>
-                                <h3>FAQs</h3>
-                                <div class="faq-item"><p class="faq-q">ETF vs Index MF?</p><p>ETF: exchange-traded, real-time, lower expense, demat, brokerage. Index MF: AMC direct, single NAV, no demat, auto-SIP. Small SIP ? MF; large lump sum ? ETF.</p></div>
-                                <div class="faq-item"><p class="faq-q">SIP in ETFs?</p><p>No automaticï¿½manually buy monthly (self-discipline SIP) or invest quarterly to reduce brokerage.</p></div>
-                                <div class="faq-item"><p class="faq-q">Which ETF for beginners?</p><p>Nifty 50 (large-cap), Nifty Next 50 (mid-cap), Gold. Avoid sectoral, low-liquidity, newly launched.</p></div>
-                                <div class="faq-item"><p class="faq-q">Tracking error?</p><p>Difference between ETF and index return. Good: &lt;0.15%. Caused by expense, cash drag, rebalancing.</p></div>
-                                <div class="faq-item"><p class="faq-q">ETFs safe?</p><p>Yesï¿½SEBI regulated, actual underlying stocks, transparent. Market risk (index falls); liquidity risk in some ETFs.</p></div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-sip.php">SIP Calculator</a> - Manual SIP strategy for ETF</li>
-                                    <li><a href="calculator-lumpsum.php">Lumpsum Calculator</a> - One-time ETF investment</li>
-                                    <li><a href="calculator-cagr.php">CAGR Calculator</a> - Track ETF vs index performance</li>
-                                    <li><a href="calculator-brokerage.php">Brokerage Calculator</a> - ETF trading costs</li>
-                                    <li><a href="calculator-stcg.php">STCG/LTCG Tax Calculator</a> - Tax on ETF redemption</li>
-                                    <li><a href="calculator-mutual-fund.php">Mutual Fund Calculator</a> - Compare ETF vs active funds</li>
-                                </ul>
+                                <p>Exchange-Traded Funds (ETFs) are investment instruments that provide exposure to a basket of securities such as equities, bonds, or commodities. ETFs are traded on stock exchanges similar to individual stocks and typically track an index, sector, or asset class.</p>
+                                <p>An ETF Calculator is a financial tool used to estimate the potential growth of investments made in ETFs over a specified period.</p>
                             </div>
+
+                            <h3 class="calculator-info-title">What is an ETF Calculator?</h3>
+                            <div class="calculator-info-content">
+                                <p>An ETF Calculator is an online utility that helps investors estimate the future value of their ETF investments.</p>
+                                <p>By entering:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Investment amount (lumpsum or SIP)</li>
+                                    <li>Expected rate of return</li>
+                                    <li>Investment duration</li>
+                                </ul>
+                                <p>the calculator computes:</p>
+                                <ul style="margin-left: 14px;">
+                                    <li>Estimated investment value over time</li>
+                                    <li>Total returns generated</li>
+                                </ul>
+                                <p>The results are indicative and depend on assumptions related to returns and investment horizon.</p>
+                            </div>
+
+
+                             <h3 class="calculator-info-title">What are ETFs?</h3>
+                                <div class="calculator-info-content">
+                                    <p>ETFs are pooled investment vehicles that hold a diversified portfolio of assets. They are designed to track the performance of an underlying index, commodity, or sector.</p>
+                                    <p>Key characteristics include:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Traded on stock exchanges like equities</li>
+                                        <li>Provide diversification through a single instrument</li>
+                                        <li>Prices fluctuate based on underlying asset values</li>
+                                        <li>Can be bought and sold during market hours</li>
+                                       
+                                    </ul>
+                                    
+                                </div>
+                            
+                            <h3 class="calculator-info-title">Purpose and Use of an ETF Calculator</h3>
+                                <div class="calculator-info-content">
+                                    <p>The ETF calculator assists investors in evaluating the growth potential of their investments.</p>
+                                    <p>It can be used to:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Estimate long-term investment growth</li>
+                                        <li>Compare different return assumptions</li>
+                                        <li>Plan investments for financial goals</li>
+                                        <li>Evaluate lump sum and SIP-based ETF investments</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">How Does an ETF Calculator Work?</h3>
+                                <div class="calculator-info-content">
+                                    <p>An ETF calculator uses the concept of compound growth to project returns over time.</p>
+                                    <p><strong style="margin-left: 10px;"> 1. Lump Sum Investment</strong></p>
+                                    <p>For one-time investments, the future value is calculated as:</p>
+                                    <p><strong style="margin-left: 10px;">FV = P(1 + r)^n</strong></p>
+                                    <p>Where:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li><strong>FV</strong> = Future value</li>
+                                        <li><strong>P</strong> = Initial investment</li>
+                                        <li><strong>r</strong> = Expected annual return</li>
+                                        <li><strong>n</strong> = Investment duration</li>
+                                    </ul>
+                                    <p><strong style="margin-left: 10px;">2. SIP Investment</strong></p>
+                                    <p>For periodic investments, the future value is calculated as:</p>
+                                    <p><strong style="margin-left: 10px;">FV = P × [((1 + r)^n - 1) / r] × (1 + r)</strong      ></p>
+                                    <p>Where:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li><strong>FV</strong> = Future value</li>
+                                        <li><strong>P</strong> = Periodic investment</li>
+                                        <li><strong>r</strong> = Rate of return</li>
+                                        <li><strong>n</strong> = Number of contributions</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">Illustrative Example</h3>
+                                <div class="calculator-info-content">
+                                    <h3 >Lump Sum Example</h3>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Investment: ₹10,000</li>
+                                        <li>Duration: 10 years</li>
+                                        <li>Expected return: 7%</li>
+                                        
+                                    </ul>
+                                    <p>Estimated maturity value:</p>
+                                    <p><strong style="margin-left: 10px;">₹19,672 (approx.)</strong></p>
+
+                                    <h3 >SIP Example</h3>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Monthly investment: ₹5,000</li>
+                                        <li>Duration: 5 years</li>
+                                        <li>Expected return: 8%</li>
+                                        
+                                    </ul>
+                                    <p>The calculator estimates:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Total invested amount</li>
+                                        <li>Returns generated</li>
+                                        <li>Final investment value</li>
+                                        
+                                    </ul>
+                                    
+                                </div>
+
+                            <h3 class="calculator-info-title">How to Use the ETF Calculator?</h3>
+                                <div class="calculator-info-content">
+                                    <p>To calculate ETF returns:</p>
+                                    <ol>
+                                        <li>Select investment type (lump sum or SIP)</li>
+                                        <li>Enter the investment amount</li>
+                                        <li>Input the expected rate of return</li>
+                                        <li>Specify the investment duration</li>
+                                        <li>The calculator will display:
+                                            <ul>
+                                                <li>Total investment</li>
+                                                <li>Estimated returns</li>
+                                                <li>Projected value</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                            <h3 class="calculator-info-title">How the Calculator Assists Investors?</h3>
+                                <div class="calculator-info-content">
+                                    <ul style="margin-left: 14px;">
+                                        <li>Provides a structured estimate of investment growth</li>
+                                        <li>Helps compare different ETFs and return scenarios</li>
+                                        <li>Supports goal-based investment planning</li>
+                                        <li>Simplifies complex calculations</li>
+                                    </ul>
+                                </div>
+
+                             <h3 class="calculator-info-title">Factors Affecting ETF Returns</h3>
+                                <div class="calculator-info-content">
+                                    <p>ETF returns depend on several factors, including:</p>
+                                    <ul style="margin-left: 14px;">
+                                        <li>Performance of underlying assets</li>
+                                        <li>Tracking error relative to the benchmark</li>
+                                        <li>Expense ratios and fees</li>
+                                        <li>Market conditions and volatility</li>
+                                        <li>Premium or discount to Net Asset Value (NAV)</li>
+                                    </ul>
+                                </div>
+
+                            <h3 class="calculator-info-title">Key Considerations</h3>
+                                <div class="calculator-info-content">
+                                    <ul style="margin-left: 14px;">
+                                        <li>ETF returns are market-linked and not guaranteed</li>
+                                        <li>Prices may deviate from underlying NAV</li>
+                                        <li>Taxation depends on holding period and asset type</li>
+                                        <li>The calculator provides indicative values and does not account for:
+                                            <ul style="margin-left: 14px;">
+                                                <li>Brokerage</li>
+                                                <li>Taxes</li>
+                                                <li>Expense ratios</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                         </div>
                     </div>
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate ETF Returns</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calcETFResult(event)">
-                                <div class="calculator-field">
-                                    <label for="etf-type">Investment Type</label>
-                                    <select id="etf-type">
-                                        <option value="lumpsum">Lumpsum</option>
-                                        <option value="sip">SIP</option>
-                                    </select>
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="etf-amount">Amount (&#8377;)</label>
-                                    <input type="number" id="etf-amount" required min="1000" value="100000">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="etf-period">Period (Years)</label>
-                                    <input type="number" id="etf-period" required min="1" max="30" value="10">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="etf-rate">Expected Return (%)</label>
-                                    <input type="number" id="etf-rate" value="11" min="8" max="15">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="etf-er">Expense Ratio (%)</label>
-                                    <input type="number" id="etf-er" value="0.1" min="0.05" max="0.5" step="0.05">
-                                </div>
-                                <div class="calculator-field">
-                                    <label><input type="checkbox" id="etf-trading" checked> Include Trading Costs</label>
-                                </div>
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('etfInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('etfResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
-                                </div>
-                            </form>
-                            <div id="etfInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
-                                <div id="etfResultsContent"></div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
