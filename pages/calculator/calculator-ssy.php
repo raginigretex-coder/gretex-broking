@@ -216,7 +216,16 @@ $ssyStartYearDefault = max(2015, min(2021, $ssyStartYearMaxUi));
                                     <li>Interest compounded annually</li>
                                 </ul>
                                 <p>The calculator estimates the future value using a compound interest approach:</p>
-                                <p><strong style="margin-left: 10px;">A = P × (1 + r/n)^(n×t)</strong></p>
+                                <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                    A = P × (1 + 
+                                    <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                        <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                        r
+                                        </span>
+                                        <span style="display:block; font-size:14px;">n</span>
+                                    </span>
+                                    )<sup>n×t</sup>
+                                </p>
                                 <p>Where:</p>
                                 <ul style="margin-left: 14px;">
                                     <li><strong>A</strong> = Maturity value</li>
