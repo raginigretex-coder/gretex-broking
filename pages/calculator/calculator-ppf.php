@@ -181,7 +181,16 @@ $ppfRatePercent = 7.1;
                             <h3 class="calculator-info-title">How Does a PPF Calculator Work?</h3>
                             <div class="calculator-info-content">
                                 <p>A PPF calculator uses a compound interest formula to estimate the maturity value of your yearly investments:</p>
-                                <p><strong style="margin-left: 10px;">F = P × ((1 + i)^n - 1) / i</strong></p>
+                                
+                                <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                    F = P × 
+                                    <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                        <span style="display:block; border-bottom:2px solid #000; padding:0 4px;">
+                                        (1 + i)<sup>n</sup> − 1
+                                        </span>
+                                        <span style="display:block; font-size:14px;">i</span>
+                                    </span>
+                                </p>
                                 <p>Where:</p>
                                 <ul style="margin-left: 14px;">
                                     <li><strong>F</strong> = Maturity amount</li>
@@ -235,7 +244,7 @@ $ppfRatePercent = 7.1;
 
                             <h3 class="calculator-info-title">Tax Benefits of PPF</h3>
                                 <div class="calculator-info-content">
-                                    <p>PPF investments are generally classified under the EEE (Exempt-Exempt-Exempt) category:</p>
+                                    <p>PPF investments are generally classified under the <strong>EEE (Exempt-Exempt-Exempt)</strong> category:</p>
                                     <ul style="margin-left: 14px;">
                                         <li>Contributions are eligible for deduction under Section 80C (subject to applicable limits)</li>
                                         <li>Interest earned is tax-exempt</li>
