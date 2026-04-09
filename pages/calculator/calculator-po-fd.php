@@ -1,37 +1,139 @@
 <?php
-
 /**
  * Post Office FD Calculator - Gretex Financial
- * Gretex Share Broking Limited
+ * Groww-like functionality with Gretex layout.
  */
 
-// Page configuration
 $pageTitle = 'Post Office FD Calculator - Gretex Financial';
 $additionalCSS = [
     '../../css/calculator-page.css',
     '../../css/chatbot.css',
 ];
 
-// Include header
+$additionalScripts = [
+    'https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js',
+];
+
 require_once '../../includes/header.php';
 require_once '../../includes/navbar.php';
 ?>
 
-
-
-<main class="calculator-page">
+<main class="calculator-page investment-modern-calc-page">
     <div class="calculator-hero">
         <div class="container">
             <div class="calculator-hero-content">
                 <a href="calculators.php" class="back-link"><i data-lucide="arrow-left"></i><span>Back to Calculators</span></a>
                 <h1 class="calculator-page-title">Post Office FD Calculator</h1>
-                <p class="calculator-page-description">Government-backed fixed deposit with quarterly compounding</p>
+                <p class="calculator-page-description">Estimate maturity with quarterly compounding using Groww-style live inputs in the Gretex calculator layout.</p>
             </div>
         </div>
     </div>
 
     <div class="calculator-main-section">
         <div class="container">
+            <section class="investment-modern-calc investment-modern-calc--pofd" aria-label="Post Office FD calculator">
+                <div class="investment-tabs" aria-label="Calculator type">
+                    <button type="button" class="investment-tab is-active" aria-current="page">Post Office FD</button>
+                </div>
+
+                <div class="investment-modern-calc-grid">
+                    <div class="investment-controls" aria-label="Post Office FD inputs">
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <label class="investment-slider-label" for="pofdAmountRange">Total investment</label>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="pofdAmountErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <span class="pill-unit">&#8377;</span>
+                                        <input type="text" class="pill-input" id="pofdAmountInput" value="100000" inputmode="numeric" autocomplete="off" aria-label="Total investment amount" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="pofdAmountRange" min="5000" max="10000000" step="1000" value="100000" aria-label="Total investment slider" />
+                        </div>
+
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <label class="investment-slider-label" for="pofdRateRange">Rate of interest (p.a)</label>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="pofdRateErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <input type="number" class="pill-input pill-input--narrow" id="pofdRateInput" min="1" max="15" step="0.1" value="6.5" inputmode="decimal" aria-label="Interest rate percentage" />
+                                        <span class="pill-unit">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="pofdRateRange" min="1" max="15" step="0.1" value="6.5" aria-label="Interest rate slider" />
+                        </div>
+
+                        <div class="investment-slider-field">
+                            <div class="investment-slider-header">
+                                <div class="investment-label-with-unit">
+                                    <label class="investment-slider-label" for="pofdPeriodRange">Time period</label>
+                                    <label class="sr-only" for="pofdPeriodUnit">Time period unit</label>
+                                    <select id="pofdPeriodUnit" class="investment-period-unit-select" aria-label="Time period unit">
+                                        <option value="years" selected>Years</option>
+                                        <option value="months">Months</option>
+                                        <option value="days">Days</option>
+                                    </select>
+                                </div>
+                                <div class="investment-input-wrap">
+                                    <span class="investment-error-icon" id="pofdPeriodErrorIcon" aria-hidden="true">i</span>
+                                    <div class="investment-value-pill">
+                                        <input type="number" class="pill-input pill-input--narrow" id="pofdPeriodInput" min="1" max="25" step="1" value="5" inputmode="numeric" aria-label="Time period value" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="range" class="investment-range" id="pofdPeriodRange" min="1" max="25" step="1" value="5" aria-label="Time period slider" />
+                        </div>
+                    </div>
+
+                    <div class="investment-visual" aria-label="Post Office FD result visualization">
+                        <div class="investment-donut-card investment-donut-card--pofd">
+                            <div class="ssy-groww-results investment-ssy-summary-top" aria-label="Post Office FD summary">
+                                <div class="ssy-summary-list">
+                                    <div class="ssy-summary-row">
+                                        <span class="ssy-summary-label">Invested amount</span>
+                                        <span class="ssy-summary-value" id="pofdSummaryInvested">&#8377;0</span>
+                                    </div>
+                                    <div class="ssy-summary-row">
+                                        <span class="ssy-summary-label">Est. returns</span>
+                                        <span class="ssy-summary-value ssy-summary-value--interest" id="pofdSummaryInterest">&#8377;0</span>
+                                    </div>
+                                    <div class="ssy-summary-row">
+                                        <span class="ssy-summary-label">Rate used</span>
+                                        <span class="ssy-summary-value" id="pofdSummaryRate">0%</span>
+                                    </div>
+                                    <div class="ssy-summary-row ssy-summary-row--maturity">
+                                        <span class="ssy-summary-label">Total value</span>
+                                        <span class="ssy-summary-value" id="pofdSummaryMaturity">&#8377;0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="investment-donut-wrap">
+                                <div id="pofdDonutChart"></div>
+                                <div class="investment-donut-center">
+                                    <div class="investment-donut-center-label">Total value</div>
+                                    <div class="investment-donut-center-value" id="pofdDonutCenterValue">&#8377;0</div>
+                                </div>
+                            </div>
+
+                            <div class="investment-donut-legend" aria-hidden="true">
+                                <div class="legend-item">
+                                    <span class="legend-dot legend-returns"></span>
+                                    <span>Est. returns</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot legend-invested"></span>
+                                    <span>Invested amount</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <div class="calculator-wrapper">
                 <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
                 <div class="calculator-info-section">
@@ -239,7 +341,6 @@ require_once '../../includes/navbar.php';
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -247,40 +348,429 @@ require_once '../../includes/navbar.php';
 
 <script src="../../js/gretex-financial.js"></script>
 <script>
-    lucide.createIcons();
+    (function () {
+        'use strict';
 
-    function calcPOFDResult(e) {
-        e.preventDefault();
-        // Reset previous reading first - clear results before calculating
-        const pofdResultsContent = document.getElementById('pofdResultsContent');
-        if (pofdResultsContent) pofdResultsContent.innerHTML = '';
+        var MIN_AMOUNT = 5000;
+        var MAX_AMOUNT = 10000000;
+        var AMOUNT_STEP = 1000;
+        var MIN_RATE = 1;
+        var MAX_RATE = 15;
+        var YEAR_MIN = 1;
+        var YEAR_MAX = 25;
+        var MONTH_MIN = 1;
+        var MONTH_MAX = 11;
+        var DAY_MIN = 1;
+        var DAY_MAX = 31;
+        var COMPOUNDING = 4;
 
-        const amt = parseFloat(document.getElementById('pofd-amount').value);
-        const tenure = parseInt(document.getElementById('pofd-tenure').value);
-        const r = calcPOFD(amt, tenure);
-        document.getElementById('pofdResultsContent').innerHTML = `<div class="results-primary-card">
-                <div class="results-main">
-                    <div class="result-item"><span class="result-label">Principal:</span><span class="result-value">${formatCurrency(r.principal)}</span></div>
-                    <div class="result-item"><span class="result-label">Interest Rate:</span><span class="result-value">${r.interestRate}%</span></div>
-                    <div class="result-item"><span class="result-label">Interest Earned:</span><span class="result-value">${formatCurrency(r.interestEarned)}</span></div>
-                    <div class="result-item highlight"><span class="result-label">Maturity Amount:</span><span class="result-value">${formatCurrency(r.maturityAmount)}</span></div>
-                </div>
-            </div>`;
-        document.getElementById('pofdInlineWrap').classList.remove('is-hidden');
-    }
+        var amountRange = document.getElementById('pofdAmountRange');
+        var amountInput = document.getElementById('pofdAmountInput');
+        var rateRange = document.getElementById('pofdRateRange');
+        var rateInput = document.getElementById('pofdRateInput');
+        var periodRange = document.getElementById('pofdPeriodRange');
+        var periodInput = document.getElementById('pofdPeriodInput');
+        var periodUnit = document.getElementById('pofdPeriodUnit');
+
+        var amountField = amountRange ? amountRange.closest('.investment-slider-field') : null;
+        var rateField = rateRange ? rateRange.closest('.investment-slider-field') : null;
+        var periodField = periodRange ? periodRange.closest('.investment-slider-field') : null;
+
+        var summaryInvested = document.getElementById('pofdSummaryInvested');
+        var summaryInterest = document.getElementById('pofdSummaryInterest');
+        var summaryRate = document.getElementById('pofdSummaryRate');
+        var summaryMaturity = document.getElementById('pofdSummaryMaturity');
+        var donutCenterValue = document.getElementById('pofdDonutCenterValue');
+
+        var pofdDonutChart = null;
+
+        function clamp(value, min, max) {
+            if (!isFinite(value)) return min;
+            return Math.min(max, Math.max(min, value));
+        }
+
+        function formatINR(value) {
+            var amount = Number(value);
+            if (!isFinite(amount)) return '\u20B90';
+            return '\u20B9' + Math.round(amount).toLocaleString('en-IN');
+        }
+
+        function formatDigits(value) {
+            var amount = Number(value);
+            if (!isFinite(amount)) return '0';
+            return Math.round(amount).toLocaleString('en-IN');
+        }
+
+        function setFieldError(field, enabled) {
+            if (field) field.classList.toggle('is-error', !!enabled);
+        }
+
+        function setRangeFill(rangeEl, value) {
+            if (!rangeEl) return;
+            var min = Number(rangeEl.min);
+            var max = Number(rangeEl.max);
+            var percent = max === min ? 100 : ((value - min) / (max - min)) * 100;
+            rangeEl.style.setProperty('--fill', clamp(percent, 0, 100).toFixed(3));
+        }
+
+        function snapAmount(value) {
+            return Math.round(Number(value) / AMOUNT_STEP) * AMOUNT_STEP;
+        }
+
+        function readAmount() {
+            return clamp(snapAmount(Number(amountRange.value)), MIN_AMOUNT, MAX_AMOUNT);
+        }
+
+        function readRate() {
+            return clamp(Number(rateRange.value), MIN_RATE, MAX_RATE);
+        }
+
+        function getPeriodBounds() {
+            if (periodUnit && periodUnit.value === 'months') {
+                return { min: MONTH_MIN, max: MONTH_MAX, step: 1 };
+            }
+            if (periodUnit && periodUnit.value === 'days') {
+                return { min: DAY_MIN, max: DAY_MAX, step: 1 };
+            }
+            return { min: YEAR_MIN, max: YEAR_MAX, step: 1 };
+        }
+
+        function readPeriodValue() {
+            var bounds = getPeriodBounds();
+            return clamp(Math.round(Number(periodRange.value)), bounds.min, bounds.max);
+        }
+
+        function getYears() {
+            var value = readPeriodValue();
+            if (periodUnit && periodUnit.value === 'months') return value / 12;
+            if (periodUnit && periodUnit.value === 'days') return value / 365;
+            return value;
+        }
+
+        function computePOFD() {
+            var principal = Math.round(readAmount());
+            var annualRate = readRate();
+            var maturityValue;
+            var estimatedReturns;
+
+            if (periodUnit && periodUnit.value === 'days') {
+                estimatedReturns = Math.round((principal * annualRate * readPeriodValue() * 7) / 250000);
+                maturityValue = principal + estimatedReturns;
+            } else if (periodUnit && periodUnit.value === 'months') {
+                var months = readPeriodValue();
+                var averageDaysPerMonth = 30.66;
+                estimatedReturns = Math.round((principal * annualRate * months * averageDaysPerMonth) / 36500);
+                maturityValue = principal + estimatedReturns;
+            } else {
+                var years = getYears();
+                var rawMaturityValue = principal * Math.pow(1 + (annualRate / 100 / COMPOUNDING), COMPOUNDING * years);
+                maturityValue = Math.round(rawMaturityValue);
+                estimatedReturns = maturityValue - principal;
+            }
+
+            return {
+                investedAmount: principal,
+                estimatedReturns: estimatedReturns,
+                maturityValue: maturityValue,
+                annualRate: annualRate
+            };
+        }
+
+        function ensureChart() {
+            if (pofdDonutChart || typeof ApexCharts === 'undefined') return;
+            var chartElement = document.getElementById('pofdDonutChart');
+            if (!chartElement) return;
+
+            var result = computePOFD();
+
+            pofdDonutChart = new ApexCharts(chartElement, {
+                series: [Math.max(0, result.estimatedReturns), Math.max(0, result.investedAmount)],
+                chart: {
+                    type: 'donut',
+                    height: 285,
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 450
+                    }
+                },
+                labels: ['Est. returns', 'Invested amount'],
+                colors: ['#3B6DFF', '#F97316'],
+                dataLabels: { enabled: false },
+                legend: { show: false },
+                stroke: { show: false },
+                tooltip: {
+                    y: {
+                        formatter: function (val) {
+                            return formatINR(val);
+                        }
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '84%',
+                            labels: { show: false }
+                        }
+                    }
+                }
+            });
+
+            pofdDonutChart.render();
+        }
+
+        function updateSummary(animateChart) {
+            var result = computePOFD();
+
+            if (summaryInvested) summaryInvested.textContent = formatINR(result.investedAmount);
+            if (summaryInterest) summaryInterest.textContent = formatINR(result.estimatedReturns);
+            if (summaryRate) summaryRate.textContent = result.annualRate.toFixed(1).replace(/\.0$/, '') + '%';
+            if (summaryMaturity) summaryMaturity.textContent = formatINR(result.maturityValue);
+            if (donutCenterValue) donutCenterValue.textContent = formatINR(result.maturityValue);
+
+            ensureChart();
+            if (pofdDonutChart) {
+                pofdDonutChart.updateSeries(
+                    [Math.max(0, result.estimatedReturns), Math.max(0, result.investedAmount)],
+                    animateChart !== false
+                );
+            }
+        }
+
+        function syncPeriodBounds() {
+            var bounds = getPeriodBounds();
+            var current = clamp(Number(periodInput.value || periodRange.value), bounds.min, bounds.max);
+
+            periodRange.min = String(bounds.min);
+            periodRange.max = String(bounds.max);
+            periodRange.step = String(bounds.step);
+            periodInput.min = String(bounds.min);
+            periodInput.max = String(bounds.max);
+            periodInput.step = String(bounds.step);
+            periodRange.value = String(current);
+            periodInput.value = String(current);
+            setRangeFill(periodRange, current);
+        }
+
+        function bindFaq() {
+            var faqRows = document.querySelectorAll('.stepup-faq-row[aria-controls]');
+            faqRows.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var panelId = button.getAttribute('aria-controls');
+                    var panel = panelId ? document.getElementById(panelId) : null;
+                    if (!panel) return;
+                    var expanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', String(!expanded));
+                    panel.hidden = expanded;
+                });
+            });
+        }
+
+        function bindWhenReady() {
+            if (document.body.dataset.pofdModernBound === '1') return true;
+            if (!amountRange || !amountInput || !rateRange || !rateInput || !periodRange || !periodInput || !periodUnit) return false;
+
+            document.body.dataset.pofdModernBound = '1';
+
+            amountRange.addEventListener('input', function () {
+                var value = clamp(snapAmount(Number(amountRange.value)), MIN_AMOUNT, MAX_AMOUNT);
+                amountRange.value = value;
+                amountInput.value = formatDigits(value);
+                setFieldError(amountField, false);
+                setRangeFill(amountRange, value);
+                updateSummary(false);
+            });
+
+            amountRange.addEventListener('change', function () {
+                updateSummary(true);
+            });
+
+            amountInput.addEventListener('input', function () {
+                var raw = String(amountInput.value || '');
+                var digits = raw.replace(/[^\d]/g, '');
+                if (!digits) {
+                    setFieldError(amountField, raw.trim() !== '');
+                    return;
+                }
+
+                var value = Number(digits);
+                var invalid = value < MIN_AMOUNT || value > MAX_AMOUNT;
+                var clamped = clamp(snapAmount(value), MIN_AMOUNT, MAX_AMOUNT);
+
+                amountRange.value = clamped;
+                amountInput.value = formatDigits(value);
+                setFieldError(amountField, invalid);
+                setRangeFill(amountRange, clamped);
+
+                if (!invalid) updateSummary(false);
+            });
+
+            amountInput.addEventListener('change', function () {
+                var digits = String(amountInput.value || '').replace(/[^\d]/g, '');
+                var value = digits ? Number(digits) : MIN_AMOUNT;
+                var clamped = clamp(snapAmount(value), MIN_AMOUNT, MAX_AMOUNT);
+
+                amountRange.value = clamped;
+                amountInput.value = formatDigits(clamped);
+                setFieldError(amountField, false);
+                setRangeFill(amountRange, clamped);
+                updateSummary(true);
+            });
+
+            rateRange.addEventListener('input', function () {
+                var value = clamp(Number(rateRange.value), MIN_RATE, MAX_RATE);
+                rateRange.value = value;
+                rateInput.value = Number(value).toFixed(1).replace(/\.0$/, '');
+                setFieldError(rateField, false);
+                setRangeFill(rateRange, value);
+                updateSummary(false);
+            });
+
+            rateRange.addEventListener('change', function () {
+                updateSummary(true);
+            });
+
+            rateInput.addEventListener('input', function () {
+                var raw = String(rateInput.value || '');
+                if (raw.trim() === '') {
+                    setFieldError(rateField, true);
+                    return;
+                }
+
+                var value = Number(raw);
+                if (!isFinite(value)) {
+                    setFieldError(rateField, true);
+                    return;
+                }
+
+                var invalid = value < MIN_RATE || value > MAX_RATE;
+                var clamped = clamp(value, MIN_RATE, MAX_RATE);
+
+                rateRange.value = clamped;
+                setFieldError(rateField, invalid);
+                setRangeFill(rateRange, clamped);
+
+                if (!invalid) updateSummary(false);
+            });
+
+            rateInput.addEventListener('change', function () {
+                var value = Number(rateInput.value);
+                var clamped = clamp(isFinite(value) ? value : MIN_RATE, MIN_RATE, MAX_RATE);
+
+                rateRange.value = clamped;
+                rateInput.value = Number(clamped).toFixed(1).replace(/\.0$/, '');
+                setFieldError(rateField, false);
+                setRangeFill(rateRange, clamped);
+                updateSummary(true);
+            });
+
+            periodRange.addEventListener('input', function () {
+                var bounds = getPeriodBounds();
+                var value = clamp(Math.round(Number(periodRange.value)), bounds.min, bounds.max);
+                periodRange.value = value;
+                periodInput.value = value;
+                setFieldError(periodField, false);
+                setRangeFill(periodRange, value);
+                updateSummary(false);
+            });
+
+            periodRange.addEventListener('change', function () {
+                updateSummary(true);
+            });
+
+            periodInput.addEventListener('input', function () {
+                var bounds = getPeriodBounds();
+                var raw = String(periodInput.value || '');
+                if (raw.trim() === '') {
+                    setFieldError(periodField, true);
+                    return;
+                }
+
+                var value = Math.round(Number(raw));
+                if (!isFinite(value)) {
+                    setFieldError(periodField, true);
+                    return;
+                }
+
+                var invalid = value < bounds.min || value > bounds.max;
+                var clamped = clamp(value, bounds.min, bounds.max);
+
+                periodRange.value = clamped;
+                setFieldError(periodField, invalid);
+                setRangeFill(periodRange, clamped);
+
+                if (!invalid) updateSummary(false);
+            });
+
+            periodInput.addEventListener('change', function () {
+                var bounds = getPeriodBounds();
+                var value = Math.round(Number(periodInput.value));
+                var clamped = clamp(isFinite(value) ? value : bounds.min, bounds.min, bounds.max);
+
+                periodRange.value = clamped;
+                periodInput.value = clamped;
+                setFieldError(periodField, false);
+                setRangeFill(periodRange, clamped);
+                updateSummary(true);
+            });
+
+            periodUnit.addEventListener('change', function () {
+                syncPeriodBounds();
+                setFieldError(periodField, false);
+                updateSummary(true);
+            });
+
+            bindFaq();
+
+            amountInput.value = formatDigits(readAmount());
+            rateInput.value = Number(readRate()).toFixed(1).replace(/\.0$/, '');
+            syncPeriodBounds();
+            setRangeFill(amountRange, readAmount());
+            setRangeFill(rateRange, readRate());
+
+            var apexAttempts = 0;
+            function waitForApex() {
+                updateSummary(false);
+                if (typeof ApexCharts === 'undefined') {
+                    apexAttempts += 1;
+                    if (apexAttempts < 80) setTimeout(waitForApex, 80);
+                } else {
+                    ensureChart();
+                    updateSummary(false);
+                }
+            }
+            waitForApex();
+
+            return true;
+        }
+
+        function kickoff() {
+            if (bindWhenReady()) return;
+            var attempts = 0;
+            var timer = setInterval(function () {
+                attempts += 1;
+                if (bindWhenReady() || attempts > 120) clearInterval(timer);
+            }, 50);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', kickoff);
+        } else {
+            kickoff();
+        }
+
+        window.addEventListener('load', kickoff);
+    })();
 </script>
 
 <script src="../../js/search.js"></script>
 <script src="../../js/mobile-menu.js"></script>
-
 <script>
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 </script>
 
-
 <?php
-// Include footer
 require_once '../../includes/footer.php';
 ?>

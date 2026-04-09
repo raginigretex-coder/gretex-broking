@@ -888,8 +888,8 @@
 
 .calculator-info-content li {
     position: relative;
-    margin: 0.62rem 0;
-    line-height: 1.7;
+    margin: 0.5rem 0;
+    line-height: 1.5;
     padding-left: 1.4rem;
 }
 
@@ -1907,6 +1907,94 @@
     text-align: right;
 }
 
+.investment-modern-calc--pord .investment-value-pill .pill-input--narrow {
+    min-width: 3.5rem;
+    max-width: 4.75rem;
+    width: auto;
+    text-align: right;
+}
+
+.investment-modern-calc--pord .investment-donut-card--pord {
+    padding: 0.35rem 1.2rem 0;
+    border-color: #e8ecf1;
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.06);
+}
+
+.investment-modern-calc--pord .investment-ssy-summary-top {
+    margin: 0;
+    padding: 1rem;
+    border-bottom: none;
+}
+
+.investment-modern-calc--pord .investment-ssy-summary-top .ssy-summary-list {
+    gap: 0;
+}
+
+.investment-modern-calc--pord .investment-ssy-summary-top .ssy-summary-row {
+    padding: 0.72rem 0;
+    align-items: center;
+}
+
+.investment-modern-calc--pord .investment-ssy-summary-top .ssy-summary-row:not(:last-child) {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.investment-modern-calc--pord .ssy-summary-value--interest {
+    color: #3b6dff;
+    font-weight: 700;
+}
+
+.investment-modern-calc--pord .investment-donut-wrap {
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 0.35rem;
+}
+
+.investment-modern-calc--pofd .investment-value-pill .pill-input--narrow {
+    min-width: 3.5rem;
+    max-width: 4.75rem;
+    width: auto;
+    text-align: right;
+}
+
+.investment-modern-calc--pofd .investment-donut-card--pofd {
+    padding: 0.35rem 1.2rem 0;
+    border-color: #e8ecf1;
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.06);
+}
+
+.investment-modern-calc--pofd .investment-ssy-summary-top {
+    margin: 0;
+    padding: 1rem;
+    border-bottom: none;
+}
+
+.investment-modern-calc--pofd .investment-ssy-summary-top .ssy-summary-list {
+    gap: 0;
+}
+
+.investment-modern-calc--pofd .investment-ssy-summary-top .ssy-summary-row {
+    padding: 0.72rem 0;
+    align-items: center;
+}
+
+.investment-modern-calc--pofd .investment-ssy-summary-top .ssy-summary-row:not(:last-child) {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.investment-modern-calc--pofd .ssy-summary-value--interest {
+    color: #3b6dff;
+    font-weight: 700;
+}
+
+.investment-modern-calc--pofd .investment-donut-wrap {
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 0.35rem;
+}
+
 .investment-modern-calc--epf .investment-graph-quickbar {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto auto;
@@ -2870,7 +2958,7 @@
 .stepup-faq-question {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.02rem;
-    font-weight: 50;
+    font-weight: 500;
     color: #434343;
     text-align: left;
     line-height: 1.45;
