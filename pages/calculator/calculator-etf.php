@@ -92,7 +92,9 @@ require_once '../../includes/navbar.php';
                                     <p>An ETF calculator uses the concept of compound growth to project returns over time.</p>
                                     <p><strong style="margin-left: 10px;"> 1. Lump Sum Investment</strong></p>
                                     <p>For one-time investments, the future value is calculated as:</p>
-                                    <p><strong style="margin-left: 10px;">FV = P(1 + r)^n</strong></p>
+                                    <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                        FV = P (1 + r)<sup>n</sup>
+                                    </p>
                                     <p>Where:</p>
                                     <ul style="margin-left: 14px;">
                                         <li><strong>FV</strong> = Future value</li>
@@ -102,7 +104,16 @@ require_once '../../includes/navbar.php';
                                     </ul>
                                     <p><strong style="margin-left: 10px;">2. SIP Investment</strong></p>
                                     <p>For periodic investments, the future value is calculated as:</p>
-                                    <p><strong style="margin-left: 10px;">FV = P × [((1 + r)^n - 1) / r] × (1 + r)</strong      ></p>
+                                    <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                         FV = P × 
+                                        <span style="display:inline-block; text-align:center; vertical-align:middle;">
+                                            <span style="display:block; border-bottom:2px solid #000; padding:0 6px;">
+                                            (1 + r)<sup>n</sup> − 1
+                                            </span>
+                                            <span style="display:block; font-size:14px;">r</span>
+                                        </span>
+                                        × (1 + r)
+                                    </p>
                                     <p>Where:</p>
                                     <ul style="margin-left: 14px;">
                                         <li><strong>FV</strong> = Future value</li>
@@ -196,6 +207,49 @@ require_once '../../includes/navbar.php';
                                         </li>
                                     </ul>
                                 </div>
+
+                            <h3 class="calculator-info-title">FAQs</h3>
+                                <div class="stepup-faq-accordion" aria-label="ETF calculator frequently asked questions">
+                                    <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                        <span class="stepup-faq-question">What is an ETF?</span>
+                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                        An ETF is a market-traded investment fund that tracks an index, commodity, or asset basket.
+                                    </div>
+
+                                    <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                        <span class="stepup-faq-question">Is an ETF calculator accurate?</span>
+                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                        It provides estimates based on assumed inputs. Actual returns may vary.
+                                    </div>
+
+                                    <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                        <span class="stepup-faq-question">Can ETFs be invested through SIP?</span>
+                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                        Yes, many platforms allow SIP-based ETF investing.
+                                    </div>
+
+                                    <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                        <span class="stepup-faq-question">What affects ETF returns?</span>
+                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                        Returns depend on underlying asset performance, fees, and market conditions.
+                                    </div>
+
+                                    <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                        <span class="stepup-faq-question">Does the calculator include charges and taxes?</span>
+                                        <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                        No, it provides pre-cost and pre-tax estimates.
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     
@@ -248,6 +302,5 @@ require_once '../../includes/navbar.php';
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-
 
 
