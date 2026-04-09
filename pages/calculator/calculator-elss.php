@@ -291,10 +291,13 @@ require_once '../../includes/navbar.php';
                                 <li>Returns are market-linked and not guaranteed</li>
                                 <li>Lock-in period restricts withdrawal for 3 years</li>
                                 <li>Tax benefits are subject to prevailing regulations</li>
-                                <li>The calculator provides indicative values and does not account for:</li>
-                                <li>Expense ratios</li>
-                                <li>Exit loads</li>
-                                <li>Capital gains taxation</li>
+                                <li>The calculator provides indicative values and does not account for:
+                                    <ul style="margin-left: 20px;">
+                                        <li>Expense ratios</li>
+                                        <li>Exit loads</li>
+                                        <li>Capital gains taxation</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
 
