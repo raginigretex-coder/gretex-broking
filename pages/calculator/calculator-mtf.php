@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MTF Calculator - Gretex Financial
  * Gretex Share Broking Limited
@@ -18,111 +19,237 @@ require_once '../../includes/navbar.php';
 
 
 
-    <main class="calculator-page">
-        <div class="calculator-hero">
-            <div class="container">
-                <div class="calculator-hero-content">
-                    <a href="calculators.php" class="back-link"><i data-lucide="arrow-left"></i><span>Back to Calculators</span></a>
-                    <h1 class="calculator-page-title">MTF Calculator</h1>
-                    <p class="calculator-page-description">Margin Trading Facility - Leveraged investing with borrowed funds</p>
-                </div>
+<main class="calculator-page">
+    <div class="calculator-hero">
+        <div class="container">
+            <div class="calculator-hero-content">
+                <a href="calculators.php" class="back-link"><i data-lucide="arrow-left"></i><span>Back to Calculators</span></a>
+                <h1 class="calculator-page-title">MTF Calculator</h1>
+                <p class="calculator-page-description">Margin Trading Facility - Leveraged investing with borrowed funds</p>
             </div>
         </div>
+    </div>
 
-        <div class="calculator-main-section">
-            <div class="container">
-                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+    <div class="calculator-main-section">
+        <div class="container">
 
-                <div class="calculator-wrapper">
-                    <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
-                    <div class="calculator-info-section">
-                        <div class="calculator-info-card">
-                            <h2 class="calculator-info-title">About MTF Calculator</h2>
-                            <div class="calculator-info-content">
-                                <p>The <strong>Margin Trading Facility (MTF) Calculator</strong> shows costs and returns of buying stocks with broker funding. MTF lets you leverage ï¿½ buy more than your capital ï¿½ but daily interest and amplified risk must be evaluated.</p>
-                                <p>See margin required, amount borrowed, daily interest, and net returns after all costs. Essential for deciding if leveraged investing fits your situation.</p>
-                                <h3>How MTF Works</h3>
-                                <p>You provide 20ï¿½50% margin; broker lends 50ï¿½80%. Daily interest on borrowed amount (12ï¿½18% p.a.). Can hold days/weeks (not just intraday). Interest debited from trading account; compounds if unpaid.</p>
-                                <p><strong>Example:</strong> &#8377;1L stock, 25% margin = &#8377;25K yours, &#8377;75K borrowed. At 15% p.a., daily interest ~&#8377;31. Sell: (Sale - Buy) - Interest - Charges = Net P&amp;L.</p>
-                                <h3>Benefits &amp; Risks</h3>
-                                <p>Leverage 2ï¿½4x; hold longer than intraday; no daily square-off; participate in medium-term moves. But interest eats profits daily; losses amplified; margin calls; forced liquidation risk.</p>
-                                <h3>Who Should Use</h3>
-                                <p>Suitable for experienced traders, high-conviction swing traders (5ï¿½30 days), those with insufficient capital. NOT for beginners, risk-averse investors, long-term buy-and-hold. Use only if: strong reason for trade, target achievable in 2ï¿½4 weeks, can afford to lose margin, stock liquid. Avoid speculative/penny stocks.</p>
-                                <h3>Example</h3>
-                                <p><strong>&#8377;2L stock, 25% margin (&#8377;50K yours), 20 days, 15% interest:</strong> Scenario A - Stock +10%: Net profit &#8377;18,367 (36.7% ROI on margin). Scenario B - Stock -5%: Net loss &#8377;11,633 (-23.3%). Scenario C - Stock flat: Net loss &#8377;1,633 (-3.3%). MTF amplifies: 3.67x profit, 4.66x loss vs no leverage.</p>
-                                <div class="callout-box">
-                                    <strong>Key insight:</strong> Even with no price change, you lose ~3.3% in 20 days from interest. Need ~0.8% price rise to breakeven.
-                                </div>
-                                <h3>FAQs</h3>
-                                <div class="faq-item"><p class="faq-q">MTF vs intraday margin?</p><p>Intraday (MIS) must close same day; MTF holds weeks/months. MTF charges daily interest; intraday doesn't.</p></div>
-                                <div class="faq-item"><p class="faq-q">Stock falls below margin?</p><p>Broker issues margin call ï¿½ add funds or positions auto-liquidated (often at loss).</p></div>
-                                <div class="faq-item"><p class="faq-q">Convert MTF to delivery?</p><p>Yes ï¿½ pay borrowed amount + interest; shares transfer to demat.</p></div>
-                                <div class="faq-item"><p class="faq-q">MTF interest tax deductible?</p><p>No ï¿½ not deductible from capital gains. Trading cost, doesn't reduce taxable gains.</p></div>
-                                <div class="faq-item"><p class="faq-q">Which stocks for MTF?</p><p>Usually large-cap, liquid. Broker has approved list. Penny stocks, T2T generally not available.</p></div>
-                                <h3>Related Calculators</h3>
-                                <ul class="related-calc-list">
-                                    <li><a href="calculator-margin.php">Margin Calculator</a> - margin requirements</li>
-                                    <li><a href="calculator-brokerage.php">Brokerage Calculator</a> - trading charges on MTF</li>
-                                    <li><a href="calculator-stcg.php">STCG Calculator</a> - tax on MTF profits</li>
-                                </ul>
+            <div class="calculator-wrapper">
+                <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
+                <div class="calculator-info-section">
+                    <div class="calculator-info-card">
+                        <h3 class="calculator-info-title">MTF Calculator (Margin Trading Facility)</h3>
+                        <div class="calculator-info-content">
+                            <p>Margin Trading Facility (MTF) enables investors to take positions in securities by partially funding the trade and borrowing the remaining amount from the broker. This allows investors to increase their market exposure beyond their available capital.</p>
+                            <p>An MTF Calculator is a financial tool used to estimate the funding amount, interest cost, and overall position value associated with margin trading.</p>
+                        </div>
+
+                        <h3 class="calculator-info-title">What is MTF Calculator?</h3>
+                        <div class="calculator-info-content">
+                            <p>An MTF Calculator is an online utility that helps investors assess the financial implications of trading using borrowed funds.</p>
+                            <p>By entering:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Stock price and quantity</li>
+                                <li>Margin contribution</li>
+                                <li>Holding period</li>
+                                <li>Applicable interest rate</li>
+                            </ul>
+                            <p>the calculator computes:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Total trade value</li>
+                                <li>Investor's contribution (margin)</li>
+                                <li>Borrowed amount</li>
+                                <li>Interest cost on funded amount</li>
+                            </ul>
+                            <p>This helps investors evaluate the cost and feasibility of using leverage in trading.</p>
+                            
+                        </div>
+
+                        <h3 class="calculator-info-title">What is a Margin Trading Facility (MTF)?</h3>
+                        <div class="calculator-info-content">
+                            <p>Margin Trading Facility allows investors to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Pay a portion of the total trade value</li>
+                                <li>Borrow the remaining amount from the broker</li>
+                                <li>Use cash or approved securities as collateral</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Purpose and Use of an MTF Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>The MTF calculator assists investors in understanding the cost structure and risks associated with leveraged trading.</p>
+                            <p>It can be used to:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Estimate interest payable on borrowed funds</li>
+                                <li>Evaluate leverage and margin requirements</li>
+                                <li>Assess potential profitability after interest costs</li>
+                                <li>Support informed trading decisions</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">How Does an MTF Calculator Work?</h3>
+                        <div class="calculator-info-content">
+                            <p>The calculator estimates the leveraged position by dividing the trade into two components:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Investor's margin contribution</li>
+                                <li>Broker-funded amount</li>
+                            </ul>
+                            <p>The interest is calculated on the borrowed portion for the selected holding period.</p>
+                            <p>The interest cost can be represented as:</p>
+                            <p style="font-family:'Times New Roman', serif; font-size:20px; font-weight:bold; color:black; margin-left: 20px;">
+                                Interest = Borrowed Amount &times; Rate &times; Time
+                            </p>
+                            <p style="margin-top: 20px;"><strong>Where:</strong></p>
+                            <ul style="margin-left: 14px;">
+                                <li><strong>Borrowed Amount</strong> = Portion funded by the broker</li>
+                                <li><strong>Rate</strong> = Applicable interest rate</li>
+                                <li><strong>Time</strong> = Holding period</li>
+                            </ul>
+
+                            <p><strong>Example</strong></p>
+                            <p>Assume:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Stock price: &#8377;100</li>
+                                <li>Quantity: 100 shares</li>
+                                <li>Total trade value: &#8377;10,000</li>
+                                <li>Investor margin: &#8377;2,000</li>
+                                <li>Borrowed amount: &#8377;8,000</li>
+                                <li>Holding period: 30 days</li>
+                                <li>Interest rate: 0.03% per day</li>
+                            </ul>
+                            <p>Interest cost &asymp; &#8377;72</p>
+                            <p>If the stock price increases to &#8377;125:</p>
+                            <p>Total value = &#8377;12,500</p>
+                            <p>Gross profit = &#8377;2,500</p>
+                            <p>Net profit (after interest) &asymp; &#8377;2,428</p>
+                            <p>If the price declines, losses may be magnified due to leverage.</p>
+                        </div>
+
+                        <h3 class="calculator-info-title">How to Use the MTF Calculator</h3>
+                        <div class="calculator-info-content">
+                            <p>To calculate MTF-related values:</p>
+                            <ol>
+                                <li>Enter stock price and quantity</li>
+                                <li>Input margin contribution</li>
+                                <li>Specify holding period</li>
+                                <li>Enter interest rate</li>
+                                <li>The calculator will display:
+                                    <ul>
+                                        <li>Total trade value</li>
+                                        <li>Borrowed amount</li>
+                                        <li>Interest cost</li>
+                                        <li>Estimated profit/loss</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Investors</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides clarity on leverage and funding structure</li>
+                                <li>Helps estimate cost of borrowing</li>
+                                <li>Enables comparison between leveraged and non-leveraged trades</li>
+                                <li>Assists in risk assessment</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Features of MTF</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Enables leveraged trading with partial capital</li>
+                                <li>Allows use of collateral (cash or securities)</li>
+                                <li>Interest charged on borrowed amount</li>
+                                <li>Positions can be held subject to margin requirements</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Leverage amplifies both gains and losses</li>
+                                <li>Interest cost reduces net returns</li>
+                                <li>Margin shortfall may lead to forced liquidation</li>
+                                <li>Availability of MTF depends on stock eligibility</li>
+                                <li>The calculator provides indicative values and does not account for:
+                                    <ul style="margin-left: 20px;">
+                                        <li>Brokerage</li>
+                                        <li>Taxes</li>
+                                        <li>Additional charges</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <h3 class="calculator-info-title">FAQs</h3>
+                        <div class="stepup-faq-accordion" aria-label="MTF calculator frequently asked questions">
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-0">
+                                <span class="stepup-faq-question">What is MTF?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-0" hidden>
+                                MTF allows investors to trade using borrowed funds by paying only a portion of the trade value.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-1">
+                                <span class="stepup-faq-question">Is MTF suitable for all investors?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-1" hidden>
+                                It is generally suited for investors who understand leverage and associated risks.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-2">
+                                <span class="stepup-faq-question">How is interest calculated in MTF?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-2" hidden>
+                                Interest is charged on the borrowed amount for the duration the position is held.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-3">
+                                <span class="stepup-faq-question">Can losses exceed initial investment?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-3" hidden>
+                                Yes, due to leverage, losses can be higher than the initial margin.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="swp-faq-panel-4">
+                                <span class="stepup-faq-question">Does the calculator include all charges?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="swp-faq-panel-4" hidden>
+                                No, it primarily estimates funding and interest cost.
                             </div>
                         </div>
-                    </div>
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate MTF</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calcMTFResult(event)">
-                                <div class="calculator-field">
-                                    <label for="mtf-value">Stock Purchase Value (&#8377;)</label>
-                                    <input type="number" id="mtf-value" required min="10000" value="100000">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="mtf-margin">Your Margin (%)</label>
-                                    <input type="number" id="mtf-margin" required min="25" max="80" value="50">
-                                    <small class="field-hint">Typically 25-50%</small>
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="mtf-days">Holding Period (Days)</label>
-                                    <input type="number" id="mtf-days" required min="1" max="365" value="30">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="mtf-rate">MTF Interest Rate (% p.a.)</label>
-                                    <input type="number" id="mtf-rate" value="15" min="12" max="18" step="0.5">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="mtf-change">Expected Price Change (%)</label>
-                                    <input type="number" id="mtf-change" value="5" step="0.5" placeholder="+5 or -5">
-                                </div>
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="document.getElementById('calculatorForm').reset();var w=document.getElementById('mtfInlineWrap');if(w)w.classList.add('is-hidden');var c=document.getElementById('mtfResultsContent');if(c)c.innerHTML='';"><i data-lucide="refresh-cw"></i> Reset</button>
-                                </div>
-                            </form>
-                            <div id="mtfInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
-                                <div id="mtfResultsContent"></div>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
+                
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <script src="../../js/gretex-financial.js"></script>
-    <script>
-        lucide.createIcons();
-        function calcMTFResult(e){e.preventDefault();
-            // Reset previous reading first - clear results before calculating
-            const mtfResultsContent = document.getElementById('mtfResultsContent');
-            if (mtfResultsContent) mtfResultsContent.innerHTML = '';
-            
-            const value=parseFloat(document.getElementById('mtf-value').value);
-            const margin=parseFloat(document.getElementById('mtf-margin').value);
-            const days=parseFloat(document.getElementById('mtf-days').value);
-            const rate=parseFloat(document.getElementById('mtf-rate').value)||15;
-            const change=parseFloat(document.getElementById('mtf-change').value)||0;
-            const r=calcMTF(value,margin,days,rate,change);
-            document.getElementById('mtfResultsContent').innerHTML=`<div class="results-primary-card">
+<script src="../../js/gretex-financial.js"></script>
+<script>
+    lucide.createIcons();
+
+    function calcMTFResult(e) {
+        e.preventDefault();
+        // Reset previous reading first - clear results before calculating
+        const mtfResultsContent = document.getElementById('mtfResultsContent');
+        if (mtfResultsContent) mtfResultsContent.innerHTML = '';
+
+        const value = parseFloat(document.getElementById('mtf-value').value);
+        const margin = parseFloat(document.getElementById('mtf-margin').value);
+        const days = parseFloat(document.getElementById('mtf-days').value);
+        const rate = parseFloat(document.getElementById('mtf-rate').value) || 15;
+        const change = parseFloat(document.getElementById('mtf-change').value) || 0;
+        const r = calcMTF(value, margin, days, rate, change);
+        document.getElementById('mtfResultsContent').innerHTML = `<div class="results-primary-card">
                 <div class="results-main">
                     <div class="result-item"><span class="result-label">Your Margin:</span><span class="result-value">${formatCurrency(r.yourMargin)}</span></div>
                     <div class="result-item"><span class="result-label">Borrowed Amount:</span><span class="result-value">${formatCurrency(r.borrowedAmount)}</span></div>
@@ -132,24 +259,21 @@ require_once '../../includes/navbar.php';
                     <div class="result-item"><span class="result-label">Breakeven Price Change:</span><span class="result-value">${r.breakevenPriceChange.toFixed(2)}%</span></div>
                 </div>
             </div>`;
-            document.getElementById('mtfInlineWrap').classList.remove('is-hidden');
-        }
-    </script>
+        document.getElementById('mtfInlineWrap').classList.remove('is-hidden');
+    }
+</script>
 
 <script src="../../js/search.js"></script>
-    <script src="../../js/mobile-menu.js"></script>
+<script src="../../js/mobile-menu.js"></script>
 
 <script>
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    </script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
 
 
 <?php
 // Include footer
 require_once '../../includes/footer.php';
 ?>
-
-
-
