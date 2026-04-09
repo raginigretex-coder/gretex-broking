@@ -238,27 +238,35 @@ require_once '../../includes/navbar.php';
                         <h3 class="calculator-info-title">FAQs</h3>
                         <div class="stepup-faq-accordion" aria-label="Post Office RD calculator frequently asked questions">
                             <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="pord-faq-panel-0">
-                                <span class="stepup-faq-question">Is Post Office RD a safe investment?</span>
+                                <span class="stepup-faq-question">Who all are eligible to apply for an RD account?</span>
                                 <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                             </button>
                             <div class="stepup-faq-panel" id="pord-faq-panel-0" hidden>
-                                Yes, it is backed by the Government of India and is considered a low-risk savings option.
+                                Indian residents and Hindu Undivided Families (HUF) are eligible to open an RD account at the Indian post office.
                             </div>
 
                             <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="pord-faq-panel-1">
-                                <span class="stepup-faq-question">What inputs does this calculator need?</span>
+                                <span class="stepup-faq-question">What is the highest interest rate offered by the post office on RD?</span>
                                 <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                             </button>
                             <div class="stepup-faq-panel" id="pord-faq-panel-1" hidden>
-                                It uses monthly investment amount, annual interest rate, and time period to estimate the maturity value.
+                                One can earn an interest rate of up to 5.80% in post office RD.
                             </div>
 
                             <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="pord-faq-panel-2">
-                                <span class="stepup-faq-question">Does the calculator show estimated returns separately?</span>
+                                <span class="stepup-faq-question">Is there any extra privilege for senior citizens in the Indian Post office RD scheme?</span>
                                 <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
                             </button>
                             <div class="stepup-faq-panel" id="pord-faq-panel-2" hidden>
-                                Yes, it separately shows total invested amount, estimated returns, and total maturity value.
+                                No, there is no extra advantage for senior citizen in post office RD.
+                            </div>
+
+                            <button type="button" class="stepup-faq-row" aria-expanded="false" aria-controls="pord-faq-panel-3">
+                                <span class="stepup-faq-question">Are post office RDs free from tax?</span>
+                                <i data-lucide="chevron-down" class="stepup-faq-icon" aria-hidden="true"></i>
+                            </button>
+                            <div class="stepup-faq-panel" id="pord-faq-panel-3" hidden>
+                                Yes, no tax is levied on post office RDs.
                             </div>
                         </div>
                     </div>
@@ -685,6 +693,26 @@ require_once '../../includes/navbar.php';
         }
 
         window.addEventListener('load', kickoff);
+    })();
+</script>
+
+<script>
+    (function () {
+        var faqRows = document.querySelectorAll('.stepup-faq-accordion .stepup-faq-row[aria-controls]');
+        faqRows.forEach(function (button) {
+            if (button.dataset.faqBound === '1') return;
+            button.dataset.faqBound = '1';
+
+            button.addEventListener('click', function () {
+                var panelId = button.getAttribute('aria-controls');
+                var panel = panelId ? document.getElementById(panelId) : null;
+                if (!panel) return;
+
+                var expanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', String(!expanded));
+                panel.hidden = expanded;
+            });
+        });
     })();
 </script>
 

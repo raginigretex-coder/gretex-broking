@@ -828,7 +828,7 @@
 }
 
 .calculator-info-title {
-    font-family: 'Inter, Inter Fallback, system-ui, sans-serif';
+    font-family: 'Inter', 'sans-serif';
     font-size: clamp(1.35rem, 1.1rem + 0.5vw, 1.7rem);
     font-weight: 600;
     color: var(--calc-primary-blue);
