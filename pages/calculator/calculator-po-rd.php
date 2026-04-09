@@ -176,6 +176,19 @@ require_once '../../includes/navbar.php';
                                 <li><strong> M </strong> = is the maturity amount.</li>
                             </ul>
                             <p>The following example can explain the above formula better.</p>
+
+                            <p><strong>Example</strong></p>
+                            <p>Assume:</p>
+                            <ul style="margin-left: 14px;">
+                                <li>Monthly investment (R): &#8377;50,000</li>
+                                <li>Rate of interest: 6.5% p.a.</li>
+                                <li>Time period: 3 years</li>
+                                <li>Quarterly interest rate (i): 6.5 / 400 = 0.01625</li>
+                                <li>Number of quarters (n): 3 x 4 = 12</li>
+                            </ul>
+                            <p>Total invested amount: &#8377;18,00,000</p>
+                            <p>Estimated returns: &#8377;1,91,214</p>
+                            <p><strong>Total maturity value: &#8377;19,91,214</strong></p>
                         </div>
 
                         <h3 class="calculator-info-title">How to Use the Post Office RD Calculator</h3>
@@ -186,6 +199,40 @@ require_once '../../includes/navbar.php';
                                 <li>Select the time period in years or months</li>
                                 <li>View the invested amount, estimated returns, and total value instantly</li>
                             </ol>
+                        </div>
+
+                        <h3 class="calculator-info-title">How the Calculator Assists Investors</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Provides quick and clear maturity estimates for recurring deposits</li>
+                                <li>Helps compare different monthly investment amounts and tenures</li>
+                                <li>Shows invested amount, estimated returns, and total value instantly</li>
+                                <li>Reduces the need for manual recurring deposit calculations</li>
+                                <li>Supports better savings and goal-based planning</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Features of Post Office RD</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Backed by the Government of India</li>
+                                <li>Fixed monthly investment structure</li>
+                                <li>Quarterly compounding of interest</li>
+                                <li>Suitable for disciplined and long-term savings</li>
+                                <li>Low minimum monthly deposit requirement</li>
+                                <li>Predictable maturity value based on tenure and rate</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="calculator-info-title">Key Considerations</h3>
+                        <div class="calculator-info-content">
+                            <ul style="margin-left: 14px;">
+                                <li>Interest rates may be revised periodically by the Government of India</li>
+                                <li>Actual maturity values may vary slightly depending on rounding methodology</li>
+                                <li>Premature closure rules and penalties may apply as per scheme conditions</li>
+                                <li>Interest earned may be taxable based on applicable income tax rules</li>
+                                <li>The calculator provides indicative estimates and does not account for tax impact or penalties</li>
+                            </ul>
                         </div>
 
                         <h3 class="calculator-info-title">FAQs</h3>
