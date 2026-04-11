@@ -13,7 +13,7 @@
 .board-directors-section .container,
 .key-personnel-section .container,
 .senior-management-section .container {
-    max-width: 1200px;
+    max-width: 1350px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -684,7 +684,7 @@
 .team-slider-wrapper {
     position: relative;
     padding: 0 3rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 

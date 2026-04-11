@@ -35,7 +35,7 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
-                <?php require_once '../../includes/calculator-modern-ui.php'; ?>
+                
 
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
@@ -74,49 +74,7 @@ require_once '../../includes/navbar.php';
                             </div>
                         </div>
                     </div>
-                    <div class="calculator-form-section">
-                        <div class="calculator-card">
-                            <h2 class="calculator-section-title">Calculate Brokerage</h2>
-                            <form class="calculator-form" id="calculatorForm" onsubmit="calcBrokerageResult(event)">
-                                <div class="calculator-field">
-                                    <label for="br-buy">Buy Price (&#8377;)</label>
-                                    <input type="number" id="br-buy" required min="1" value="100">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="br-sell">Sell Price (&#8377;)</label>
-                                    <input type="number" id="br-sell" required min="1" value="105">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="br-qty">Quantity</label>
-                                    <input type="number" id="br-qty" required min="1" value="100">
-                                </div>
-                                <div class="calculator-field">
-                                    <label for="br-type">Brokerage Type</label>
-                                    <select id="br-type">
-                                        <option value="flat">Flat &#8377;20</option>
-                                        <option value="percentage">0.03%</option>
-                                    </select>
-                                </div>
-                                <div class="calculator-actions">
-                                    <button type="submit" class="calculator-btn-calculate"><i data-lucide="calculator"></i> Calculate</button>
-                                    <button type="button" class="calculator-btn-reset" onclick="resetBrokerageForm()"><i data-lucide="refresh-cw"></i> Reset</button>
-                                </div>
-                            </form>
-                            <div id="brInlineWrap" class="calculator-inline-results is-hidden" aria-live="polite">
-                                <div class="calculator-results-grid">
-                                    <div id="brResultsContent"></div>
-                                    <div class="calculator-results-chart">
-                                        <h3 class="chart-section-title">Charge Breakdown</h3>
-                                        <div id="brChart" style="height:220px"></div>
-                                        <div class="breakeven-visual" id="brBreakeven">
-                                            <strong>Breakeven Price: ?<span id="brBreakevenVal">0</span></strong>
-                                            <p style="margin:0.5rem 0 0 0;font-size:0.875rem;color:#5a6c7d">Your Sell: ?<span id="brSellVal">0</span> ï¿½ <span id="brDiffText"></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 
                 </div>
             </div>
         </div>
