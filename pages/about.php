@@ -82,7 +82,7 @@ require_once '../includes/navbar.php';
                             </div>
                             <div class="director-info">
                                 <h3>Mr. Alok Harlalka</h3>
-                                <p class="director-title">JOINT MANAGING DIRECTOR</p>
+                                <p class="director-title"> CHAIRMAN & JOINT MANAGING DIRECTOR</p>
                                 <p class="director-description">With more than 25 years of experience in Capital Market and
                                     securities market services, Mr. Alok Harlalka serves as a Director at the Association of
                                     Investment Bankers of India (AIBI). His dynamic leadership has accelerated the company's
@@ -97,7 +97,7 @@ require_once '../includes/navbar.php';
                             </div>
                             <div class="director-info">
                                 <h3>Mr. Arvind Harlalka</h3>
-                                <p class="director-title">CHAIRMAN, MANAGING DIRECTOR & CFO</p>
+                                <p class="director-title">MANAGING DIRECTOR</p>
                                 <p class="director-description">With over 30 years of experience in accounts, finance,
                                     marketing, and manufacturing, Mr. Arvind Harlalka has been instrumental in setting up
                                     businesses and driving strategic initiatives for the Group. He oversees Human Resources,
@@ -178,7 +178,7 @@ require_once '../includes/navbar.php';
                             </div>
                             <div class="personnel-info">
                                 <h3>Ms. Rashmi Vyas</h3>
-                                <p class="personnel-title">COMPANY SECRETARY</p>
+                                <p class="personnel-title">COMPANY SECRETARY & COMPLIANCE OFFICER</p>
                                 <p class="personnel-description">Ms. Rashmi Vyas is an Associate Member of the Institute of
                                     Company Secretaries of India (ACS 72915). She brings extensive expertise in corporate
                                     secretarial practices and regulatory compliance, including Companies Act, 2013 and SEBI
@@ -228,7 +228,7 @@ require_once '../includes/navbar.php';
                             </div>
                             <div class="senior-management-info">
                                 <h3>Mr. Jignesh Jayantilal Lathigra</h3>
-                                <p class="senior-management-title-text">RMS & OPERATION HEAD</p>
+                                <p class="senior-management-title-text">Head – Risk Management Services</p>
                                 <p class="senior-management-description">He was appointed as the RMS & Operation Head of the
                                     Company w.e.f December 01, 2022. He holds a degree in Bachelor of Commerce (Three Year
                                     Integrated Course) from University of Mumbai. He was appointed as RMS Manager in Choice

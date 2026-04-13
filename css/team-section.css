@@ -22,8 +22,8 @@
 .team-section-header {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    gap: 2rem;
+    margin: 0 2rem 7rem; 
     align-items: start;
 }
 
@@ -45,7 +45,7 @@
     font-size: 1rem;
     line-height: 1.7;
     color: #4a4a4a;
-    margin: 0;
+    margin: 0 3rem 0 0;
 }
 
 /* Remove the ::after pseudo-element */
@@ -121,7 +121,7 @@
     border-radius: 18px !important;
     transition: all 0.3s ease !important;
     text-align: center !important;
-    max-width: 320px !important;
+    max-width: 380px !important;
     width: 100% !important;
     position: relative !important;
     margin: 0 !important;
@@ -186,7 +186,7 @@
 .senior-management-info {
     padding: 0.85rem 1rem 1rem;
     text-align: left;
-    background: rgba(255, 255, 255, 0.55);
+    background: rgb(238 238 238 / 55%);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     border-top: 1px solid rgba(255, 255, 255, 0.7);
@@ -695,7 +695,7 @@
 
 .team-slider-track {
     display: flex;
-    gap: 1.75rem;
+    gap: 2rem;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
     width: max-content;
@@ -703,10 +703,10 @@
 
 /* Bigger, premium card design for slider */
 .team-slider-section .team-slider-card {
-    flex: 0 0 380px;
+    flex: 0 0 480px;
     min-width: 0;
-    width: 380px;
-    max-width: 380px !important;
+    width: 580px;
+    max-width: 480px !important;
     background: #fff !important;
     border-radius: 16px;
     overflow: hidden;
@@ -725,7 +725,7 @@
 .team-slider-section .personnel-image,
 .team-slider-section .senior-management-image {
     aspect-ratio: 3 / 4;
-    max-height: 520px;
+    max-height: 420px;
     margin-bottom: 0;
     border-radius: 16px 16px 0 0;
     background: #eaecef;
@@ -879,8 +879,8 @@
     }
 
     .team-slider-section .team-slider-card {
-        flex: 0 0 340px;
-        width: 340px;
+        flex: 0 0 380px;
+        width: 380px;
     }
 
     .team-slider-section .director-image,
@@ -909,8 +909,8 @@
     }
 
     .team-slider-section .team-slider-card {
-        flex: 0 0 320px;
-        width: 320px;
+        flex: 0 0 340px;
+        width: 340px;
     }
 
     .team-slider-btn {
