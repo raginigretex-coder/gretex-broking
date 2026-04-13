@@ -11,6 +11,10 @@ $additionalCSS = [
     '../../css/chatbot.css',
 ];
 
+$additionalScripts = [
+    'https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js',
+];
+
 // Include header
 require_once '../../includes/header.php';
 require_once '../../includes/navbar.php';
@@ -18,7 +22,7 @@ require_once '../../includes/navbar.php';
 
 
 
-    <main class="calculator-page">
+    <main class="calculator-page investment-modern-calc-page">
         <div class="calculator-hero">
             <div class="container">
                 <div class="calculator-hero-content">
@@ -31,7 +35,108 @@ require_once '../../includes/navbar.php';
 
         <div class="calculator-main-section">
             <div class="container">
-               
+                <section class="investment-modern-calc investment-modern-calc--etf" aria-label="ETF calculator">
+                    <div class="investment-tabs" role="tablist" aria-label="Investment type">
+                        <button type="button" class="investment-tab is-active" data-mode="sip" aria-selected="true">SIP</button>
+                        <button type="button" class="investment-tab" data-mode="lumpsum" aria-selected="false">Lumpsum</button>
+                    </div>
+
+                    <div class="investment-modern-calc-grid">
+                        <div class="investment-controls" aria-label="Inputs">
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" id="etfAmountLabel" for="etfAmountRange">Monthly investment (&#8377;)</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="etfAmountErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <span class="pill-unit">&#8377;</span>
+                                            <input type="text" class="pill-input" id="etfAmountInput" value="5000" inputmode="numeric" aria-label="ETF investment amount" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="etfAmountRange" min="100" max="10000000" step="100" value="5000" aria-labelledby="etfAmountLabel" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="etfRateRange">Expected return rate (p.a)</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="etfRateErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="etfRateInput" min="1" max="30" step="0.1" value="12" inputmode="decimal" aria-label="ETF expected return rate" />
+                                            <span class="pill-unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="etfRateRange" min="1" max="30" step="0.1" value="12" aria-label="ETF expected return rate slider" />
+                            </div>
+
+                            <div class="investment-slider-field">
+                                <div class="investment-slider-header">
+                                    <label class="investment-slider-label" for="etfYearsRange">Time period</label>
+                                    <div class="investment-input-wrap">
+                                        <span class="investment-error-icon" id="etfYearsErrorIcon" aria-hidden="true">i</span>
+                                        <div class="investment-value-pill">
+                                            <input type="number" class="pill-input" id="etfYearsInput" min="1" max="40" step="1" value="10" inputmode="numeric" aria-label="ETF time period years" />
+                                            <span class="pill-unit">Yr</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" class="investment-range" id="etfYearsRange" min="1" max="40" step="1" value="10" aria-label="ETF time period slider" />
+                            </div>
+                        </div>
+
+                        <div class="investment-visual" aria-label="Visualization">
+                            <div class="investment-donut-card">
+                                <div class="investment-graph-quickbar" aria-hidden="false">
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-invested"></span>
+                                            <span class="quickbar-label">Invested amount</span>
+                                        </div>
+                                        <div class="quickbar-value" id="etfSummaryInvested">&#8377;0</div>
+                                    </div>
+
+                                    <div class="quickbar-item">
+                                        <div class="quickbar-line">
+                                            <span class="legend-dot legend-returns"></span>
+                                            <span class="quickbar-label">Est. returns</span>
+                                        </div>
+                                        <div class="quickbar-value quickbar-returns-value" id="etfSummaryReturns">&#8377;0</div>
+                                    </div>
+
+                                    <div class="quickbar-total">
+                                        <div class="quickbar-total-label">Total value</div>
+                                        <div class="quickbar-total-value" id="etfSummaryTotal">&#8377;0</div>
+                                    </div>
+                                </div>
+
+                                <div class="investment-donut-wrap">
+                                    <div id="etfDonutChart"></div>
+                                    <div class="investment-donut-center">
+                                        <div class="investment-donut-center-label">Maturity Value</div>
+                                        <div class="investment-donut-center-value" id="etfDonutCenterValue">&#8377;0</div>
+                                    </div>
+                                </div>
+
+                                <div class="investment-donut-legend" aria-hidden="true">
+                                    <div class="legend-item">
+                                        <span class="legend-dot legend-returns"></span>
+                                        <span>Returns</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot legend-invested"></span>
+                                        <span>Total Investment</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="investment-summary-cta">
+                        <button type="button" class="investment-cta" id="etfInvestNowBtn">INVEST NOW</button>
+                    </div>
+                </section>
 
                 <div class="calculator-wrapper">
                     <aside class="calculator-sidebar" id="calculatorSidebar"></aside>
@@ -259,33 +364,332 @@ require_once '../../includes/navbar.php';
     </main>
 
     <script src="../../js/gretex-financial.js"></script>
+    <script src="../../js/calculator-functions.js"></script>
     <script>
-        lucide.createIcons();
-        function calcETFResult(e){e.preventDefault();
-            // Reset previous reading first - clear results before calculating
-            const etfResultsContent = document.getElementById('etfResultsContent');
-            if (etfResultsContent) etfResultsContent.innerHTML = '';
-            
-            const type=document.getElementById('etf-type').value;
-            const amt=parseFloat(document.getElementById('etf-amount').value);
-            const period=parseFloat(document.getElementById('etf-period').value);
-            const rate=parseFloat(document.getElementById('etf-rate').value)||11;
-            const er=parseFloat(document.getElementById('etf-er').value)||0.1;
-            const trading=document.getElementById('etf-trading').checked;
-            const r=calcETF(type,amt,period,rate,er,trading);
-            document.getElementById('etfResultsContent').innerHTML=`<div class="results-primary-card">
-                <div class="results-main">
-                    <div class="result-item"><span class="result-label">Total Investment:</span><span class="result-value">${formatCurrency(r.totalInvestment)}</span></div>
-                    <div class="result-item"><span class="result-label">Gross Returns:</span><span class="result-value">${formatCurrency(r.grossReturns)}</span></div>
-                    <div class="result-item"><span class="result-label">Expense Impact:</span><span class="result-value">${formatCurrency(r.expenseImpact)}</span></div>
-                    <div class="result-item"><span class="result-label">Trading Costs:</span><span class="result-value">${formatCurrency(r.tradingCosts)}</span></div>
-                    <div class="result-item"><span class="result-label">LTCG Tax:</span><span class="result-value">${formatCurrency(r.ltcgTax)}</span></div>
-                    <div class="result-item highlight"><span class="result-label">Net Returns:</span><span class="result-value">${formatCurrency(r.netReturns)}</span></div>
-                    <div class="result-item"><span class="result-label">Effective CAGR:</span><span class="result-value">${r.effectiveCAGR.toFixed(2)}%</span></div>
-                </div>
-            </div>`;
-            document.getElementById('etfInlineWrap').classList.remove('is-hidden');
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
+
+        (function initEtfModernCalc() {
+            const root = document.querySelector('.investment-modern-calc--etf');
+            if (!root) return;
+
+            const LIMITS = {
+                sip: { min: 100, max: 1000000, step: 100, defaultVal: 5000 },
+                lumpsum: { min: 500, max: 10000000, step: 500, defaultVal: 25000 }
+            };
+
+            const tabs = root.querySelectorAll('.investment-tab[data-mode]');
+            const amountLabel = document.getElementById('etfAmountLabel');
+            const amountRange = document.getElementById('etfAmountRange');
+            const amountInput = document.getElementById('etfAmountInput');
+            const amountField = amountRange ? amountRange.closest('.investment-slider-field') : null;
+            const rateRange = document.getElementById('etfRateRange');
+            const rateInput = document.getElementById('etfRateInput');
+            const rateField = rateRange ? rateRange.closest('.investment-slider-field') : null;
+            const yearsRange = document.getElementById('etfYearsRange');
+            const yearsInput = document.getElementById('etfYearsInput');
+            const yearsField = yearsRange ? yearsRange.closest('.investment-slider-field') : null;
+            const summaryInvested = document.getElementById('etfSummaryInvested');
+            const summaryReturns = document.getElementById('etfSummaryReturns');
+            const summaryTotal = document.getElementById('etfSummaryTotal');
+            const donutCenterValue = document.getElementById('etfDonutCenterValue');
+            const investNowBtn = document.getElementById('etfInvestNowBtn');
+
+            const MIN_RATE = 1;
+            const MAX_RATE = 30;
+            const MIN_YEARS = 1;
+            const MAX_YEARS = 40;
+
+            let activeMode = 'sip';
+            let donutChart = null;
+            let lastSipAmount = LIMITS.sip.defaultVal;
+            let lastLumpsumAmount = LIMITS.lumpsum.defaultVal;
+
+            function clamp(n, min, max) {
+                if (!isFinite(n)) return min;
+                return Math.min(max, Math.max(min, n));
+            }
+
+            function formatINR0(num) {
+                const n = Number(num);
+                if (!isFinite(n)) return '₹0';
+                return '₹' + Math.round(n).toLocaleString('en-IN');
+            }
+
+            function formatINRDigits(n) {
+                const x = Number(n);
+                if (!isFinite(x)) return '0';
+                return Math.round(x).toLocaleString('en-IN');
+            }
+
+            function setFieldError(field, on) {
+                if (field) field.classList.toggle('is-error', !!on);
+            }
+
+            function setRangeFill(rangeEl, value) {
+                const min = Number(rangeEl.min);
+                const max = Number(rangeEl.max);
+                const percent = ((value - min) / (max - min)) * 100;
+                rangeEl.style.setProperty('--fill', clamp(percent, 0, 100).toFixed(3));
+            }
+
+            function getAmountLimits() {
+                return LIMITS[activeMode];
+            }
+
+            function computeLumpsum(amount, rate, years) {
+                const totalValue = amount * Math.pow(1 + rate / 100, years);
+                const invested = amount;
+                return { invested: invested, returns: totalValue - invested, totalValue: totalValue };
+            }
+
+            function computeSIP(monthlyAmount, rate, years) {
+                const monthlyRate = Math.pow(1 + (rate / 100), 1 / 12) - 1;
+                const totalMonths = years * 12;
+                const totalValue = monthlyRate === 0
+                    ? monthlyAmount * totalMonths
+                    : monthlyAmount * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+                const invested = monthlyAmount * totalMonths;
+                return { invested: invested, returns: totalValue - invested, totalValue: totalValue };
+            }
+
+            function computeActive() {
+                const amount = Number(amountRange.value);
+                const rate = Number(rateRange.value);
+                const years = Number(yearsRange.value);
+                return activeMode === 'sip' ? computeSIP(amount, rate, years) : computeLumpsum(amount, rate, years);
+            }
+
+            function ensureDonutChart() {
+                if (donutChart || typeof ApexCharts === 'undefined') return;
+                const donutEl = document.getElementById('etfDonutChart');
+                if (!donutEl) return;
+
+                const data = computeActive();
+                donutChart = new ApexCharts(donutEl, {
+                    series: [Math.max(0, data.invested), Math.max(0, data.returns)],
+                    chart: {
+                        type: 'donut',
+                        height: 285,
+                        animations: { enabled: true, easing: 'easeinout', speed: 450 }
+                    },
+                    labels: ['Invested amount', 'Est. returns'],
+                    colors: ['#F97316', '#3B6DFF'],
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    stroke: { show: false },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return formatINR0(val);
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '84%',
+                                labels: { show: false }
+                            }
+                        }
+                    }
+                });
+
+                donutChart.render();
+            }
+
+            function updateDonutChart(invested, returns, animate) {
+                if (typeof ApexCharts === 'undefined') return;
+                if (!donutChart) ensureDonutChart();
+                if (!donutChart) return;
+                donutChart.updateSeries([Math.max(0, invested), Math.max(0, returns)], !!animate);
+            }
+
+            function updateSummaryUI(animate) {
+                const data = computeActive();
+                if (summaryInvested) summaryInvested.textContent = formatINR0(data.invested);
+                if (summaryReturns) summaryReturns.textContent = formatINR0(data.returns);
+                if (summaryTotal) summaryTotal.textContent = formatINR0(data.totalValue);
+                if (donutCenterValue) donutCenterValue.textContent = formatINR0(data.totalValue);
+                updateDonutChart(data.invested, data.returns, animate !== false);
+            }
+
+            function setMode(mode) {
+                activeMode = mode === 'sip' ? 'sip' : 'lumpsum';
+
+                if (amountLabel) {
+                    amountLabel.textContent = activeMode === 'sip' ? 'Monthly investment (₹)' : 'Total investment (₹)';
+                }
+
+                tabs.forEach(function(btn) {
+                    const isActive = btn.getAttribute('data-mode') === activeMode;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
+                const limits = getAmountLimits();
+                const lastValue = activeMode === 'sip' ? lastSipAmount : lastLumpsumAmount;
+                const value = clamp(Math.round(lastValue / limits.step) * limits.step, limits.min, limits.max);
+                amountRange.min = String(limits.min);
+                amountRange.max = String(limits.max);
+                amountRange.step = String(limits.step);
+                amountRange.value = String(value);
+                amountInput.value = formatINRDigits(value);
+                setRangeFill(amountRange, value);
+                updateSummaryUI(true);
+            }
+
+            amountRange.addEventListener('input', function() {
+                const limits = getAmountLimits();
+                const value = clamp(Math.round(Number(amountRange.value) / limits.step) * limits.step, limits.min, limits.max);
+                amountRange.value = value;
+                amountInput.value = formatINRDigits(value);
+                if (activeMode === 'sip') lastSipAmount = value;
+                else lastLumpsumAmount = value;
+                setFieldError(amountField, false);
+                setRangeFill(amountRange, value);
+                updateSummaryUI(false);
+            });
+
+            amountInput.addEventListener('input', function() {
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                const limits = getAmountLimits();
+                if (!digits) {
+                    setFieldError(amountField, raw.trim() !== '');
+                    return;
+                }
+                const parsed = Number(digits);
+                const invalid = parsed < limits.min || parsed > limits.max;
+                const value = clamp(Math.round(parsed / limits.step) * limits.step, limits.min, limits.max);
+                setFieldError(amountField, invalid);
+                amountRange.value = value;
+                amountInput.value = formatINRDigits(parsed);
+                setRangeFill(amountRange, value);
+                if (activeMode === 'sip') lastSipAmount = value;
+                else lastLumpsumAmount = value;
+                if (!invalid) updateSummaryUI(false);
+            });
+
+            amountInput.addEventListener('change', function() {
+                const raw = String(amountInput.value || '');
+                const digits = raw.replace(/[^\d]/g, '');
+                const limits = getAmountLimits();
+                const parsed = digits ? Number(digits) : limits.defaultVal;
+                const value = clamp(Math.round(parsed / limits.step) * limits.step, limits.min, limits.max);
+                amountRange.value = value;
+                amountInput.value = formatINRDigits(value);
+                setFieldError(amountField, false);
+                setRangeFill(amountRange, value);
+                if (activeMode === 'sip') lastSipAmount = value;
+                else lastLumpsumAmount = value;
+                updateSummaryUI(true);
+            });
+
+            rateRange.addEventListener('input', function() {
+                const value = Math.round(clamp(Number(rateRange.value), MIN_RATE, MAX_RATE) * 10) / 10;
+                rateRange.value = value;
+                rateInput.value = value;
+                setFieldError(rateField, false);
+                setRangeFill(rateRange, value);
+                updateSummaryUI(false);
+            });
+
+            rateInput.addEventListener('input', function() {
+                const raw = String(rateInput.value || '');
+                if (raw.trim() === '') {
+                    setFieldError(rateField, true);
+                    return;
+                }
+                const num = Number(raw);
+                if (!isFinite(num)) {
+                    setFieldError(rateField, true);
+                    return;
+                }
+                const invalid = num < MIN_RATE || num > MAX_RATE;
+                const value = Math.round(clamp(num, MIN_RATE, MAX_RATE) * 10) / 10;
+                setFieldError(rateField, invalid);
+                rateRange.value = value;
+                setRangeFill(rateRange, value);
+                if (!invalid) updateSummaryUI(false);
+            });
+
+            rateInput.addEventListener('change', function() {
+                const value = Math.round(clamp(Number(rateInput.value), MIN_RATE, MAX_RATE) * 10) / 10;
+                rateInput.value = value;
+                rateRange.value = value;
+                setFieldError(rateField, false);
+                setRangeFill(rateRange, value);
+                updateSummaryUI(true);
+            });
+
+            yearsRange.addEventListener('input', function() {
+                const value = clamp(Math.round(Number(yearsRange.value)), MIN_YEARS, MAX_YEARS);
+                yearsRange.value = value;
+                yearsInput.value = value;
+                setFieldError(yearsField, false);
+                setRangeFill(yearsRange, value);
+                updateSummaryUI(false);
+            });
+
+            yearsInput.addEventListener('input', function() {
+                const raw = String(yearsInput.value || '');
+                if (raw.trim() === '') {
+                    setFieldError(yearsField, true);
+                    return;
+                }
+                const num = Math.round(Number(raw));
+                if (!isFinite(num)) {
+                    setFieldError(yearsField, true);
+                    return;
+                }
+                const invalid = num < MIN_YEARS || num > MAX_YEARS;
+                const value = clamp(num, MIN_YEARS, MAX_YEARS);
+                setFieldError(yearsField, invalid);
+                yearsRange.value = value;
+                setRangeFill(yearsRange, value);
+                if (!invalid) updateSummaryUI(false);
+            });
+
+            yearsInput.addEventListener('change', function() {
+                const value = clamp(Math.round(Number(yearsInput.value)), MIN_YEARS, MAX_YEARS);
+                yearsInput.value = value;
+                yearsRange.value = value;
+                setFieldError(yearsField, false);
+                setRangeFill(yearsRange, value);
+                updateSummaryUI(true);
+            });
+
+            tabs.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setMode(btn.getAttribute('data-mode'));
+                });
+            });
+
+            setRangeFill(amountRange, Number(amountRange.value));
+            setRangeFill(rateRange, Number(rateRange.value));
+            setRangeFill(yearsRange, Number(yearsRange.value));
+
+            (function waitForApex() {
+                updateSummaryUI(false);
+                if (typeof ApexCharts === 'undefined') {
+                    setTimeout(waitForApex, 60);
+                    return;
+                }
+                ensureDonutChart();
+            })();
+
+            if (investNowBtn) {
+                investNowBtn.addEventListener('click', function() {
+                    updateSummaryUI(true);
+                    const target = document.querySelector('.calculator-wrapper');
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            setMode('sip');
+        })();
     </script>
 
 <script src="../../js/search.js"></script>
