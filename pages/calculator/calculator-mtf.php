@@ -237,39 +237,16 @@ require_once '../../includes/navbar.php';
 <script>
     lucide.createIcons();
 
-    function calcMTFResult(e) {
-        e.preventDefault();
-        // Reset previous reading first - clear results before calculating
-        const mtfResultsContent = document.getElementById('mtfResultsContent');
-        if (mtfResultsContent) mtfResultsContent.innerHTML = '';
-
-        const value = parseFloat(document.getElementById('mtf-value').value);
-        const margin = parseFloat(document.getElementById('mtf-margin').value);
-        const days = parseFloat(document.getElementById('mtf-days').value);
-        const rate = parseFloat(document.getElementById('mtf-rate').value) || 15;
-        const change = parseFloat(document.getElementById('mtf-change').value) || 0;
-        const r = calcMTF(value, margin, days, rate, change);
-        document.getElementById('mtfResultsContent').innerHTML = `<div class="results-primary-card">
-                <div class="results-main">
-                    <div class="result-item"><span class="result-label">Your Margin:</span><span class="result-value">${formatCurrency(r.yourMargin)}</span></div>
-                    <div class="result-item"><span class="result-label">Borrowed Amount:</span><span class="result-value">${formatCurrency(r.borrowedAmount)}</span></div>
-                    <div class="result-item"><span class="result-label">Interest Charges:</span><span class="result-value">${formatCurrency(r.interestCharges)}</span></div>
-                    <div class="result-item highlight"><span class="result-label">Expected P&L:</span><span class="result-value">${formatCurrency(r.expectedProfit)}</span></div>
-                    <div class="result-item"><span class="result-label">Net ROI (on margin):</span><span class="result-value">${r.netROI.toFixed(2)}%</span></div>
-                    <div class="result-item"><span class="result-label">Breakeven Price Change:</span><span class="result-value">${r.breakevenPriceChange.toFixed(2)}%</span></div>
-                </div>
-            </div>`;
-        document.getElementById('mtfInlineWrap').classList.remove('is-hidden');
-    }
+   
 </script>
 
 <script src="../../js/search.js"></script>
 <script src="../../js/mobile-menu.js"></script>
 
 <script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+     if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
 </script>
 
 

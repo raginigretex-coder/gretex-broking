@@ -227,27 +227,9 @@ require_once '../../includes/navbar.php';
     <script src="../../js/gretex-financial.js"></script>
     <script>
         lucide.createIcons();
-        function calcSTCGResult(e){e.preventDefault();
-            // Reset previous reading first - clear results before calculating
-            const stcgResultsContent = document.getElementById('stcgResultsContent');
-            if (stcgResultsContent) stcgResultsContent.innerHTML = '';
-            
-            const asset=document.getElementById('stcg-asset').value;
-            const buy=parseFloat(document.getElementById('stcg-buy').value);
-            const sell=parseFloat(document.getElementById('stcg-sell').value);
-            const months=parseFloat(document.getElementById('stcg-months').value)||6;
-            const cost=parseFloat(document.getElementById('stcg-cost').value)||0;
-            const slab=parseFloat(document.getElementById('stcg-slab').value)||30;
-            const r=calcSTCG(asset,buy,sell,months,null,cost,slab);
-            document.getElementById('stcgResultsContent').innerHTML=`<div class="results-primary-card">
-                <div class="results-main">
-                    <div class="result-item"><span class="result-label">Capital Gains (Gross):</span><span class="result-value">${formatCurrency(r.capitalGains)}</span></div>
-                    <div class="result-item"><span class="result-label">STCG Tax:</span><span class="result-value">${formatCurrency(r.stcgTax)}</span></div>
-                    <div class="result-item highlight"><span class="result-label">Net Gain:</span><span class="result-value">${formatCurrency(r.netGain)}</span></div>
-                    <div class="result-item"><span class="result-label">Effective Return:</span><span class="result-value">${r.effectiveReturn.toFixed(2)}%</span></div>
-                </div>
-            </div>`;
-            document.getElementById('stcgInlineWrap').classList.remove('is-hidden');
+          if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        
         }
     </script>
 
