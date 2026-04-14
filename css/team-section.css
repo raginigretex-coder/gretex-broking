@@ -15,7 +15,7 @@
 .senior-management-section .container {
     max-width: 1350px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 /* Section Header with Title and Description */
@@ -978,7 +978,7 @@
 
     .team-section-header {
         gap: 1rem;
-        margin: 0 0 1.35rem;
+        margin: 0 0 2.5rem;
         padding: 0 0.2rem;
         
     }

@@ -5548,7 +5548,7 @@ a.see-all-btn {
     }
 
     .timeline-container {
-        padding: 0 1rem 0 3rem;
+        padding: 0 1rem 0 1rem;
     }
 
     .timeline-container::before {
@@ -5570,7 +5570,7 @@ a.see-all-btn {
 
     .timeline-marker {
         left: 1.5rem;
-        transform: translateX(-50%);
+        transform: translateX(-120%);
     }
 
     .stat-number {
