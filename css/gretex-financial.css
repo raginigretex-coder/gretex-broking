@@ -5610,12 +5610,12 @@ a.see-all-btn {
     }
 
     .logo-section-wrapper {
-        margin-top: -24px;
-        padding-bottom: 48px;
+        margin-top: -90px;
+        padding: 15px;
     }
 
     .logo-section-wrapper .our-logo-section {
-        width: calc(100% - 10px);
+        width: calc(100% );
         border-radius: 16px;
     }
 

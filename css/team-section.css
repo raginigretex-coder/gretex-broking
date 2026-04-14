@@ -257,7 +257,7 @@
     .team-section-header {
         grid-template-columns: 1fr;
         gap: 2rem;
-        margin-bottom: 3rem;
+        margin: 0 0 3rem;
     }
 
     .board-directors-title,
@@ -283,7 +283,7 @@
 
 @media (max-width: 768px) {
     .team-section-header {
-        margin-bottom: 2.5rem;
+        margin: 0 0 2.5rem;
     }
     
     .board-directors-title,
@@ -322,7 +322,7 @@
 
     .team-section-header {
         gap: 1.25rem;
-        margin-bottom: 1.75rem;
+        margin: 0 0 1.75rem;
         padding: 0 0.35rem;
     }
 
@@ -355,7 +355,7 @@
     }
     
     .team-section-header {
-        margin-bottom: 2rem;
+        margin: 0 0 2rem;
     }
     
     .board-directors-title,
@@ -978,8 +978,9 @@
 
     .team-section-header {
         gap: 1rem;
-        margin-bottom: 1.35rem;
+        margin: 0 0 1.35rem;
         padding: 0 0.2rem;
+        
     }
 
     .board-directors-title,
@@ -992,6 +993,7 @@
         font-size: 0.9rem;
         line-height: 1.6;
         max-width: none;
+        margin: 0;
     }
 
     .team-slider-track-container {
