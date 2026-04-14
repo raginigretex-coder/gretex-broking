@@ -5470,17 +5470,58 @@ a.see-all-btn {
 
 @media (max-width: 640px) {
     .about-hero-banner {
-        padding: 4rem 0 3rem;
+        padding: 2.5rem 0 3.75rem;
         margin-top: 70px;
+        min-height: 260px;
+    }
+
+    .about-hero-banner .container {
+        padding: 1.25rem 1rem 3.5rem;
     }
 
     .about-hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin-bottom: 0.35rem;
     }
 
     .about-hero-subtitle {
-        font-size: 1rem;
-        padding: 0 1rem;
+        font-size: 0.96rem;
+        line-height: 1.65;
+        max-width: 280px;
+        padding: 0;
+        gap: 0.45rem;
+    }
+
+    .about-hero-subtitle::before,
+    .about-hero-subtitle::after {
+        width: 18px;
+    }
+
+    .logo-section-wrapper {
+        margin-top: -34px;
+        padding-bottom: 60px;
+    }
+
+    .logo-section-wrapper .our-logo-section {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+    }
+
+    .our-logo-section {
+        padding: 1.5rem 0 2rem;
+    }
+
+    .logo-description-wrapper {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .logo-symbol-container {
+        width: min(100%, 240px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+        padding: 1.5rem;
+        border-radius: 24px;
     }
 
     .about-main-content {
@@ -5541,6 +5582,52 @@ a.see-all-btn {
         padding: 3rem 0;
     }
 
+}
+
+@media (max-width: 420px) {
+    .about-hero-banner {
+        padding: 2rem 0 3.4rem;
+        min-height: 230px;
+    }
+
+    .about-hero-banner .container {
+        padding: 1rem 0.9rem 3rem;
+    }
+
+    .about-hero-title {
+        font-size: 1.95rem;
+        letter-spacing: -0.5px;
+    }
+
+    .about-hero-subtitle {
+        font-size: 0.9rem;
+        max-width: 220px;
+    }
+
+    .about-hero-subtitle::before,
+    .about-hero-subtitle::after {
+        display: none;
+    }
+
+    .logo-section-wrapper {
+        margin-top: -24px;
+        padding-bottom: 48px;
+    }
+
+    .logo-section-wrapper .our-logo-section {
+        width: calc(100% - 10px);
+        border-radius: 16px;
+    }
+
+    .logo-description-wrapper {
+        padding: 0.8rem;
+    }
+
+    .logo-symbol-container {
+        width: min(100%, 210px);
+        padding: 1.2rem;
+        border-radius: 20px;
+    }
 }
 
 /* Map Section Styles */

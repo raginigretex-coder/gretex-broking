@@ -317,6 +317,19 @@
     .key-personnel-title,
     .senior-management-title {
         font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .team-section-header {
+        gap: 1.25rem;
+        margin-bottom: 1.75rem;
+        padding: 0 0.35rem;
+    }
+
+    .team-section-description {
+        font-size: 0.96rem;
+        line-height: 1.75;
+        max-width: none;
     }
 
     .directors-grid,
@@ -375,7 +388,12 @@
     .senior-management-role {
         font-size: 0.9rem;
     }
+
+    .team-slider-wrapper {
+        padding: 0 2rem;
+    }
 }
+
 
 @media (max-width: 360px) {
     .board-directors-section,
@@ -905,46 +923,129 @@
 /* Mobile: 1 card visible */
 @media (max-width: 640px) {
     .team-slider-wrapper {
-        padding: 0 2.5rem;
+        padding: 0 1.5rem;
     }
 
     .team-slider-section .team-slider-card {
-        flex: 0 0 340px;
-        width: 340px;
+        flex: 0 0 min(100%, 300px);
+        width: min(100%, 300px);
+        max-width: 300px !important;
     }
 
     .team-slider-btn {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
     }
 
     .team-slider-btn svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
 
     .team-slider-section .director-image,
     .team-slider-section .personnel-image,
     .team-slider-section .senior-management-image {
-        max-height: 460px;
+        max-height: 380px;
     }
 
     .team-slider-section .director-info,
     .team-slider-section .personnel-info,
     .team-slider-section .senior-management-info {
-        padding: 1.25rem 1.25rem 1.5rem;
+        padding: 0.9rem 0.9rem 1.1rem;
     }
 
     .team-slider-section .director-info h3,
     .team-slider-section .personnel-info h3,
     .team-slider-section .senior-management-info h3 {
-        font-size: 1.125rem;
+        font-size: 1.02rem;
+    }
+
+    .team-slider-section .director-title,
+    .team-slider-section .personnel-title,
+    .team-slider-section .senior-management-title-text {
+        font-size: 0.75rem;
+        line-height: 1.45;
+        padding: 0.25rem 0.35rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 420px) {
+    .board-directors-section,
+    .key-personnel-section,
+    .senior-management-section {
+        padding: 2.25rem 0;
+    }
+
+    .team-section-header {
+        gap: 1rem;
+        margin-bottom: 1.35rem;
+        padding: 0 0.2rem;
+    }
+
+    .board-directors-title,
+    .key-personnel-title,
+    .senior-management-title {
+        font-size: 1.28rem;
+    }
+
+    .team-section-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-width: none;
+    }
+
+    .team-slider-track-container {
+        margin: 0;
+    }
+
     .team-slider-wrapper {
-        padding: 0 2rem;
+        padding: 0 0.75rem;
+    }
+
+    .team-slider-section .team-slider-card {
+        flex: 0 0 min(100%, 245px);
+        width: min(100%, 245px);
+        max-width: 245px !important;
+        border-radius: 14px;
+    }
+
+    .team-slider-section .director-image,
+    .team-slider-section .personnel-image,
+    .team-slider-section .senior-management-image {
+        max-height: 300px;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .team-slider-section .director-info,
+    .team-slider-section .personnel-info,
+    .team-slider-section .senior-management-info {
+        padding: 0.8rem 0.75rem 1rem;
+    }
+
+    .team-slider-section .director-info h3,
+    .team-slider-section .personnel-info h3,
+    .team-slider-section .senior-management-info h3 {
+        font-size: 0.96rem;
+    }
+
+    .team-slider-section .director-title,
+    .team-slider-section .personnel-title,
+    .team-slider-section .senior-management-title-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+    }
+
+    .team-slider-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .team-slider-prev {
+        left: -0.2rem;
+    }
+
+    .team-slider-next {
+        right: -0.2rem;
     }
 }
 
